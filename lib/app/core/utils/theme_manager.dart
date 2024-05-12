@@ -1,40 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '/core/helper/convert_to_material_color.dart';
+import '/app/core/helper/convert_to_material_color.dart';
 import 'color_manager.dart';
 
 class ThemeManager {
   static ThemeData myTheme = ThemeData(
-          fontFamily: GoogleFonts.montserrat().fontFamily,
+          fontFamily: GoogleFonts.cairo().fontFamily,
           visualDensity: VisualDensity.adaptivePlatformDensity,
-          colorScheme: ThemeData().colorScheme.copyWith(
-                primary: ColorManager.secondary,
-              ),
+          colorScheme:
+              ColorScheme.fromSeed(seedColor: ColorManager.primaryColor),
+          useMaterial3: true,
           primarySwatch: Color(
-            ColorManager.primary.value,
+            ColorManager.primaryColor.value,
           ).toMaterialColor(),
-          floatingActionButtonTheme: FloatingActionButtonThemeData(
-            backgroundColor: ColorManager.secondary,
-            foregroundColor: ColorManager.primary,
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
+            backgroundColor: ColorManager.secondaryColor,
+            foregroundColor: ColorManager.primaryColor,
           ),
           appBarTheme: AppBarTheme(
             backgroundColor: ColorManager.appBarColor,
-            iconTheme: IconThemeData(
-              color: ColorManager.white,
+            iconTheme: const IconThemeData(
+              color: ColorManager.whiteColor,
             ),
-            elevation: 0.0,
             centerTitle: true,
             titleTextStyle: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: ColorManager.white,
+                color: ColorManager.whiteColor,
                 fontSize: 24.sp),
           ),
-          drawerTheme: DrawerThemeData(backgroundColor: ColorManager.secondary))
+          drawerTheme:
+              const DrawerThemeData(backgroundColor: ColorManager.secondaryColor))
       .copyWith(
-          textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
-          scaffoldBackgroundColor: Colors.transparent,
-          colorScheme: ThemeData().colorScheme.copyWith(
-                primary: Colors.white,
-              ));
+    textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
+  );
 }

@@ -1,9 +1,7 @@
 class AppString {
-
- 
-
-  static const appName = "Igreen";
-  static const email = "Email";
+  static const appName = "سند";
+  static const letsGo = "هيا لنبدأ";
+  static const email = "";
   static const emailRecovery = "Email Recovery";
   static const passWord = "Password";
   static const forgetPassword = "Forget Password ? ";

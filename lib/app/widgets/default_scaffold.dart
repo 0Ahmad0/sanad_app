@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sanad_app/app/core/utils/assets_manager.dart';
 
 import '../core/utils/color_manager.dart';
 
@@ -15,12 +16,12 @@ class DefaultScaffoldWidget extends StatelessWidget {
       alignment: Alignment.topCenter,
       children: [
         Image.asset(
-          'assets/images/back_ground_app.png',
+          AssetsManager.backgroundAppIMG,
           width: size.width,
           height: size.height,
           fit: BoxFit.cover,
         ),
-        child ?? SizedBox.shrink(),
+        child ?? const SizedBox.shrink(),
       ],
     );
   }

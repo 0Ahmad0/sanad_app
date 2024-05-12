@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:sanad_app/app/core/utils/values_manager.dart';
 
 import '../core/utils/color_manager.dart';
-
-
 
 class ButtonAppWidget extends StatelessWidget {
   const ButtonAppWidget({
@@ -19,14 +20,23 @@ class ButtonAppWidget extends StatelessWidget {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
           elevation: 0.0,
-          backgroundColor: ColorManager.primaryColor,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          minimumSize: Size.fromHeight(50),
+          backgroundColor: ColorManager.secondaryColor.withOpacity(.5),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(100.r),
+              side: const BorderSide(color: ColorManager.secondaryColor, width: 5)),
+          minimumSize: Size.fromHeight(
+            AppSize.s60.sp,
+          ),
         ),
         onPressed: onPressed,
-        child: Text(text,style: TextStyle(
-          color: ColorManager.whiteColor
-        ),));
+        child: Text(
+          text,
+          style: TextStyle(
+            color: ColorManager.whiteColor,
+            fontSize: 18.sp,
+            fontWeight: FontWeight.bold,
+            fontFamily: GoogleFonts.cairo().fontFamily
+          ),
+        ));
   }
 }

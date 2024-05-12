@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../app/models/advance_model.dart';
+import '../../models/advance_model.dart';
 import '../utils/app_constant.dart';
 
 class AppStorage {
