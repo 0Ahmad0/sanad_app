@@ -6,8 +6,9 @@ class ColorManager {
 
   /// Prefer Two Color
   static const secondaryColor = Color(0xff9BBEE5);
-  ///
-
+  ///border Button Color
+  static Color borderButtonColor = Color(0xff425591).withOpacity(.42);
+  static const  tabSelectColor = Color(0xffE3EAF8);
   ///
   static const textFieldColor = Color(0xff6C6B6B);
   static const textFieldHintColor = Color(0xff737781);

@@ -5,6 +5,7 @@ class AssetsManager {
   ///=================<<Png>>=================///
 
   static const String backgroundAppIMG = '$imagePath/back_ground_app.png';
+  static const String backgroundButtonIMG = '$imagePath/back_ground_button.png';
   static const String logoIMG = '$imagePath/logo.png';
 
 

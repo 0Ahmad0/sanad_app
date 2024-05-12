@@ -1,12 +1,14 @@
 class AppString {
   static const appName = "سند";
   static const letsGo = "هيا لنبدأ";
+  static const welcomeAgain = "اهلا بك مجدداً";
+  static const login = "تسجيل دخول";
+  static const signup = "تسجيل جديد";
+  static const registration = "تسجيل";
   static const email = "";
   static const emailRecovery = "Email Recovery";
   static const passWord = "Password";
   static const forgetPassword = "Forget Password ? ";
-  static const login = "Log in";
-  static const signup = "Sign up";
   static const welcome = "Welcome,";
   static const name = "Name";
   static const confirmPassword = "Confirm Password";

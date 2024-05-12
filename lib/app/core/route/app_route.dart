@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:sanad_app/app/controller/auth_controller.dart';
 import 'package:sanad_app/app/screens/auth/auth_screen.dart';
 import 'package:sanad_app/app/screens/splash_screen.dart';
 
