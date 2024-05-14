@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import '../core/utils/app_string.dart';
 
 class AuthController extends GetxController {
+  final formKey = GlobalKey<FormState>();
+  int currentIndex = 0;
   late final PageController pageController;
   final List<String> tabsList = [AppString.login, AppString.signup];
 
@@ -16,6 +18,9 @@ class AuthController extends GetxController {
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut
     );
+    currentIndex = index;
+    update();
+
   }
 
   @override

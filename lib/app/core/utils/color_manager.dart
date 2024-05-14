@@ -9,6 +9,8 @@ class ColorManager {
   ///border Button Color
   static Color borderButtonColor = Color(0xff425591).withOpacity(.42);
   static const  tabSelectColor = Color(0xffE3EAF8);
+  static const  containerAuthColor = Color(0xffF7F7F7);
+
   ///
   static const textFieldColor = Color(0xff6C6B6B);
   static const textFieldHintColor = Color(0xff737781);

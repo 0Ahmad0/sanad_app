@@ -5,10 +5,14 @@ class AppString {
   static const login = "تسجيل دخول";
   static const signup = "تسجيل جديد";
   static const registration = "تسجيل";
-  static const email = "";
+  static const userName = "اسم المستخدم";
+  static const passWord = "كلمة المرور";
+  static const thisMarkMeainingFiledIsRequired = "(*)هذه العلامة تعني يجب عليك ملء الحقل";
+  static const fullName = "الاسم كاملاً";
+  static const email = "البريد الالكتروني";
+  static const phone = "رقم الهاتف";
   static const emailRecovery = "Email Recovery";
-  static const passWord = "Password";
-  static const forgetPassword = "Forget Password ? ";
+  static const forgetPassword = "هل نسيت كلمة المرور ؟اضغط هنا";
   static const welcome = "Welcome,";
   static const name = "Name";
   static const confirmPassword = "Confirm Password";

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../core/utils/color_manager.dart';
-
-
 
 class TextFiledApp extends StatefulWidget {
   TextFiledApp(
@@ -22,8 +21,7 @@ class TextFiledApp extends StatefulWidget {
       this.readOnly = false,
       this.maxLine = 1,
       this.minLine = 1,
-        this.filteringTextFormatterList
-      })
+      this.filteringTextFormatterList})
       : super(key: key);
 
   final TextInputAction textInputAction;
@@ -41,6 +39,7 @@ class TextFiledApp extends StatefulWidget {
   final int? maxLine;
   final int? minLine;
   final List<FilteringTextInputFormatter>? filteringTextFormatterList;
+
   @override
   State<TextFiledApp> createState() => _TextFiledAppState();
 }
@@ -59,6 +58,7 @@ class _TextFiledAppState extends State<TextFiledApp> {
       maxLines: widget.maxLine,
       minLines: widget.minLine,
       readOnly: widget.readOnly,
+      textAlign: TextAlign.center,
       autofocus: widget.autofocus,
       validator: widget.validator ??
           (String? val) {
@@ -67,45 +67,62 @@ class _TextFiledAppState extends State<TextFiledApp> {
           },
       onChanged: widget.onChanged,
       onTap: widget.onTap,
+      style: TextStyle(
+        fontSize: 14.sp,
+        color: ColorManager.blackColor
+      ),
       textInputAction: widget.textInputAction,
       keyboardType: widget.keyboardType,
       obscureText: widget.obscureText,
       controller: widget.controller,
       decoration: InputDecoration(
-        
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: 12,
-          vertical: 12
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(100.0)
-        ),
-        errorMaxLines: 2,
-        prefixIcon: widget.iconData == null
-            ? null
-            : Icon(
-                widget.iconData,
-                size: 24,
-              ),
-        suffixIcon: widget.suffixIcon
-            ? IconButton(
-                onPressed: () {
-                  showPassword();
-                },
-                icon: Icon(
-                  widget.obscureText
-                      ? Icons.remove_red_eye
-                      : Icons.remove_red_eye,
-                  color: !widget.obscureText
-                      ? Theme.of(context).primaryColor
-                      : ColorManager.greyColor,
-                ))
-            : null,
-        hintText: widget.hintText,
-        hintStyle: TextStyle(
-          fontSize: 14.0,
-        )
-      ),
+          filled: true,
+          fillColor: ColorManager.containerAuthColor,
+          contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(14.0),
+              borderSide: BorderSide(
+                  color: ColorManager.secondaryColor.withOpacity(.5),
+                  width: 4)),
+          errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(14.0),
+              borderSide: BorderSide(
+                  color: ColorManager.errorColor.withOpacity(.5), width: 2)),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(14.0),
+              borderSide:
+                  BorderSide(color: ColorManager.secondaryColor, width: 4)),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(14.0),
+              borderSide: BorderSide(
+                  color: ColorManager.secondaryColor.withOpacity(.8),
+                  width: 4)),
+          errorMaxLines: 2,
+          prefixIcon: widget.iconData == null
+              ? null
+              : Icon(
+                  widget.iconData,
+                  size: 24,
+                ),
+          suffixIcon: widget.suffixIcon
+              ? IconButton(
+                  onPressed: () {
+                    showPassword();
+                  },
+                  icon: Icon(
+                    widget.obscureText
+                        ? Icons.remove_red_eye
+                        : Icons.remove_red_eye,
+                    color: !widget.obscureText
+                        ? Theme.of(context).primaryColor
+                        : ColorManager.greyColor,
+                  ))
+              : null,
+          hintText: widget.hintText,
+          hintStyle: TextStyle(
+            fontSize: 14.sp,
+            color: ColorManager.greyColor
+          )),
     );
   }
 }
