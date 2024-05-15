@@ -43,7 +43,7 @@ class SignUpWidget extends StatelessWidget {
             // const SizedBox(height: AppSize.s20,),
             Text.rich(TextSpan(children: [
               TextSpan(
-                text: AppString.passWord,
+                text: AppString.email,
                 style: StylesManager.textNormalStyle(
                     color: ColorManager.primaryColor, size: 16.sp),
               ),
@@ -61,7 +61,7 @@ class SignUpWidget extends StatelessWidget {
             // const SizedBox(height: AppSize.s20,),
             Text.rich(TextSpan(children: [
               TextSpan(
-                text: AppString.passWord,
+                text: AppString.phone,
                 style: StylesManager.textNormalStyle(
                     color: ColorManager.primaryColor, size: 16.sp),
               ),

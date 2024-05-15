@@ -11,18 +11,28 @@ class AppString {
   static const fullName = "الاسم كاملاً";
   static const email = "البريد الالكتروني";
   static const phone = "رقم الهاتف";
-  static const emailRecovery = "Email Recovery";
   static const forgetPassword = "هل نسيت كلمة المرور ؟اضغط هنا";
+  static const reInsertPassword = "اعادة تعيين كلمة المرور";
+  static const pleaseInsertYourEmail = "يرجى ادخال البريد الالكتروني";
+  static const emailExample = "useremail@example.com";
+  static const send = "إرسال";
+  static const emailRecoverySend = "تم إرسال رابط التحقق";
   static const welcome = "Welcome,";
+  // static const welcome = "Welcome,";
+  // static const welcome = "Welcome,";
+  // static const welcome = "Welcome,";
   static const name = "Name";
   static const confirmPassword = "Confirm Password";
   static const allReadyHaveAccount = "all ready have Account ? ";
-  static const send = "Send";
   static const update = "Update";
   static const resetPassword = "Reset password";
   static const  verifyEmail= "Verify Email";
-  static const emailRecoveryDescription =
-      "Enter the email associated with your account and we’ll send an email with instruction to reset your password.";
+  static const  verify= "تحقق";
+  static const  linkValidAt= "الرابط صالح لمدة 5دقائق :";
+  static const  resendLink= "اعادة ارسال رمز التحقق؟";
+
+  static  emailRecoveryDescription (String text)=>
+      "تم إرسال رابط تحقق إلى بريدك الإلكتروني *****$text";
   static const verifyEmailDescription =
       "Verify Your Email" ;
   static const verifyEmailDescription2 = 'If it\'s not there, you can request a new verification email.';

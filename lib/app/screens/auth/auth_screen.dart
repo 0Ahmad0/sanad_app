@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:sanad_app/app/controller/auth_controller.dart';
 import 'package:sanad_app/app/core/helper/sizer_media_query.dart';
+import 'package:sanad_app/app/core/route/app_route.dart';
 import 'package:sanad_app/app/core/utils/app_string.dart';
 import 'package:sanad_app/app/core/utils/assets_manager.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
@@ -36,6 +37,9 @@ class AuthScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(
+                        height: AppSize.s10,
+                      ),
                       Text(
                         AppString.welcomeAgain,
                         style: StylesManager.textBoldStyle(
@@ -62,7 +66,7 @@ class AuthScreen extends StatelessWidget {
                                         alignment: Alignment.center,
                                         duration:
                                             const Duration(milliseconds: 600),
-                                        padding: EdgeInsets.all(AppPadding.p4),
+                                        padding: EdgeInsets.all(AppPadding.p6),
                                         margin: EdgeInsets.all(AppMargin.m8),
                                         decoration: BoxDecoration(
                                           borderRadius:
@@ -92,7 +96,7 @@ class AuthScreen extends StatelessWidget {
                       ),
                       AnimatedContainer(
                         duration: const Duration(milliseconds: 600),
-                        height: controller.currentIndex == 0?getHeight(context) / 2:getHeight(context) / 1.8,
+                        height: controller.currentIndex == 0?getHeight(context) / 2:getHeight(context) / 1.7,
                         child: Form(
                           key: controller.formKey,
                           child: PageView(
@@ -116,7 +120,7 @@ class AuthScreen extends StatelessWidget {
                         child: ButtonAppWidget(
                             onPressed: () {
                               if(controller.formKey.currentState!.validate()){
-
+                                Get.offAllNamed(AppRoute.homeAdminRoute);
                               }
                             }, text: AppString.registration),
                       )
