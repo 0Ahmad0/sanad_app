@@ -1,6 +1,9 @@
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:sanad_app/app/core/helper/sizer_media_query.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
+import 'package:sanad_app/app/core/utils/values_manager.dart';
 
 class CollapsingNavigationDrawer extends StatefulWidget {
   const CollapsingNavigationDrawer({super.key});
@@ -13,7 +16,7 @@ class CollapsingNavigationDrawer extends StatefulWidget {
 class _CollapsingNavigationDrawerState extends State<CollapsingNavigationDrawer>
     with SingleTickerProviderStateMixin {
   double maxWidth = 290.0;
-  double minWidth = 70.0;
+  double minWidth = 100.0;
   bool isCollpased = false;
   late AnimationController _animationController;
   late Animation<double> widthAnimation;
@@ -26,10 +29,10 @@ class _CollapsingNavigationDrawerState extends State<CollapsingNavigationDrawer>
   @override
   void initState() {
     super.initState();
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+    _animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
 
-    widthAnimation = Tween<double>(begin: maxWidth, end: minWidth)
+    widthAnimation = Tween<double>(begin: minWidth, end: maxWidth)
         .animate(_animationController);
   }
 
@@ -53,29 +56,28 @@ class _CollapsingNavigationDrawerState extends State<CollapsingNavigationDrawer>
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
+        margin: EdgeInsets.symmetric(vertical: getHeight(context) / 8),
         width: widthAnimation.value,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             color: ColorManager.primaryColor,
-            borderRadius: const BorderRadius.horizontal(left: Radius.circular(24))),
+            borderRadius: BorderRadius.horizontal(left: Radius.circular(24))),
         child: Column(
           children: <Widget>[
-
             CollapsingListTile(
                 onTap: () {},
                 isSelected: false,
+                image: '',
                 title: 'John',
                 icon: Icons.person,
                 animationController: _animationController),
-
-            Divider(
+            const Divider(
               color: Colors.grey,
               height: 40.0,
             ),
-
             Expanded(
               child: ListView.separated(
                 separatorBuilder: (context, counter) {
-                  return Divider(
+                  return const Divider(
                     height: 12.0,
                   );
                 },
@@ -94,12 +96,11 @@ class _CollapsingNavigationDrawerState extends State<CollapsingNavigationDrawer>
                 itemCount: navigationItem.length,
               ),
             ),
-
             InkWell(
                 onTap: () {
                   setState(() {
                     isCollpased = !isCollpased;
-                    isCollpased
+                    !isCollpased
                         ? _animationController.forward()
                         : _animationController.reverse();
                   });
@@ -110,12 +111,12 @@ class _CollapsingNavigationDrawerState extends State<CollapsingNavigationDrawer>
                 /// ---------------------------
 
                 child: AnimatedIcon(
-                  icon: AnimatedIcons.close_menu,
+                  icon: AnimatedIcons.menu_close,
                   progress: _animationController,
                   color: Colors.white,
                   size: 40.0,
                 )),
-            SizedBox(
+            const SizedBox(
               height: 50.0,
             ),
           ],
@@ -135,14 +136,17 @@ class CollapsingListTile extends StatefulWidget {
   final AnimationController animationController;
   final bool isSelected;
   final Function() onTap;
-  Color selectedColor = Color(0xFF4AC8EA);
+  final String? image;
+  Color selectedColor = const Color(0xFF4AC8EA);
 
-  CollapsingListTile(
-      {required this.title,
-      required this.icon,
-      required this.animationController,
-      required this.isSelected,
-      required this.onTap});
+  CollapsingListTile({super.key,
+    required this.title,
+    required this.icon,
+    required this.animationController,
+    required this.isSelected,
+    required this.onTap,
+    this.image,
+  });
 
   @override
   _CollapsingListTileState createState() => _CollapsingListTileState();
@@ -160,9 +164,9 @@ class _CollapsingListTileState extends State<CollapsingListTile> {
   @override
   void initState() {
     super.initState();
-    widthAnimation = Tween<double>(begin: maxWidth, end: minWidth)
+    widthAnimation = Tween<double>(begin: minWidth, end: maxWidth)
         .animate(widget.animationController);
-    sizedBoxAnimation = Tween<double>(begin: 10.0, end: 0.0)
+    sizedBoxAnimation = Tween<double>(begin: 0.0, end: 10.0)
         .animate(widget.animationController);
   }
 
@@ -175,21 +179,26 @@ class _CollapsingListTileState extends State<CollapsingListTile> {
     return InkWell(
       onTap: widget.onTap,
       child: Container(
-        decoration: new BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(16.0)),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(16.0)),
           color: widget.isSelected
               ? Colors.transparent.withOpacity(0.3)
               : Colors.transparent,
         ),
         width: widthAnimation.value,
-        margin: const EdgeInsets.symmetric(horizontal: 8.0),
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-        child: new Row(
+        margin: const EdgeInsets.symmetric(horizontal: AppMargin.m8,vertical: AppMargin.m8),
+        padding: const EdgeInsets.symmetric( vertical: AppPadding.p4),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: (widthAnimation.value >= 220)?MainAxisAlignment.start:MainAxisAlignment.center,
           children: <Widget>[
-            Icon(
+            widget.image == null ?Icon(
               widget.icon,
               color: widget.isSelected ? selectedColor : Colors.white30,
               size: 38.0,
+            ) : CircleAvatar(
+              radius: 24,
             ),
             SizedBox(
               width: sizedBoxAnimation.value,
@@ -197,11 +206,11 @@ class _CollapsingListTileState extends State<CollapsingListTile> {
             (widthAnimation.value >= 220)
                 ? Text(
                     widget.title,
-                    style: widget.isSelected
+                    style: !widget.isSelected
                         ? listTileSelectedStyle
                         : listTileDefaultStyle,
                   )
-                : Container()
+                : const SizedBox.shrink()
           ],
         ),
       ),
@@ -236,10 +245,10 @@ List<NavigationItem> navigationItem = [
 ///  Some extras styling and colors.
 /// ---------------------------
 
-TextStyle listTileDefaultStyle = TextStyle(
+TextStyle listTileDefaultStyle = const TextStyle(
     color: Colors.white70, fontSize: 20.0, fontWeight: FontWeight.w600);
-TextStyle listTileSelectedStyle =
-    TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.w600);
+TextStyle listTileSelectedStyle = const TextStyle(
+    color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.w600);
 
-Color selectedColor = Color(0xFF4AC8EA);
-Color drawerBackgroundColor = Color(0xFF272D34);
+Color selectedColor = const Color(0xFF4AC8EA);
+Color drawerBackgroundColor = const Color(0xFF272D34);
