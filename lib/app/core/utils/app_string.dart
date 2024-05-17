@@ -18,6 +18,12 @@ class AppString {
   static const send = "إرسال";
   static const emailRecoverySend = "تم إرسال رابط التحقق";
   static const welcome = "Welcome,";
+
+  ///Admin
+  static const welcomeAdminTitle = "اهلا بك في تطبيق سَـند";
+  static const aboutSanadApp = "نبذة عن سَـند :";
+  static const welcomeAdminSubTitle = "سند هو منصة تعليمية مجانية تهدف لمساعدة كبار السن وغيرهم من مستخدمي الإنترنت ضعيفي الخبرة على مواكبة التطور التكنولوجي واستخدام التطبيقات الحديثة بثقة، التي يمكن أن تساعد في تحسين نوعية حياتهم الرقمية.";
+  /// User
   // static const welcome = "Welcome,";
   // static const welcome = "Welcome,";
   // static const welcome = "Welcome,";

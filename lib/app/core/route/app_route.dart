@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:sanad_app/admin/screens/home_admin_screen.dart';
+import 'package:sanad_app/admin/screens/navbar_admin_screen.dart';
 import 'package:sanad_app/app/controller/auth_controller.dart';
 import 'package:sanad_app/app/screens/auth/auth_screen.dart';
 import 'package:sanad_app/app/screens/splash_screen.dart';
@@ -31,7 +31,7 @@ class AppRoute {
     ),
     GetPage(
       name: homeAdminRoute,
-      page: () => HomeAdminScreen(),
+      page: () => NavBarAdminScreen(),
       transition: Transition.fadeIn,
     )
   ];

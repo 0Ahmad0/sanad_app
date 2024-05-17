@@ -1,6 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sanad_app/app/core/utils/assets_manager.dart';
 
 import '../core/utils/color_manager.dart';
 
@@ -13,7 +15,7 @@ class TextFiledApp extends StatefulWidget {
       this.iconData,
       this.hintText,
       this.obscureText = false,
-      this.suffixIcon = false,
+      this.suffixIcon = true,
       this.validator,
       this.onChanged,
       this.onTap,
@@ -21,7 +23,8 @@ class TextFiledApp extends StatefulWidget {
       this.readOnly = false,
       this.maxLine = 1,
       this.minLine = 1,
-      this.filteringTextFormatterList})
+      this.filteringTextFormatterList,
+      this.prefixIcon = false})
       : super(key: key);
 
   final TextInputAction textInputAction;
@@ -29,6 +32,7 @@ class TextFiledApp extends StatefulWidget {
   final TextEditingController? controller;
   final IconData? iconData;
   final String? hintText;
+  final bool prefixIcon;
   final bool suffixIcon;
   final bool autofocus;
   final bool readOnly;
@@ -60,17 +64,15 @@ class _TextFiledAppState extends State<TextFiledApp> {
       readOnly: widget.readOnly,
       textAlign: TextAlign.center,
       autofocus: widget.autofocus,
-      validator: widget.validator ??
-          (String? val) {
-            if (val!.trim().isEmpty) return 'This filed required';
-            return null;
-          },
+      validator: widget.validator,
+      // validator: widget.validator ??
+      //     (String? val) {
+      //       if (val!.trim().isEmpty) return 'This filed required';
+      //       return null;
+      //     },
       onChanged: widget.onChanged,
       onTap: widget.onTap,
-      style: TextStyle(
-        fontSize: 14.sp,
-        color: ColorManager.blackColor
-      ),
+      style: TextStyle(fontSize: 14.sp, color: ColorManager.blackColor),
       textInputAction: widget.textInputAction,
       keyboardType: widget.keyboardType,
       obscureText: widget.obscureText,
@@ -98,13 +100,7 @@ class _TextFiledAppState extends State<TextFiledApp> {
                   color: ColorManager.secondaryColor.withOpacity(.8),
                   width: 4)),
           errorMaxLines: 2,
-          prefixIcon: widget.iconData == null
-              ? null
-              : Icon(
-                  widget.iconData,
-                  size: 24,
-                ),
-          suffixIcon: widget.suffixIcon
+          prefixIcon: widget.prefixIcon
               ? IconButton(
                   onPressed: () {
                     showPassword();
@@ -118,11 +114,14 @@ class _TextFiledAppState extends State<TextFiledApp> {
                         : ColorManager.greyColor,
                   ))
               : null,
+          suffixIcon: widget.suffixIcon
+              ? IconButton(
+                  onPressed: () {},
+                  icon: Image.asset(AssetsManager.nourSoundIcon),
+                )
+              : null,
           hintText: widget.hintText,
-          hintStyle: TextStyle(
-            fontSize: 14.sp,
-            color: ColorManager.greyColor
-          )),
+          hintStyle: TextStyle(fontSize: 14.sp, color: ColorManager.greyColor)),
     );
   }
 }
