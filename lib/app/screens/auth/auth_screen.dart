@@ -19,6 +19,8 @@ import 'package:sanad_app/app/widgets/button_app_widget.dart';
 import 'package:sanad_app/app/widgets/custom_appbar_widget.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
 
+import '../../../admin/screens/navbar_admin_screen.dart';
+
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
 
@@ -120,7 +122,8 @@ class AuthScreen extends StatelessWidget {
                         child: ButtonAppWidget(
                             onPressed: () {
                               if(controller.formKey.currentState!.validate()){
-                                Get.offAllNamed(AppRoute.homeAdminRoute);
+                                // Get.offAllNamed(AppRoute.homeAdminRoute);
+                                Get.offAll(NavBarAdminScreen());
                               }
                             }, text: AppString.registration),
                       )

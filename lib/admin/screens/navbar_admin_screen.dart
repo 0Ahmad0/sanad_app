@@ -32,7 +32,7 @@ class NavBarAdminScreen extends StatelessWidget {
               init: AdminController(),
               builder: (adminController) {
                 return Expanded(
-                  child: controller.adminScreens[0],
+                  child: controller.adminScreens[controller.currentIndex],
                 );
               }
             ),
