@@ -26,7 +26,7 @@ class _CollapsingNavigationDrawerState extends State<CollapsingNavigationDrawer>
   bool isCollpased = false;
   late AnimationController _animationController;
   late Animation<double> widthAnimation;
-  int currentSelectedIndex = 0;
+  // int currentSelectedIndex = -1;
 
   /// ---------------------------
   /// Initializing AnimationController Drawer and configs to it.
@@ -98,11 +98,11 @@ class _CollapsingNavigationDrawerState extends State<CollapsingNavigationDrawer>
                         return CollapsingListTile(
                             onTap: () {
                               setState(() {
-                                currentSelectedIndex = counter;
                                 adminController.currentIndex = counter;
+                                adminController.changePage(counter);
                               });
                             },
-                            isSelected: currentSelectedIndex == counter,
+                            isSelected: adminController.currentIndex == counter,
                             title: navigationItem[counter].title,
                             icon: navigationItem[counter].icon,
                             animationController: _animationController);

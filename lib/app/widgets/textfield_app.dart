@@ -62,7 +62,7 @@ class _TextFiledAppState extends State<TextFiledApp> {
       maxLines: widget.maxLine,
       minLines: widget.minLine,
       readOnly: widget.readOnly,
-      textAlign: TextAlign.center,
+      textAlign: !widget.prefixIcon?TextAlign.start:TextAlign.center,
       autofocus: widget.autofocus,
       validator: widget.validator,
       // validator: widget.validator ??
@@ -113,7 +113,7 @@ class _TextFiledAppState extends State<TextFiledApp> {
                         ? Theme.of(context).primaryColor
                         : ColorManager.greyColor,
                   ))
-              : null,
+              : Icon(widget.iconData),
           suffixIcon: widget.suffixIcon
               ? IconButton(
                   onPressed: () {},

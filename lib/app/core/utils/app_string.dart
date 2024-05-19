@@ -23,6 +23,13 @@ class AppString {
   static const welcomeAdminTitle = "اهلا بك في تطبيق سَـند";
   static const aboutSanadApp = "نبذة عن سَـند :";
   static const welcomeAdminSubTitle = "سند هو منصة تعليمية مجانية تهدف لمساعدة كبار السن وغيرهم من مستخدمي الإنترنت ضعيفي الخبرة على مواكبة التطور التكنولوجي واستخدام التطبيقات الحديثة بثقة، التي يمكن أن تساعد في تحسين نوعية حياتهم الرقمية.";
+  static const elderlyManagement = "ادارة كبار السن";
+  static const search = "البحث";
+  static const save = "حفظ";
+  static const delete = "حذف";
+  static const edit = "تعديل";
+  static const show = "عرض";
+  static const educationalMaterialsManagement = "ادارة المواد التعلمية";
   /// User
   // static const welcome = "Welcome,";
   // static const welcome = "Welcome,";

@@ -9,14 +9,19 @@ import 'package:sanad_app/admin/screens/lesson_requests_screen.dart';
 import 'package:sanad_app/admin/screens/questions_manage_screen.dart';
 
 class AdminController extends GetxController {
-  int currentIndex = 0;
+  int currentIndex = -1;
   List<Widget> adminScreens = [
-    HomeScreenAdmin(),
+    ElderlyManagementScreen(),
+    EducationalMaterialsManagementScreen(),
     AddLessonScreen(),
     AddQuestionsScreen(),
-    EducationalMaterialsManagementScreen(),
-    ElderlyManagementScreen(),
     LessonRequestsScreen(),
     QuestionsManageScreen(),
   ];
+
+  changePage(int index){
+    currentIndex = index;
+    update();
+
+  }
 }
