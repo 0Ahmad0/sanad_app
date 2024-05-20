@@ -11,6 +11,7 @@ import 'package:sanad_app/admin/screens/elderly_management_admin_screen.dart';
 import 'package:sanad_app/admin/screens/home_admin_screen.dart';
 import 'package:sanad_app/admin/screens/lesson_requests_admin_screen.dart';
 import 'package:sanad_app/admin/screens/questions_manage_admin_screen.dart';
+import 'package:sanad_app/app/core/utils/color_manager.dart';
 
 class AdminController extends GetxController {
   int currentIndex = -1;
@@ -29,33 +30,47 @@ class AdminController extends GetxController {
   }
 
   late final ImagePicker picker;
-  File? video;
+  File? videoFile;
   File? audioFile;
   List<File> images = [];
 
-  // Future<void> _pickImages() async {
-  //   List<File> pickedFiles = await ImagePickerExtended().pickMultiImage();
-  //
-  //   if (pickedFiles.isNotEmpty) {
-  //     setState(() {
-  //       _images = pickedFiles;
-  //     });
-  //   }
-  // }
-  Future<void> pickVideo() async {
-    final pickedFile = await picker.pickVideo(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      video = File(pickedFile.path);
+  Future pickImages() async {
+    final pickedFile = await picker.pickMultiImage();
+    List<XFile> xfilePick = pickedFile;
+
+    if (xfilePick.isNotEmpty) {
+      for (var i = 0; i < xfilePick.length; i++) {
+        images.add(File(xfilePick[i].path));
+      }
       update();
+    } else {
+      if(images.isEmpty)
+      Get.snackbar('خطأ', 'لم تقم بتحديد أية صور',backgroundColor: ColorManager.errorColor,colorText: ColorManager.whiteColor);
+
     }
   }
 
+  Future<void> pickVideo() async {
+    final pickedFile = await picker.pickVideo(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      videoFile = File(pickedFile.path);
+      update();
+    } else {
+      if(videoFile == null)
+      Get.snackbar('خطأ', 'لم تقم بتحديد فيديو',backgroundColor: ColorManager.errorColor,colorText: ColorManager.whiteColor);
+
+    }
+  }
 
   Future<void> pickAudio() async {
     FilePickerResult? result =
         await FilePicker.platform.pickFiles(type: FileType.audio);
     if (result != null) {
-        audioFile = File(result.files.single.path!);
+      audioFile = File(result.files.single.path!);
+      update();
+    } else {
+      if(audioFile == null)
+      Get.snackbar('خطأ', 'لم تقم بتحديد صوت ',backgroundColor: ColorManager.errorColor,colorText: ColorManager.whiteColor);
     }
   }
 

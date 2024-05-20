@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart';
 import 'package:sanad_app/app/controller/admin_controller.dart';
 import 'package:sanad_app/app/core/utils/assets_manager.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
@@ -42,32 +43,37 @@ class AddLessonAdminScreen extends StatelessWidget {
                     ),
                   ),
                   const DividerAuthWidget(),
-
                   ContainerAuthWidget(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: AppSize.s10,),
-                        Text(AppString.lessonName,style: StylesManager.textNormalStyle(
-                          color: ColorManager.primaryColor,
-                          size: 14.sp
-                        ),),
+                        const SizedBox(
+                          height: AppSize.s10,
+                        ),
+                        Text(
+                          AppString.lessonName,
+                          style: StylesManager.textNormalStyle(
+                              color: ColorManager.primaryColor, size: 14.sp),
+                        ),
                         const DividerAuthWidget(),
                         TextFiledApp(
                           suffixIcon: false,
                         ),
-                        const SizedBox(height: AppSize.s20,),
-                        Text(AppString.lessonDescription,style: StylesManager.textNormalStyle(
-                            color: ColorManager.primaryColor,
-                            size: 14.sp
-                        )),
+                        const SizedBox(
+                          height: AppSize.s20,
+                        ),
+                        Text(AppString.lessonDescription,
+                            style: StylesManager.textNormalStyle(
+                                color: ColorManager.primaryColor, size: 14.sp)),
                         const DividerAuthWidget(),
                         TextFiledApp(
                           suffixIcon: false,
                           minLine: 3,
                           maxLine: 8,
                         ),
-                        const SizedBox(height: AppSize.s10,),
+                        const SizedBox(
+                          height: AppSize.s10,
+                        ),
                       ],
                     ),
                   ),
@@ -76,52 +82,88 @@ class AddLessonAdminScreen extends StatelessWidget {
                   ),
                   ContainerAuthWidget(
                     child: GetBuilder<AdminController>(
-                      init: AdminController(),
-                      builder: (adminController) {
-                        return Column(
-                          children: [
-                            const SizedBox(height: AppSize.s10,),
-                            ListTile(
-                              onTap: (){},
-                              leading: Image.asset(AssetsManager.adminImageIcon),
-                              title: Text(AppString.uploadImageAdmin,style: StylesManager.textNormalStyle(
-                                  size: 14.sp,
-                                  color: ColorManager.secondaryColor
-                              ),),
-                            ),
-                            ListTile(
-                              onTap: (){
-                                adminController.pickAudio();
-                              },
-                              leading: Image.asset(AssetsManager.adminSoundIcon),
-                              title: Text(AppString.uploadSoundAdmin,style: StylesManager.textNormalStyle(
-                                  size: 14.sp,
-                                  color: ColorManager.secondaryColor
-                              ),),
-                            ),
-                            ListTile(
-                              onTap: (){
-                                adminController.pickVideo();
-                              },
-                              leading: Image.asset(AssetsManager.adminVideoIcon),
-                              title: Text(AppString.uploadVideoAdmin,style: StylesManager.textNormalStyle(
-                                size: 14.sp,
-                                color: ColorManager.secondaryColor
-                              ),),
-                            ),
-                            const SizedBox(height: AppSize.s10,),
-
-                          ],
-                        );
-                      }
-                    ),
+                        init: AdminController(),
+                        builder: (adminController) {
+                          return Column(
+                            children: [
+                              const SizedBox(
+                                height: AppSize.s10,
+                              ),
+                              ListTile(
+                                onTap: () {
+                                  adminController.pickImages();
+                                },
+                                leading:
+                                    Image.asset(AssetsManager.adminImageIcon),
+                                subtitle: adminController.images.isEmpty
+                                    ? null
+                                    : Text.rich(TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: '${adminController.images.length} - ',
+                                        style: StylesManager.textNormalStyle(
+                                            color: ColorManager.secondaryColor
+                                        )
+                                    ),
+                                    TextSpan(
+                                      text:  AppString.image,
+                                    ),
+                                  ]
+                                )),
+                                title: Text(
+                                  AppString.uploadImageAdmin,
+                                  style: StylesManager.textNormalStyle(
+                                      size: 14.sp,
+                                      color: ColorManager.secondaryColor),
+                                ),
+                              ),
+                              ListTile(
+                                onTap: () {
+                                  adminController.pickAudio();
+                                },
+                                leading:
+                                    Image.asset(AssetsManager.adminSoundIcon),
+                                subtitle: adminController.images.isEmpty
+                                    ? null
+                                    : Text('${basename(adminController.audioFile?.path?? '') }'),
+                                title: Text(
+                                  AppString.uploadSoundAdmin,
+                                  style: StylesManager.textNormalStyle(
+                                      size: 14.sp,
+                                      color: ColorManager.secondaryColor),
+                                ),
+                              ),
+                              ListTile(
+                                onTap: () {
+                                  adminController.pickVideo();
+                                },
+                                leading:
+                                    Image.asset(AssetsManager.adminVideoIcon),
+                                subtitle: adminController.images.isEmpty
+                                    ? null
+                                    : Text('${basename(adminController.videoFile?.path ?? '')}'),
+                                title: Text(
+                                  AppString.uploadVideoAdmin,
+                                  style: StylesManager.textNormalStyle(
+                                      size: 14.sp,
+                                      color: ColorManager.secondaryColor),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: AppSize.s10,
+                              ),
+                            ],
+                          );
+                        }),
                   ),
                   const SizedBox(
                     height: AppSize.s20,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-                    child: ButtonAppWidget(onPressed: (){}, text: AppString.save),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppPadding.p20),
+                    child:
+                        ButtonAppWidget(onPressed: () {}, text: AppString.save),
                   ),
                   const SizedBox(
                     height: AppSize.s20,

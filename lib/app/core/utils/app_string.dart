@@ -37,6 +37,10 @@ class AppString {
   static const uploadImageAdmin = "تحميل صورة الدرس";
   static const uploadSoundAdmin = "تحميل صوت الدرس";
   static const uploadVideoAdmin = "تحميل فديو الدرس";
+  static const image = "صورة";
+  static const questionManagement = "ادارة الاسئلة";
+  static const selectLesson = "اختر الدرس";
+  static const questionLesson = "اسئلة الدرس";
 
   /// User
   // static const welcome = "Welcome,";
