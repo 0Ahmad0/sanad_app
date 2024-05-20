@@ -19,6 +19,9 @@ class AssetsManager {
   static const String adminDrawer3Icon = '$iconPath/admin_drawer3.png';
   static const String adminDrawer5Icon = '$iconPath/admin_drawer5.png';
   static const String logoutIcon = '$iconPath/logout.png';
+  static const String adminVideoIcon = '$iconPath/admin_video_icon.png';
+  static const String adminImageIcon = '$iconPath/admin_image_icon.png';
+  static const String adminSoundIcon = '$iconPath/admin_sound_icon.png';
 
 
   ///=================<<Json>>=================///

@@ -32,6 +32,12 @@ class AppString {
   static const educationalMaterialsManagement = "ادارة المواد التعلمية";
   static const lessonRequests = "طلبات الدروس ";
   static const addLesson = "إضافة درس";
+  static const lessonName = "اسم الدرس";
+  static const lessonDescription = "وصف الدرس";
+  static const uploadImageAdmin = "تحميل صورة الدرس";
+  static const uploadSoundAdmin = "تحميل صوت الدرس";
+  static const uploadVideoAdmin = "تحميل فديو الدرس";
+
   /// User
   // static const welcome = "Welcome,";
   // static const welcome = "Welcome,";

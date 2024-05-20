@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         designSize: Size(AppConstants.designWidth, AppConstants.designHeight),
         builder: (context, _) {
           return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
             localizationsDelegates: const [
               GlobalCupertinoLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
             title: AppString.appName,
             // theme:ThemeManager.myTheme,
             theme: ThemeData(
-              fontFamily: GoogleFonts.cairo().fontFamily
+              fontFamily: GoogleFonts.cairo().fontFamily,
             ),
             defaultTransition: Transition.leftToRightWithFade,
             getPages: AppRoute.appPages,

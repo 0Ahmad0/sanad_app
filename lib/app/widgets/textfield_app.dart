@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,7 +23,8 @@ class TextFiledApp extends StatefulWidget {
       this.maxLine = 1,
       this.minLine = 1,
       this.filteringTextFormatterList,
-      this.prefixIcon = false})
+      this.prefixIcon = false,
+      this.noPrefixIcon = true})
       : super(key: key);
 
   final TextInputAction textInputAction;
@@ -36,6 +36,7 @@ class TextFiledApp extends StatefulWidget {
   final bool suffixIcon;
   final bool autofocus;
   final bool readOnly;
+  final bool noPrefixIcon;
   bool obscureText;
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
@@ -62,7 +63,7 @@ class _TextFiledAppState extends State<TextFiledApp> {
       maxLines: widget.maxLine,
       minLines: widget.minLine,
       readOnly: widget.readOnly,
-      textAlign: !widget.prefixIcon?TextAlign.start:TextAlign.center,
+      textAlign: !widget.prefixIcon ? TextAlign.start : TextAlign.center,
       autofocus: widget.autofocus,
       validator: widget.validator,
       // validator: widget.validator ??
@@ -113,7 +114,9 @@ class _TextFiledAppState extends State<TextFiledApp> {
                         ? Theme.of(context).primaryColor
                         : ColorManager.greyColor,
                   ))
-              : Icon(widget.iconData),
+              : widget.noPrefixIcon
+                  ? null
+                  : Icon(widget.iconData),
           suffixIcon: widget.suffixIcon
               ? IconButton(
                   onPressed: () {},
