@@ -30,6 +30,8 @@ class AppString {
   static const edit = "تعديل";
   static const show = "عرض";
   static const educationalMaterialsManagement = "ادارة المواد التعلمية";
+  static const lessonRequests = "طلبات الدروس ";
+  static const addLesson = "إضافة درس";
   /// User
   // static const welcome = "Welcome,";
   // static const welcome = "Welcome,";

@@ -14,8 +14,8 @@ import 'package:sanad_app/app/widgets/textfield_app.dart';
 
 import '../widgets/elderly_widget.dart';
 
-class ElderlyManagementScreen extends StatelessWidget {
-  const ElderlyManagementScreen({super.key});
+class ElderlyManagementAdminScreen extends StatelessWidget {
+  const ElderlyManagementAdminScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

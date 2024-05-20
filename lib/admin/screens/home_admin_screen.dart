@@ -9,8 +9,8 @@ import '../../app/core/utils/styles_manager.dart';
 import '../../app/core/utils/values_manager.dart';
 import '../../app/widgets/default_scaffold.dart';
 
-class HomeScreenAdmin extends StatelessWidget {
-  const HomeScreenAdmin({super.key});
+class HomeAdminScreen extends StatelessWidget {
+  const HomeAdminScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

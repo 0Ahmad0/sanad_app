@@ -12,8 +12,8 @@ import '../../app/widgets/container_auth_widget.dart';
 import '../../app/widgets/textfield_app.dart';
 import '../widgets/educational_materials_management_widget.dart';
 
-class EducationalMaterialsManagementScreen extends StatelessWidget {
-  const EducationalMaterialsManagementScreen({super.key});
+class EducationalMaterialsManagementAdminScreen extends StatelessWidget {
+  const EducationalMaterialsManagementAdminScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

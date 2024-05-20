@@ -35,7 +35,7 @@ class NavBarAdminScreen extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(right: AppPadding.p90),
                       child: adminController.currentIndex == -1
-                          ? HomeScreenAdmin()
+                          ? HomeAdminScreen()
                           : adminController
                               .adminScreens[adminController.currentIndex],
                     ),

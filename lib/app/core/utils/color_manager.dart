@@ -31,7 +31,7 @@ class ColorManager {
   // static const lightGrey = Color(0xffEFEEF0);
 
   ///--- Success
-  static const successColor = Color(0xff16FACD);
+  static const successColor = Color(0xff00BA00);
 
   // static const successDark = Color(0xff1F7F40);
   // static const successLight = Color(0xffDAF6E4);
