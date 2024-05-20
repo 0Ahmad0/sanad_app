@@ -16,6 +16,8 @@ import '../../app/widgets/button_app_widget.dart';
 import '../../app/widgets/container_auth_widget.dart';
 import '../../app/widgets/textfield_app.dart';
 import '../widgets/educational_materials_management_widget.dart';
+import '../widgets/lesson_widget.dart';
+import '../widgets/question_widget.dart';
 class QuestionsManageAdminScreen extends StatelessWidget {
   const QuestionsManageAdminScreen({super.key});
 
@@ -82,7 +84,7 @@ class QuestionsManageAdminScreen extends StatelessWidget {
           Expanded(
             child: ContainerAuthWidget(
               child: ListView.builder(
-                itemBuilder: (context, index) => EducationalMaterialsManagementWidget(
+                itemBuilder: (context, index) => LessonWidget(
                   name: 'اسم الدرس ${index+1}',
                 ),
                 itemCount: 10,
@@ -105,10 +107,10 @@ class QuestionsManageAdminScreen extends StatelessWidget {
                 Expanded(
                   child: ContainerAuthWidget(
                     child: ListView.builder(
-                      itemBuilder: (context, index) => EducationalMaterialsManagementWidget(
-                        name: 'اسم الدرس ${index+1}',
+                      itemBuilder: (context, index) => QuestionWidget(
+                        name: 'اسم السؤال ${index+1}',
                       ),
-                      itemCount: 10,
+                      itemCount: 3,
                     ),
                   ),
                 ),
