@@ -13,6 +13,9 @@ import 'package:sanad_app/admin/screens/lesson_requests_admin_screen.dart';
 import 'package:sanad_app/admin/screens/questions_manage_admin_screen.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
 
+import '../../admin/screens/add_question_screen.dart';
+import '../models/question_model.dart';
+
 class AdminController extends GetxController {
   int currentIndex = -1;
   List<Widget> adminScreens = [
@@ -44,9 +47,10 @@ class AdminController extends GetxController {
       }
       update();
     } else {
-      if(images.isEmpty)
-      Get.snackbar('خطأ', 'لم تقم بتحديد أية صور',backgroundColor: ColorManager.errorColor,colorText: ColorManager.whiteColor);
-
+      if (images.isEmpty)
+        Get.snackbar('خطأ', 'لم تقم بتحديد أية صور',
+            backgroundColor: ColorManager.errorColor,
+            colorText: ColorManager.whiteColor);
     }
   }
 
@@ -56,9 +60,10 @@ class AdminController extends GetxController {
       videoFile = File(pickedFile.path);
       update();
     } else {
-      if(videoFile == null)
-      Get.snackbar('خطأ', 'لم تقم بتحديد فيديو',backgroundColor: ColorManager.errorColor,colorText: ColorManager.whiteColor);
-
+      if (videoFile == null)
+        Get.snackbar('خطأ', 'لم تقم بتحديد فيديو',
+            backgroundColor: ColorManager.errorColor,
+            colorText: ColorManager.whiteColor);
     }
   }
 
@@ -69,9 +74,26 @@ class AdminController extends GetxController {
       audioFile = File(result.files.single.path!);
       update();
     } else {
-      if(audioFile == null)
-      Get.snackbar('خطأ', 'لم تقم بتحديد صوت ',backgroundColor: ColorManager.errorColor,colorText: ColorManager.whiteColor);
+      if (audioFile == null)
+        Get.snackbar('خطأ', 'لم تقم بتحديد صوت ',
+            backgroundColor: ColorManager.errorColor,
+            colorText: ColorManager.whiteColor);
     }
+  }
+
+  List<Question> questions = [];
+
+  void addQuestion(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => AddQuestionPage(
+          onSave: (question) {
+            questions.add(question);
+            update();
+          },
+        ),
+      ),
+    );
   }
 
   @override

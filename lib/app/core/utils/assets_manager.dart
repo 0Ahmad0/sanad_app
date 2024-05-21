@@ -22,6 +22,7 @@ class AssetsManager {
   static const String adminVideoIcon = '$iconPath/admin_video_icon.png';
   static const String adminImageIcon = '$iconPath/admin_image_icon.png';
   static const String adminSoundIcon = '$iconPath/admin_sound_icon.png';
+  static const String emptyBoxIcon = '$iconPath/empty-box.png';
 
 
   ///=================<<Json>>=================///

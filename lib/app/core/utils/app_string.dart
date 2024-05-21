@@ -41,6 +41,14 @@ class AppString {
   static const questionManagement = "ادارة الاسئلة";
   static const selectLesson = "اختر الدرس";
   static const questionLesson = "اسئلة الدرس";
+  static const noQuestionFoundYet = "لا يوجد أسئلة لهذا الدرس بعد!";
+  static const addQuestion = "إضافة سؤال";
+  static const pleaseEnterOption = "لا يمكن أن يكون فارغاَ";
+  static const option  = "الإجابة ";
+  static const selectTheCorrectOption  = "حدد الإجابة الصحيحية : ";
+  static const saveQuestion  = "حفظ السؤال";
+  static const pleaseEnterQuestion  = "لا يمكن أن يكون السؤال فارغا";
+  static const question  = "السؤال";
 
   /// User
   // static const welcome = "Welcome,";

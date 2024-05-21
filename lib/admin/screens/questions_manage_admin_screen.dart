@@ -30,33 +30,15 @@ class QuestionsManageAdminScreen extends StatelessWidget {
           const SizedBox(
             height: AppSize.s60,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                AppString.questionManagement,
-                overflow: TextOverflow.ellipsis,
-                style: StylesManager.textBoldStyle(
-                  color: ColorManager.primaryColor,
-                  size: 20.sp,
-                ),
-              ),
-              IconButton(onPressed: (){
-                Get.toNamed(AppRoute.addQuestionsAdminRoute);
-              }, icon: Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                        color: ColorManager.primaryColor
-                    )
-                ),
-                child: CircleAvatar(
-                  backgroundColor: ColorManager.secondaryColor.withOpacity(.3),
-                  child: Icon(Icons.add,color: ColorManager.primaryColor,),
-                ),
-              ))
-            ],
+          Text(
+            AppString.questionManagement,
+            overflow: TextOverflow.ellipsis,
+            style: StylesManager.textBoldStyle(
+              color: ColorManager.primaryColor,
+              size: 20.sp,
+            ),
           ),
+
           const DividerAuthWidget(),
           const SizedBox(
             height: AppSize.s10,
@@ -91,32 +73,7 @@ class QuestionsManageAdminScreen extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  AppString.questionLesson,
-                  overflow: TextOverflow.ellipsis,
-                  style: StylesManager.textBoldStyle(
-                    color: ColorManager.primaryColor,
-                    size: 16.sp,
-                  ),
-                ),
-                const DividerAuthWidget(),
-                Expanded(
-                  child: ContainerAuthWidget(
-                    child: ListView.builder(
-                      itemBuilder: (context, index) => QuestionWidget(
-                        name: 'اسم السؤال ${index+1}',
-                      ),
-                      itemCount: 3,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+
 
 
           const SizedBox(
