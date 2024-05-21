@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:sanad_app/app/controller/auth_controller.dart';
 import 'package:sanad_app/app/core/helper/sizer_media_query.dart';
 import 'package:sanad_app/app/core/utils/app_string.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
@@ -9,13 +11,16 @@ import 'package:sanad_app/app/core/utils/styles_manager.dart';
 import 'package:sanad_app/app/core/utils/values_manager.dart';
 import 'package:sanad_app/app/widgets/textfield_app.dart';
 
+import '../../core/utils/assets_manager.dart';
 import '../../widgets/container_auth_widget.dart';
 import 'widgets/divider_auth_widgets.dart';
+
 class SignUpWidget extends StatelessWidget {
   const SignUpWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final authController = Get.put(AuthController());
     return ContainerAuthWidget(
       child: SingleChildScrollView(
         child: Column(
@@ -36,9 +41,19 @@ class SignUpWidget extends StatelessWidget {
               ),
             ])),
             const DividerAuthWidget(),
-            const SizedBox(height: AppSize.s10,),
+            const SizedBox(
+              height: AppSize.s10,
+            ),
             TextFiledApp(
+              audioPath: AssetsManager.noorSound,
+              controller: authController.nameController,
               hintText: AppString.fullName,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'خطأ!';
+                }
+                return null;
+              },
             ),
             // const SizedBox(height: AppSize.s20,),
             Text.rich(TextSpan(children: [
@@ -54,9 +69,22 @@ class SignUpWidget extends StatelessWidget {
               ),
             ])),
             const DividerAuthWidget(),
-            const SizedBox(height: AppSize.s10,),
+            const SizedBox(
+              height: AppSize.s10,
+            ),
             TextFiledApp(
+              audioPath: AssetsManager.noorSound,
+              controller: authController.emailController,
               hintText: AppString.email,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'خطأ!';
+                }
+                if(!value.isEmail){
+
+                }
+                return null;
+              },
             ),
             // const SizedBox(height: AppSize.s20,),
             Text.rich(TextSpan(children: [
@@ -72,10 +100,19 @@ class SignUpWidget extends StatelessWidget {
               ),
             ])),
             const DividerAuthWidget(),
-            const SizedBox(height: AppSize.s10,),
+            const SizedBox(
+              height: AppSize.s10,
+            ),
             TextFiledApp(
+              audioPath: AssetsManager.noorSound,
+              controller: authController.phoneController,
               hintText: AppString.phone,
               keyboardType: TextInputType.phone,
+              validator: (value) {
+                if (value!.isEmpty) {}
+                if (!value.isPhoneNumber) {}
+                return null;
+              },
             ),
             // const SizedBox(height: AppSize.s20,),
             Text.rich(TextSpan(children: [
@@ -91,16 +128,18 @@ class SignUpWidget extends StatelessWidget {
               ),
             ])),
             const DividerAuthWidget(),
-            const SizedBox(height: AppSize.s10,),
+            const SizedBox(
+              height: AppSize.s10,
+            ),
             TextFiledApp(
+              audioPath: AssetsManager.noorSound,
+
+              controller: authController.passwordController,
               hintText: '●●●●●●●●',
             ),
-
-
           ],
         ),
       ),
     );
   }
 }
-

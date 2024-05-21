@@ -1,6 +1,6 @@
 const imagePath = 'assets/images';
 const iconPath = 'assets/icons';
-const soundPath = 'assets/sounds';
+const soundPath = 'sounds';
 
 class AssetsManager {
   ///=================<<Png>>=================///
@@ -27,4 +27,6 @@ class AssetsManager {
 
   ///=================<<Json>>=================///
 
+  ///=================<<Audio>>=================///
+  static const String noorSound = '$soundPath/test_sound.mp3';
 }

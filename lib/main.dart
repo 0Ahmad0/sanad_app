@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +11,9 @@ import 'package:sanad_app/app/core/utils/theme_manager.dart';
 import 'package:sanad_app/app/screens/splash_screen.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 
+AudioPlayer audio = AudioPlayer();
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -39,7 +42,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               fontFamily: GoogleFonts.cairo().fontFamily,
             ),
-            defaultTransition: Transition.leftToRightWithFade,
+            defaultTransition: Transition.fade,
             getPages: AppRoute.appPages,
           );
         });

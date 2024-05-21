@@ -1,7 +1,10 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:sanad_app/app/core/utils/assets_manager.dart';
+import 'package:sanad_app/main.dart';
 
 import '../core/utils/color_manager.dart';
 
@@ -24,7 +27,8 @@ class TextFiledApp extends StatefulWidget {
       this.minLine = 1,
       this.filteringTextFormatterList,
       this.prefixIcon = false,
-      this.noPrefixIcon = true})
+      this.noPrefixIcon = true,
+      this.audioPath})
       : super(key: key);
 
   final TextInputAction textInputAction;
@@ -44,6 +48,7 @@ class TextFiledApp extends StatefulWidget {
   final int? maxLine;
   final int? minLine;
   final List<FilteringTextInputFormatter>? filteringTextFormatterList;
+  final String? audioPath;
 
   @override
   State<TextFiledApp> createState() => _TextFiledAppState();
@@ -119,7 +124,15 @@ class _TextFiledAppState extends State<TextFiledApp> {
                   : Icon(widget.iconData),
           suffixIcon: widget.suffixIcon
               ? IconButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    if (widget.audioPath != null) {
+                      await audio.play(AssetSource(widget.audioPath!));
+                    } else {
+                      Get.snackbar('خطأ', 'لا يوجد صوت',
+                          colorText: ColorManager.whiteColor,
+                          backgroundColor: ColorManager.errorColor);
+                    }
+                  },
                   icon: Image.asset(AssetsManager.nourSoundIcon),
                 )
               : null,

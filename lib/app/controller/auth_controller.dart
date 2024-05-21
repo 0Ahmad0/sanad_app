@@ -5,6 +5,21 @@ import '../core/utils/app_string.dart';
 
 class AuthController extends GetxController {
   final formKey = GlobalKey<FormState>();
+
+  //controllers
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
+  final passwordController = TextEditingController();
+
+
+
+
+
+
+
+
+
   int currentIndex = 0;
   late final PageController pageController;
   final List<String> tabsList = [AppString.login, AppString.signup];
@@ -28,4 +43,14 @@ class AuthController extends GetxController {
     _initPageView();
     super.onInit();
   }
+  @override
+  void onClose() {
+    nameController.dispose();
+    emailController.dispose();
+    phoneController.dispose();
+    passwordController.dispose();
+    pageController.dispose();
+    super.onClose();
+  }
+
 }

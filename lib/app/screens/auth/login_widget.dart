@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:sanad_app/app/controller/auth_controller.dart';
 import 'package:sanad_app/app/core/helper/sizer_media_query.dart';
 import 'package:sanad_app/app/core/route/app_route.dart';
 import 'package:sanad_app/app/core/utils/app_string.dart';
+import 'package:sanad_app/app/core/utils/assets_manager.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
 import 'package:sanad_app/app/core/utils/styles_manager.dart';
 import 'package:sanad_app/app/core/utils/values_manager.dart';
@@ -19,12 +21,15 @@ class LoginWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authController = Get.put(AuthController());
     return ContainerAuthWidget(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(height: AppSize.s20,),
+          const SizedBox(
+            height: AppSize.s20,
+          ),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
@@ -45,11 +50,24 @@ class LoginWidget extends StatelessWidget {
                     ),
                   ])),
                   const DividerAuthWidget(),
-                  const SizedBox(height: AppSize.s10,),
-                  TextFiledApp(
-                    hintText: AppString.userName,
+                  const SizedBox(
+                    height: AppSize.s10,
                   ),
-                  const SizedBox(height: AppSize.s20,),
+                  TextFiledApp(
+                    audioPath: AssetsManager.noorSound,
+                    controller: authController.emailController,
+                    hintText: AppString.userName,
+                    validator: (value) {
+                      print('object');
+                      if (value!.isEmpty) {
+                        return 'خطأ!';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(
+                    height: AppSize.s20,
+                  ),
                   Text.rich(TextSpan(children: [
                     TextSpan(
                       text: AppString.passWord,
@@ -63,26 +81,37 @@ class LoginWidget extends StatelessWidget {
                     ),
                   ])),
                   const DividerAuthWidget(),
-                  const SizedBox(height: AppSize.s10,),
-                  TextFiledApp(
-                    hintText: '●●●●●●●●',
+                  const SizedBox(
+                    height: AppSize.s10,
                   ),
-                  TextButton(onPressed: (){
-                    Get.toNamed(AppRoute.forgetPasswordRoute);
-                  }, child: Text(AppString.forgetPassword)),
+                  TextFiledApp(
+                    audioPath: AssetsManager.noorSound,
+                    controller: authController.passwordController,
+                    hintText: '●●●●●●●●',
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'خطأ!';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        Get.toNamed(AppRoute.forgetPasswordRoute);
+                      },
+                      child: Text(AppString.forgetPassword)),
                   // const Spacer(),
-                  
                 ],
               ),
             ),
           ),
-          Text(AppString.thisMarkMeainingFiledIsRequired,style: StylesManager.textBoldStyle(
-              color: ColorManager.errorColor,
-              size: 10.sp
-          ),)
+          Text(
+            AppString.thisMarkMeainingFiledIsRequired,
+            style: StylesManager.textBoldStyle(
+                color: ColorManager.errorColor, size: 10.sp),
+          )
         ],
       ),
     );
   }
 }
-
