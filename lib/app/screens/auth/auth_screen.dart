@@ -15,6 +15,7 @@ import 'package:sanad_app/app/core/utils/styles_manager.dart';
 import 'package:sanad_app/app/core/utils/values_manager.dart';
 import 'package:sanad_app/app/screens/auth/login_widget.dart';
 import 'package:sanad_app/app/screens/auth/signup_widget.dart';
+import 'package:sanad_app/app/screens/profile_screen.dart';
 import 'package:sanad_app/app/widgets/button_app_widget.dart';
 import 'package:sanad_app/app/widgets/custom_appbar_widget.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
@@ -123,7 +124,7 @@ class AuthScreen extends StatelessWidget {
                             onPressed: () {
                               if(controller.formKey.currentState!.validate()){
                                 // Get.offAllNamed(AppRoute.homeAdminRoute);
-                                Get.offAll(NavBarAdminScreen());
+                                Get.offAll(ProfileScreen());
                               }
                             }, text: AppString.registration),
                       )

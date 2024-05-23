@@ -9,6 +9,7 @@ import 'package:sanad_app/admin/screens/navbar_admin_screen.dart';
 import 'package:sanad_app/admin/screens/questions_manage_admin_screen.dart';
 import 'package:sanad_app/app/controller/auth_controller.dart';
 import 'package:sanad_app/app/screens/auth/auth_screen.dart';
+import 'package:sanad_app/app/screens/profile_screen.dart';
 import 'package:sanad_app/app/screens/splash_screen.dart';
 
 import '../../screens/auth/forget_password_screen.dart';
@@ -18,6 +19,7 @@ class AppRoute {
   static const initialRoute = '/';
   static const authRoute = '/auth';
   static const forgetPasswordRoute = '/forgetPassword';
+  static const profileRoute = '/profile';
   ///Admin Screens
   static const navBarAdminRoute = '/navBarAdmin';
   static const addLessonAdminRoute = '/addLessonAdmin';
@@ -27,6 +29,7 @@ class AppRoute {
   static const homeAdminRoute = '/homeAdmin';
   static const lessonRequestsAdminRoute = '/lessonRequestsAdmin';
   static const questionsManageAdminRoute = '/questionsManageAdmin';
+
 
   static List<GetPage> appPages = [
     GetPage(
@@ -38,6 +41,11 @@ class AppRoute {
         page: () => const AuthScreen(),
         transition: Transition.leftToRightWithFade,
        ),
+    GetPage(
+      name: profileRoute,
+      page: () => const ProfileScreen(),
+      transition: Transition.fadeIn,
+    ),
     GetPage(
       name: forgetPasswordRoute,
       page: () => ForgetPasswordScreen(),

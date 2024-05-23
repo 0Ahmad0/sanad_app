@@ -17,7 +17,10 @@ class AppString {
   static const emailExample = "useremail@example.com";
   static const send = "إرسال";
   static const emailRecoverySend = "تم إرسال رابط التحقق";
-  static const welcome = "Welcome,";
+  static const logout = "تسجيل خروج,";
+  static const editProfile = "تعديل الملف الشخصي";
+  static const sex = "الجنس";
+  static const saveEditing = "حفظ التعديلات";
 
   ///Admin
   static const welcomeAdminTitle = "اهلا بك في تطبيق سَـند";
