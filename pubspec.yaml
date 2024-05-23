@@ -47,6 +47,7 @@ dependencies:
   image_picker:
   path:
   reorderables:
+  flutter_snake_navigationbar:
 
 
 dev_dependencies:
