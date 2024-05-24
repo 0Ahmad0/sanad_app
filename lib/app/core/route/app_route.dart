@@ -11,6 +11,9 @@ import 'package:sanad_app/app/controller/auth_controller.dart';
 import 'package:sanad_app/app/screens/auth/auth_screen.dart';
 import 'package:sanad_app/app/screens/profile_screen.dart';
 import 'package:sanad_app/app/screens/splash_screen.dart';
+import 'package:sanad_app/user/screens/home_user_screen.dart';
+import 'package:sanad_app/user/screens/lessons_user_screen.dart';
+import 'package:sanad_app/user/screens/navbar_user_screen.dart';
 
 import '../../screens/auth/forget_password_screen.dart';
 
@@ -29,7 +32,10 @@ class AppRoute {
   static const homeAdminRoute = '/homeAdmin';
   static const lessonRequestsAdminRoute = '/lessonRequestsAdmin';
   static const questionsManageAdminRoute = '/questionsManageAdmin';
-
+  ///User Screens
+  static const navBarRoute = '/nabBar';
+  static const homeUserRoute = '/homeUser';
+  static const lessonsUserRoute = '/lessonsUser';
 
   static List<GetPage> appPages = [
     GetPage(
@@ -91,5 +97,22 @@ class AppRoute {
       page: () => QuestionsManageAdminScreen(),
       transition: Transition.topLevel,
     ),
+
+    GetPage(
+      name: navBarRoute,
+      page: () => NavbarUserScreen(),
+      transition: Transition.native,
+    ),
+    GetPage(
+      name: homeUserRoute,
+      page: () => HomeUserScreen(),
+      transition: Transition.zoom,
+    ),
+    GetPage(
+      name: lessonsUserRoute,
+      page: () => LessonUserScreen(),
+      transition: Transition.circularReveal,
+    ),
+
   ];
 }

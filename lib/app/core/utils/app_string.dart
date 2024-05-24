@@ -58,15 +58,20 @@ class AppString {
   // static const welcome = "Welcome,";
   // static const welcome = "Welcome,";
   static const lessons = "الدروس";
-  static const homeUser = "الرئيسية";
+  static const homeUser = "الصفحة الرئيسية";
   static const userAccount = "حسابي";
   static const nourName = "نور";
+  static const showLessons = "عرض الدروس";
+  static const requestLessons = "طلبات الدروس";
+  static const rateLessons = "تقييم الدروس";
+  static const questions = "الأسئلة";
   static const update = "Update";
   static const resetPassword = "Reset password";
   static const  verifyEmail= "Verify Email";
   static const  verify= "تحقق";
   static const  linkValidAt= "الرابط صالح لمدة 5دقائق :";
   static const  resendLink= "اعادة ارسال رمز التحقق؟";
+
 
   static  emailRecoveryDescription (String text)=>
       "تم إرسال رابط تحقق إلى بريدك الإلكتروني *****$text";

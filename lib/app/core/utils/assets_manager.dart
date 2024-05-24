@@ -26,6 +26,10 @@ class AssetsManager {
   static const String homeIcon = '$iconPath/home.png';
   static const String lessonIcon = '$iconPath/lesson.png';
   static const String profileIcon = '$iconPath/profile.png';
+  static const String showLessonsIcon = '$iconPath/show_lessons.png';
+  static const String requestLessonsIcon = '$iconPath/request_lessons.png';
+  static const String rateLessonsIcon = '$iconPath/rate_lessons.png';
+  static const String questionsLessonsIcon = '$iconPath/questions_lessons.png';
 
 
   ///=================<<Json>>=================///

@@ -201,7 +201,7 @@ class ProfileScreen extends StatelessWidget {
                   child: ButtonAppWidget(
                       onPressed: () {}, text: AppString.saveEditing),
                 ),
-                const SizedBox(height: AppSize.s20,),
+                const SizedBox(height: AppSize.s100,),
 
               ],
             ),
