@@ -57,9 +57,10 @@ class AppString {
   // static const welcome = "Welcome,";
   // static const welcome = "Welcome,";
   // static const welcome = "Welcome,";
-  static const name = "Name";
-  static const confirmPassword = "Confirm Password";
-  static const allReadyHaveAccount = "all ready have Account ? ";
+  static const lessons = "الدروس";
+  static const homeUser = "الرئيسية";
+  static const userAccount = "حسابي";
+  static const nourName = "نور";
   static const update = "Update";
   static const resetPassword = "Reset password";
   static const  verifyEmail= "Verify Email";
