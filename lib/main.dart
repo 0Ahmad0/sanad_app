@@ -10,7 +10,6 @@ import 'package:sanad_app/app/core/utils/app_string.dart';
 import 'package:sanad_app/app/core/utils/theme_manager.dart';
 import 'package:sanad_app/app/screens/splash_screen.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:sanad_app/user/screens/rate_lesson_screen.dart';
 
 AudioPlayer audio = AudioPlayer();
 void main() {
@@ -44,7 +43,7 @@ class MyApp extends StatelessWidget {
               fontFamily: GoogleFonts.cairo().fontFamily,
             ),
             defaultTransition: Transition.fade,
-            home: RateLessonScreen(),
+            getPages: AppRoute.appPages,
 
           );
         });

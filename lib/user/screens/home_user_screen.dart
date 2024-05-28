@@ -41,30 +41,33 @@ class HomeUserScreen extends StatelessWidget {
                 Column(
                   children: List.generate(
                       controller.homeButton.length,
-                      (index) => ContainerAuthWidget(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const SizedBox(
-                                  height: AppSize.s20,
-                                ),
-                                Image.asset(
-                                  controller.homeButton[index].image,
-                                  width: getWidth(context) / 6,
-                                  height: getWidth(context) / 6,
-                                  fit: BoxFit.cover,
-                                ),
-                                const SizedBox(
-                                  height: AppSize.s40,
-                                ),
-                                Text(
-                                  controller.homeButton[index].lable,
-                                  style: StylesManager.textBoldStyle(
-                                      color: ColorManager.primaryColor),
-                                )
-                              ],
+                      (index) => InkWell(
+                        onTap: controller.homeButton[index].navigate,
+                        child: ContainerAuthWidget(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const SizedBox(
+                                    height: AppSize.s20,
+                                  ),
+                                  Image.asset(
+                                    controller.homeButton[index].image,
+                                    width: getWidth(context) / 6,
+                                    height: getWidth(context) / 6,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  const SizedBox(
+                                    height: AppSize.s40,
+                                  ),
+                                  Text(
+                                    controller.homeButton[index].lable,
+                                    style: StylesManager.textBoldStyle(
+                                        color: ColorManager.primaryColor),
+                                  )
+                                ],
+                              ),
                             ),
-                          )),
+                      )),
                 )
               ],
             ),

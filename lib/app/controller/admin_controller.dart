@@ -13,6 +13,7 @@ import 'package:sanad_app/admin/screens/lesson_requests_admin_screen.dart';
 import 'package:sanad_app/admin/screens/questions_manage_admin_screen.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
 import 'package:sanad_app/app/screens/profile_screen.dart';
+import 'package:sanad_app/user/widgets/dialog_widget.dart';
 
 import '../../admin/screens/add_question_screen.dart';
 import '../models/question_model.dart';
@@ -26,10 +27,21 @@ class AdminController extends GetxController {
     // AddQuestionsAdminScreen(),
     QuestionsManageAdminScreen(),
     LessonRequestsAdminScreen(),
-    ProfileScreen(showNourIcon: false,),
+    //
+    SizedBox(),
+    SizedBox(),
   ];
 
   changePage(int index) {
+    if (index == 4) {
+      Get.to(() => ProfileScreen());
+    }
+    if (index == 5) {
+      Get.dialog(DialogWidget(onPressed: () {},
+        text: 'النص هنا',
+        title: 'هل أنت متأكد من تسجيل خروجك؟',)
+      );
+    }
     currentIndex = index;
     update();
   }
@@ -71,7 +83,7 @@ class AdminController extends GetxController {
 
   Future<void> pickAudio() async {
     FilePickerResult? result =
-        await FilePicker.platform.pickFiles(type: FileType.audio);
+    await FilePicker.platform.pickFiles(type: FileType.audio);
     if (result != null) {
       audioFile = File(result.files.single.path!);
       update();
@@ -88,12 +100,13 @@ class AdminController extends GetxController {
   void addQuestion(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => AddQuestionPage(
-          onSave: (question) {
-            questions.add(question);
-            update();
-          },
-        ),
+        builder: (context) =>
+            AddQuestionPage(
+              onSave: (question) {
+                questions.add(question);
+                update();
+              },
+            ),
       ),
     );
   }
