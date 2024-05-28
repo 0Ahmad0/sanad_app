@@ -14,6 +14,7 @@ import 'package:sanad_app/app/screens/splash_screen.dart';
 import 'package:sanad_app/user/screens/home_user_screen.dart';
 import 'package:sanad_app/user/screens/lessons_user_screen.dart';
 import 'package:sanad_app/user/screens/navbar_user_screen.dart';
+import 'package:sanad_app/user/screens/rate_lesson_screen.dart';
 
 import '../../screens/auth/forget_password_screen.dart';
 
@@ -36,6 +37,7 @@ class AppRoute {
   static const navBarRoute = '/nabBar';
   static const homeUserRoute = '/homeUser';
   static const lessonsUserRoute = '/lessonsUser';
+  static const rateLessonUserRoute = '/rateLessonUser';
 
   static List<GetPage> appPages = [
     GetPage(
@@ -112,6 +114,11 @@ class AppRoute {
       name: lessonsUserRoute,
       page: () => LessonUserScreen(),
       transition: Transition.circularReveal,
+    ),
+    GetPage(
+      name: rateLessonUserRoute,
+      page: () => RateLessonScreen(),
+      transition: Transition.cupertinoDialog,
     ),
 
   ];

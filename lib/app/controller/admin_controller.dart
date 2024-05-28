@@ -12,6 +12,7 @@ import 'package:sanad_app/admin/screens/home_admin_screen.dart';
 import 'package:sanad_app/admin/screens/lesson_requests_admin_screen.dart';
 import 'package:sanad_app/admin/screens/questions_manage_admin_screen.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
+import 'package:sanad_app/app/screens/profile_screen.dart';
 
 import '../../admin/screens/add_question_screen.dart';
 import '../models/question_model.dart';
@@ -25,6 +26,7 @@ class AdminController extends GetxController {
     // AddQuestionsAdminScreen(),
     QuestionsManageAdminScreen(),
     LessonRequestsAdminScreen(),
+    ProfileScreen(showNourIcon: false,),
   ];
 
   changePage(int index) {

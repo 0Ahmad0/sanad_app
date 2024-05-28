@@ -49,6 +49,14 @@ dependencies:
   reorderables:
   flutter_snake_navigationbar:
 
+  #//Firebase//
+  firebase_core:
+  firebase_auth:
+  firebase_storage:
+  cloud_firestore:
+  firebase_database:
+
+
 
 dev_dependencies:
   flutter_launcher_icons:

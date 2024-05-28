@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sanad_app/app/core/utils/app_string.dart';
 import 'package:sanad_app/app/core/utils/assets_manager.dart';
@@ -12,5 +13,13 @@ class UserController extends GetxController{
     HomeUserModel(lable: AppString.rateLessons, image: AssetsManager.rateLessonsIcon, navigate: () {  }),
     HomeUserModel(lable: AppString.questionLesson, image: AssetsManager.questionsLessonsIcon, navigate: () {  }),
   ];
+
+  final searchController = TextEditingController();
+
+  @override
+  void onClose() {
+    searchController.dispose();
+    super.onClose();
+  }
 
 }

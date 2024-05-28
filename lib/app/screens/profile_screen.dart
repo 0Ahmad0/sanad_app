@@ -26,7 +26,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBarWidget(
+        appBar: showNourIcon?CustomAppBarWidget(
           showBackButton: false,
           child: [
             CircleProfilePictureWidget(
@@ -34,7 +34,7 @@ class ProfileScreen extends StatelessWidget {
                   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS37JAC_YF1l4Nih5_FG15JI_EuFVRvVsveZKTGBNsmfqyeLGzTKMWY-prH8CGsLkxbb4&usqp=CAU',
             )
           ],
-        ),
+        ):null,
         body: DefaultScaffoldWidget(
           child: SingleChildScrollView(
             child: Column(

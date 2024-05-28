@@ -58,17 +58,23 @@ class AppString {
   // static const welcome = "Welcome,";
   // static const welcome = "Welcome,";
   static const lessons = "الدروس";
-  static const homeUser = "الصفحة الرئيسية";
+  static const homeUser = "الرئيسية";
   static const userAccount = "حسابي";
-  static const nourName = "نور";
+  static const AneerName = "أنير";
   static const showLessons = "عرض الدروس";
   static const requestLessons = "طلبات الدروس";
   static const rateLessons = "تقييم الدروس";
   static const questions = "الأسئلة";
+  static const playLessonSound = "تشغيل صوت الدرس";
+  static const playLessonVideo = "تشغيل فيديو الدرس";
+  static const showRateLesson = "عرض التقييم";
+  static const myRateLesson = "عرض تقييمي";
+  static const rateDegree = "لقد حصلت على الدرجة  : ";
   static const update = "Update";
   static const resetPassword = "Reset password";
   static const  verifyEmail= "Verify Email";
   static const  verify= "تحقق";
+  static const  ok= "حسناً";
   static const  linkValidAt= "الرابط صالح لمدة 5دقائق :";
   static const  resendLink= "اعادة ارسال رمز التحقق؟";
 

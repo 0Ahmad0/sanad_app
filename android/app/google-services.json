@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "354641805418",
+    "project_id": "sanad-app-6938f",
+    "storage_bucket": "sanad-app-6938f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354641805418:android:f897961e7f6bcdd6920a13",
+        "android_client_info": {
+          "package_name": "com.sanadapp.sanad_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBB7mdE84u_DACVo6cD1G0z8QFV1eyH5aY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

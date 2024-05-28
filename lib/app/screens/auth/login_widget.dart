@@ -54,7 +54,7 @@ class LoginWidget extends StatelessWidget {
                     height: AppSize.s10,
                   ),
                   TextFiledApp(
-                    audioPath: AssetsManager.noorSound,
+                    audioPath: AssetsManager.enterUserNameSound,
                     controller: authController.emailController,
                     hintText: AppString.userName,
                     validator: (value) {
@@ -85,7 +85,7 @@ class LoginWidget extends StatelessWidget {
                     height: AppSize.s10,
                   ),
                   TextFiledApp(
-                    audioPath: AssetsManager.noorSound,
+                    audioPath: AssetsManager.enterPasswordLoginSound,
                     controller: authController.passwordController,
                     hintText: '●●●●●●●●',
                     validator: (value) {
@@ -96,10 +96,14 @@ class LoginWidget extends StatelessWidget {
                     },
                   ),
                   TextButton(
-                      onPressed: () {
-                        Get.toNamed(AppRoute.forgetPasswordRoute);
-                      },
-                      child: Text(AppString.forgetPassword)),
+                    onPressed: () {
+                      Get.toNamed(AppRoute.forgetPasswordRoute);
+                    },
+                    child: Text(
+                      AppString.forgetPassword,
+                      style: TextStyle(decoration: TextDecoration.underline),
+                    ),
+                  ),
                   // const Spacer(),
                 ],
               ),
