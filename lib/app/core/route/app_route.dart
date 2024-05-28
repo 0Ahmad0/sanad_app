@@ -13,8 +13,11 @@ import 'package:sanad_app/app/screens/profile_screen.dart';
 import 'package:sanad_app/app/screens/splash_screen.dart';
 import 'package:sanad_app/user/screens/home_user_screen.dart';
 import 'package:sanad_app/user/screens/lessons_user_screen.dart';
+import 'package:sanad_app/user/screens/managing_lesson_user_screens.dart';
 import 'package:sanad_app/user/screens/navbar_user_screen.dart';
+import 'package:sanad_app/user/screens/questions_user_screen.dart';
 import 'package:sanad_app/user/screens/rate_lesson_screen.dart';
+import 'package:sanad_app/user/screens/show_question_user_screen.dart';
 
 import '../../screens/auth/forget_password_screen.dart';
 
@@ -24,20 +27,26 @@ class AppRoute {
   static const authRoute = '/auth';
   static const forgetPasswordRoute = '/forgetPassword';
   static const profileRoute = '/profile';
+
   ///Admin Screens
   static const navBarAdminRoute = '/navBarAdmin';
   static const addLessonAdminRoute = '/addLessonAdmin';
   static const addQuestionsAdminRoute = '/addQuestionsAdmin';
-  static const educationalMaterialsManagementAdminRoute = '/educationalMaterialsManagementAdmin';
+  static const educationalMaterialsManagementAdminRoute =
+      '/educationalMaterialsManagementAdmin';
   static const elderlyManagementAdminRoute = '/elderlyManagementRouteAdmin';
   static const homeAdminRoute = '/homeAdmin';
   static const lessonRequestsAdminRoute = '/lessonRequestsAdmin';
   static const questionsManageAdminRoute = '/questionsManageAdmin';
+
   ///User Screens
   static const navBarRoute = '/nabBar';
   static const homeUserRoute = '/homeUser';
   static const lessonsUserRoute = '/lessonsUser';
   static const rateLessonUserRoute = '/rateLessonUser';
+  static const questionUserRoute = '/questionUser';
+  static const showQuestionUserRoute = '/showQuestionUser';
+  static const managingLessonUserRoute = '/ManagingLessonUser';
 
   static List<GetPage> appPages = [
     GetPage(
@@ -45,10 +54,10 @@ class AppRoute {
         page: () => const SplashScreen(),
         transition: Transition.zoom),
     GetPage(
-        name: authRoute,
-        page: () => const AuthScreen(),
-        transition: Transition.leftToRightWithFade,
-       ),
+      name: authRoute,
+      page: () => const AuthScreen(),
+      transition: Transition.leftToRightWithFade,
+    ),
     GetPage(
       name: profileRoute,
       page: () => const ProfileScreen(),
@@ -99,7 +108,6 @@ class AppRoute {
       page: () => QuestionsManageAdminScreen(),
       transition: Transition.topLevel,
     ),
-
     GetPage(
       name: navBarRoute,
       page: () => NavbarUserScreen(),
@@ -120,6 +128,19 @@ class AppRoute {
       page: () => RateLessonScreen(),
       transition: Transition.cupertinoDialog,
     ),
-
+    GetPage(
+      name: questionUserRoute,
+      page: () => QuestionsUserScreen(),
+      transition: Transition.leftToRightWithFade,
+    ),
+    GetPage(
+      name: showQuestionUserRoute,
+      page: () => ShowQuestionUserScreen(),
+      transition: Transition.downToUp,
+    ), GetPage(
+      name: managingLessonUserRoute,
+      page: () => ManagingLessonUserScreen(),
+      transition: Transition.cupertinoDialog,
+    ),
   ];
 }

@@ -17,13 +17,13 @@ class DialogWidget extends StatelessWidget {
       required this.title,
        this.buttonOkText = 'نعم',
        this.buttonNoText = 'لا',
-      required this.onPressed});
+       this.onPressed});
 
   final String text;
   final String title;
   final String buttonOkText;
   final String buttonNoText;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +56,13 @@ class DialogWidget extends StatelessWidget {
                     const SizedBox(
                       height: AppSize.s20,
                     ),
-                    TextButton(
-                        onPressed: () => Get.back(), child: Text(buttonNoText)),
-                    TextButton(onPressed: onPressed, child: Text(buttonOkText)),
+                    Row(
+                      children: [
+                        onPressed == null ? SizedBox.shrink():TextButton(onPressed: onPressed, child: Text(buttonOkText)),
+                        TextButton(
+                            onPressed: () => Get.back(), child: Text(buttonNoText)),
+                      ],
+                    )
                   ],
                 ),
               ),

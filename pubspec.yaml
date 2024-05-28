@@ -48,6 +48,7 @@ dependencies:
   path:
   reorderables:
   flutter_snake_navigationbar:
+  intl:
 
   #//Firebase//
   firebase_core:

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,7 @@ import 'package:sanad_app/app/widgets/custom_appbar_widget.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
 
 import '../../app/models/question_model.dart';
+import '../../app/widgets/empty_widget.dart';
 
 class AddQuestionsAdminScreen extends StatelessWidget {
   @override
@@ -21,32 +23,16 @@ class AddQuestionsAdminScreen extends StatelessWidget {
       appBar: CustomAppBarWidget(),
       body: DefaultScaffoldWidget(
         child: controller.questions.isEmpty
-            ? Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      AssetsManager.emptyBoxIcon,
-                      width: 100.sp,
-                      height: 100.sp,
-                    ),
-                    const SizedBox(
-                      height: AppSize.s10,
-                    ),
-                    Text(
-                      AppString.noQuestionFoundYet,
-                    ),
-                  ],
-                ),
-              )
+            ? EmptyWidget(
+          text: AppString.noQuestionFoundYet,
+        )
             : GetBuilder<AdminController>(builder: (adminController) {
                 return StatefulBuilder(builder: (context, setStateQuestion) {
                   return ReorderableColumn(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children:
                         List.generate(adminController.questions.length, (index) {
-                      return buildQuestionCard(
-                          adminController.questions[index], index);
+                      return QuestionWidget(question: adminController.questions[index], index: index);
                     }),
                     onReorder: (int oldIndex, int newIndex) {
                       setStateQuestion(() {
@@ -70,18 +56,32 @@ class AddQuestionsAdminScreen extends StatelessWidget {
     );
   }
 
-  Widget buildQuestionCard(Question question, int index) {
+}
+
+
+class QuestionWidget extends StatelessWidget {
+  const QuestionWidget({
+    super.key,
+    required this.question,
+    required this.index,
+  });
+
+  final Question question;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
     return Theme(
       key: ValueKey(question),
       data: ThemeData(
-        dividerColor: Colors.transparent
+          dividerColor: Colors.transparent
       ),
       child: ExpansionTile(
         key: ValueKey(question),
         title: Text(
           AppString.question + ' ${index + 1}: ${question.text}',
           style: StylesManager.textNormalStyle(
-            color: ColorManager.primaryColor
+              color: ColorManager.primaryColor
           ),
         ),
         children: [
@@ -94,22 +94,26 @@ class AddQuestionsAdminScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 10.0),
-                  Column(
-                    children:
-                        List.generate(question.options.length, (optionIndex) {
-                      return StatefulBuilder(builder: (context, setStateOptions) {
-                        return RadioListTile(
-                          title: Text(question.options[optionIndex]),
-                          value: optionIndex,
-                          groupValue: question.correctOptionIndex,
-                          onChanged: (value) {
-                            setStateOptions(() {
-                              question.correctOptionIndex = value as int;
-                            });
-                          },
+                  StatefulBuilder(
+                      builder: (context,setStateOptions) {
+                        return Column(
+                          children:
+                          List.generate(question.options.length, (optionIndex) {
+
+                            return RadioListTile(
+                              title: Text(question.options[optionIndex]),
+                              value: optionIndex,
+                              groupValue: question.correctOptionIndex,
+                              onChanged: (value) {
+                                setStateOptions(() {
+                                  question.correctOptionIndex = value as int;
+                                });
+                              },
+                            );
+
+                          }),
                         );
-                      });
-                    }),
+                      }
                   ),
                 ],
               ),

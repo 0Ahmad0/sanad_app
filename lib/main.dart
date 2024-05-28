@@ -10,6 +10,7 @@ import 'package:sanad_app/app/core/utils/app_string.dart';
 import 'package:sanad_app/app/core/utils/theme_manager.dart';
 import 'package:sanad_app/app/screens/splash_screen.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:sanad_app/user/screens/questions_user_screen.dart';
 
 AudioPlayer audio = AudioPlayer();
 void main() {
@@ -44,7 +45,6 @@ class MyApp extends StatelessWidget {
             ),
             defaultTransition: Transition.fade,
             getPages: AppRoute.appPages,
-
           );
         });
   }

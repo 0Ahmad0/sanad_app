@@ -10,6 +10,7 @@ import 'package:sanad_app/app/core/utils/styles_manager.dart';
 import 'package:sanad_app/app/core/utils/values_manager.dart';
 import 'package:sanad_app/app/screens/auth/widgets/divider_auth_widgets.dart';
 import 'package:sanad_app/app/widgets/container_auth_widget.dart';
+import 'package:sanad_app/app/widgets/custom_appbar_widget.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
 
 class HomeUserScreen extends StatelessWidget {
@@ -18,58 +19,61 @@ class HomeUserScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(UserController());
-    return DefaultScaffoldWidget(
-      child: SingleChildScrollView(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: AppSize.s20,
-                ),
-                Text(
-                  AppString.homeUser,
-                  style: StylesManager.textBoldStyle(
-                      color: ColorManager.primaryColor, size: 16.sp),
-                ),
-                DividerAuthWidget(),
-                const SizedBox(
-                  height: AppSize.s20,
-                ),
-                Column(
-                  children: List.generate(
-                      controller.homeButton.length,
-                      (index) => InkWell(
-                        onTap: controller.homeButton[index].navigate,
-                        child: ContainerAuthWidget(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const SizedBox(
-                                    height: AppSize.s20,
-                                  ),
-                                  Image.asset(
-                                    controller.homeButton[index].image,
-                                    width: getWidth(context) / 6,
-                                    height: getWidth(context) / 6,
-                                    fit: BoxFit.cover,
-                                  ),
-                                  const SizedBox(
-                                    height: AppSize.s40,
-                                  ),
-                                  Text(
-                                    controller.homeButton[index].lable,
-                                    style: StylesManager.textBoldStyle(
-                                        color: ColorManager.primaryColor),
-                                  )
-                                ],
+    return Scaffold(
+      appBar: CustomAppBarWidget(),
+      body: DefaultScaffoldWidget(
+        child: SingleChildScrollView(
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: AppSize.s20,
+                  ),
+                  Text(
+                    AppString.homeUser,
+                    style: StylesManager.textBoldStyle(
+                        color: ColorManager.primaryColor, size: 16.sp),
+                  ),
+                  DividerAuthWidget(),
+                  const SizedBox(
+                    height: AppSize.s20,
+                  ),
+                  Column(
+                    children: List.generate(
+                        controller.homeButton.length,
+                        (index) => InkWell(
+                          onTap: controller.homeButton[index].navigate,
+                          child: ContainerAuthWidget(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const SizedBox(
+                                      height: AppSize.s20,
+                                    ),
+                                    Image.asset(
+                                      controller.homeButton[index].image,
+                                      width: getWidth(context) / 6,
+                                      height: getWidth(context) / 6,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    const SizedBox(
+                                      height: AppSize.s40,
+                                    ),
+                                    Text(
+                                      controller.homeButton[index].lable,
+                                      style: StylesManager.textBoldStyle(
+                                          color: ColorManager.primaryColor),
+                                    )
+                                  ],
+                                ),
                               ),
-                            ),
-                      )),
-                )
-              ],
+                        )),
+                  )
+                ],
+              ),
             ),
           ),
         ),

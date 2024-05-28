@@ -70,6 +70,8 @@ class AppString {
   static const showRateLesson = "عرض التقييم";
   static const myRateLesson = "عرض تقييمي";
   static const rateDegree = "لقد حصلت على الدرجة  : ";
+  static const manageLesson = "ادارة طلبات الدروس";
+  static const statusLessons = "الحالة : ";
   static const update = "Update";
   static const resetPassword = "Reset password";
   static const  verifyEmail= "Verify Email";
