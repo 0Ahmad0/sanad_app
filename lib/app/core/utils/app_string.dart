@@ -21,6 +21,12 @@ class AppString {
   static const editProfile = "تعديل الملف الشخصي";
   static const sex = "الجنس";
   static const saveEditing = "حفظ التعديلات";
+  static const cancle = "إلغاء";
+  static const yes = "نعم";
+  static const pickPhoto = "اختر صورة لملفك الشخصي";
+  static const pickFromCamera = "اختيار من الكاميرا";
+  static const pickFromGallery = "اختيار من المعرض";
+  static const areYouSureLogout = "هل أنت متأكد من تسجيل خروجك؟";
 
   ///Admin
   static const welcomeAdminTitle = "اهلا بك في تطبيق سَـند";
@@ -105,7 +111,8 @@ class AppString {
   static const userProfile = 'User Profile';
   static const addFromCamera = 'Add From Camera';
   static const addFromGallery = 'Add From Gallery';
-  static const deletePhoto = 'Delete Photo';
+  static const deletePhoto = 'حذف الصورة';
+  static const areYouSureDeletePhoto = 'هل أنت متاكد من حذف الصورة؟';
   static const addNewSchedule = 'Add New Schedule';
   static const pickDay = 'Pick Day :';
   static const firstTime = 'First Time';
