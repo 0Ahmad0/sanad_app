@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -57,14 +58,14 @@ class _NavbarUserScreenState extends State<NavbarUserScreen> {
         AssetsManager.nourSoundIcon,
         color: ColorManager.whiteColor,
       ),
-      label: AppString.AneerName,
+      label: AppString.aneerName,
     ),
   ];
   List<Widget> _screens = [
     ProfileScreen(),
     HomeUserScreen(),
     LessonUserScreen(),
-    HomeUserScreen(),
+    SizedBox()
   ];
 
   @override
@@ -74,6 +75,30 @@ class _NavbarUserScreenState extends State<NavbarUserScreen> {
       resizeToAvoidBottomInset: true,
       extendBody: true,
       body: _screens[_selectedItemPosition],
+      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      floatingActionButton: FloatingActionButton.extended(
+        elevation: 0.0,
+        backgroundColor: ColorManager.whiteColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24.r),
+        ),
+        onPressed: () {},
+        label: Column(
+          children: [
+            Image.asset(
+              AssetsManager.nourSoundIcon,
+            ),
+            Text(
+              AppString.aneerName,
+              style: StylesManager.textBoldStyle(
+                size: 10.sp,
+                color: ColorManager.primaryColor
+              ),
+            )
+          ],
+        ),
+      ),
       bottomNavigationBar: SnakeNavigationBar.color(
         selectedItemColor: ColorManager.whiteColor,
         unselectedItemColor: ColorManager.primaryColor,
@@ -85,6 +110,7 @@ class _NavbarUserScreenState extends State<NavbarUserScreen> {
         ),
         snakeShape: SnakeShape.circle,
         showSelectedLabels: true,
+        backgroundColor: ColorManager.whiteColor,
         showUnselectedLabels: true,
         currentIndex: _selectedItemPosition,
         onTap: (index) => setState(() => _selectedItemPosition = index),

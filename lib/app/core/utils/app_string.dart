@@ -66,7 +66,7 @@ class AppString {
   static const lessons = "الدروس";
   static const homeUser = "الرئيسية";
   static const userAccount = "حسابي";
-  static const AneerName = "أنير";
+  static const aneerName = "أنير";
   static const showLessons = "عرض الدروس";
   static const requestLessons = "طلبات الدروس";
   static const rateLessons = "تقييم الدروس";
