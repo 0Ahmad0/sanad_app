@@ -49,14 +49,14 @@ dependencies:
   reorderables:
   flutter_snake_navigationbar:
   intl:
-  cached_network_image:
-  # Firebase
-  firebase_core: ^2.24.2
-  firebase_auth: ^4.16.0
-  firebase_storage: ^11.6.0
-  cloud_firestore: ^4.14.0
-  firebase_database: ^10.4.0
-  # ------------------------
+
+  #//Firebase//
+  firebase_core:
+  firebase_auth:
+  firebase_storage:
+  cloud_firestore:
+  firebase_database:
+
 
 
 dev_dependencies:

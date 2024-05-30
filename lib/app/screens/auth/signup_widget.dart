@@ -45,15 +45,10 @@ class SignUpWidget extends StatelessWidget {
               height: AppSize.s10,
             ),
             TextFiledApp(
-              audioPath: AssetsManager.noorSound,
+              audioPath: AssetsManager.enterFullNameSound,
               controller: authController.nameController,
               hintText: AppString.fullName,
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return 'خطأ!';
-                }
-                return null;
-              },
+              validator: (value)=>authController.validateFullName(value!),
             ),
             // const SizedBox(height: AppSize.s20,),
             Text.rich(TextSpan(children: [
@@ -73,18 +68,10 @@ class SignUpWidget extends StatelessWidget {
               height: AppSize.s10,
             ),
             TextFiledApp(
-              audioPath: AssetsManager.noorSound,
+              audioPath: AssetsManager.enterEmailSound,
               controller: authController.emailController,
               hintText: AppString.email,
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return 'خطأ!';
-                }
-                if(!value.isEmail){
-
-                }
-                return null;
-              },
+              validator: (value)=>authController.validateEmail(value!),
             ),
             // const SizedBox(height: AppSize.s20,),
             Text.rich(TextSpan(children: [
@@ -104,15 +91,11 @@ class SignUpWidget extends StatelessWidget {
               height: AppSize.s10,
             ),
             TextFiledApp(
-              audioPath: AssetsManager.noorSound,
+              audioPath: AssetsManager.enterPhoneNumberSound,
               controller: authController.phoneController,
               hintText: AppString.phone,
               keyboardType: TextInputType.phone,
-              validator: (value) {
-                if (value!.isEmpty) {}
-                if (!value.isPhoneNumber) {}
-                return null;
-              },
+              validator: (value)=>authController.validatePhoneNumber(value!),
             ),
             // const SizedBox(height: AppSize.s20,),
             Text.rich(TextSpan(children: [
@@ -132,8 +115,8 @@ class SignUpWidget extends StatelessWidget {
               height: AppSize.s10,
             ),
             TextFiledApp(
-              audioPath: AssetsManager.noorSound,
-
+              audioPath: AssetsManager.enterPasswordSignupSound,
+              validator: (value)=>authController.validatePassword(value!),
               controller: authController.passwordController,
               hintText: '●●●●●●●●',
             ),

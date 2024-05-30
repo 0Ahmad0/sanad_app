@@ -5,7 +5,10 @@ import 'package:sanad_app/app/core/utils/assets_manager.dart';
 import '../core/utils/color_manager.dart';
 
 class DefaultScaffoldWidget extends StatelessWidget {
-  const DefaultScaffoldWidget({super.key, this.child});
+  const DefaultScaffoldWidget({
+    super.key,
+    this.child,
+  });
 
   final Widget? child;
 
@@ -15,12 +18,12 @@ class DefaultScaffoldWidget extends StatelessWidget {
     return Stack(
       alignment: Alignment.topCenter,
       children: [
-        Image.asset(
+     Image.asset(
           AssetsManager.backgroundAppIMG,
           width: size.width,
           height: size.height,
           fit: BoxFit.cover,
-        ),
+        ) ,
         child ?? const SizedBox.shrink(),
       ],
     );

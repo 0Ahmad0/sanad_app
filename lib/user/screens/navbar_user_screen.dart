@@ -26,15 +26,23 @@ class _NavbarUserScreenState extends State<NavbarUserScreen> {
   List<BottomNavigationBarItem> _items = [
     BottomNavigationBarItem(
         icon: Image.asset(AssetsManager.profileIcon),
-        activeIcon: Image.asset(AssetsManager.profileIcon,color: ColorManager.whiteColor,),
+        activeIcon: Image.asset(
+          AssetsManager.profileIcon,
+          color: ColorManager.whiteColor,
+        ),
         label: AppString.userAccount),
     BottomNavigationBarItem(
       icon: Image.asset(AssetsManager.homeIcon),
-      activeIcon: Image.asset(AssetsManager.homeIcon,color: ColorManager.whiteColor,),
+      activeIcon: Image.asset(
+        AssetsManager.homeIcon,
+        color: ColorManager.whiteColor,
+      ),
       label: AppString.homeUser,
     ),
     BottomNavigationBarItem(
-      icon: Image.asset(AssetsManager.lessonIcon,),
+      icon: Image.asset(
+        AssetsManager.lessonIcon,
+      ),
       activeIcon: Image.asset(
         AssetsManager.lessonIcon,
         color: ColorManager.whiteColor,
@@ -49,10 +57,10 @@ class _NavbarUserScreenState extends State<NavbarUserScreen> {
         AssetsManager.nourSoundIcon,
         color: ColorManager.whiteColor,
       ),
-      label: AppString.nourName,
+      label: AppString.AneerName,
     ),
   ];
-  List<Widget> _screens =[
+  List<Widget> _screens = [
     ProfileScreen(),
     HomeUserScreen(),
     LessonUserScreen(),
@@ -70,7 +78,8 @@ class _NavbarUserScreenState extends State<NavbarUserScreen> {
         selectedItemColor: ColorManager.whiteColor,
         unselectedItemColor: ColorManager.primaryColor,
         snakeViewColor: ColorManager.primaryColor,
-        padding: EdgeInsets.all(AppPadding.p20),
+        padding: EdgeInsets.symmetric(
+            horizontal: AppPadding.p14, vertical: AppPadding.p20),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(100.r),
         ),
@@ -80,8 +89,10 @@ class _NavbarUserScreenState extends State<NavbarUserScreen> {
         currentIndex: _selectedItemPosition,
         onTap: (index) => setState(() => _selectedItemPosition = index),
         items: _items,
-        unselectedLabelStyle: StylesManager.textNormalStyle(
-            size: 10.sp, color: ColorManager.primaryColor),
+        unselectedLabelStyle: StylesManager.textBoldStyle(
+          size: 10.sp,
+          color: ColorManager.primaryColor,
+        ),
       ),
     );
   }

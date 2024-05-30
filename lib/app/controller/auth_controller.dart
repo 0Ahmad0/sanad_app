@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-
 import '../core/utils/app_string.dart';
 
 class AuthController extends GetxController {
@@ -13,13 +12,6 @@ class AuthController extends GetxController {
   final passwordController = TextEditingController();
 
 
-
-
-
-
-
-
-
   int currentIndex = 0;
   late final PageController pageController;
   final List<String> tabsList = [AppString.login, AppString.signup];
@@ -28,29 +20,76 @@ class AuthController extends GetxController {
     pageController = PageController(initialPage: 0);
   }
 
-  navigateToPage(int index){
+  navigateToPage(int index) {
     pageController.animateToPage(index,
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut
     );
     currentIndex = index;
     update();
-
   }
 
-  @override
-  void onInit() {
-    _initPageView();
-    super.onInit();
+  String? validatePassword(String value) {
+    RegExp regex =
+    RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+    if (value.isEmpty) {
+      return AppString.requiredFiled;
+    } else {
+      if (!regex.hasMatch(value)) {
+        return 'Enter valid password';
+      } else {
+        return null;
+      }
+    }
   }
-  @override
-  void onClose() {
-    nameController.dispose();
-    emailController.dispose();
-    phoneController.dispose();
-    passwordController.dispose();
-    pageController.dispose();
-    super.onClose();
+
+  String? validatePhoneNumber(String value) {
+    if (value.isEmpty) {
+      return AppString.requiredFiled;
+    } else {
+      if (!value.isPhoneNumber) {
+        return 'خطأ';
+      } else {
+        return null;
+      }
+    }
   }
+
+  String? validateEmail(String value) {
+    if (value.isEmpty) {
+      return AppString.requiredFiled;
+    } else {
+      if (!value.isEmail) {
+        return 'خطأ';
+      } else {
+        return null;
+      }
+    }
+  }
+
+  String? validateFullName(String value) {
+    if (value.isEmpty) {
+      return AppString.requiredFiled;
+    }
+    return null;
+  }
+
+
+
+@override
+void onInit() {
+  _initPageView();
+  super.onInit();
+}
+
+@override
+void onClose() {
+  nameController.dispose();
+  emailController.dispose();
+  phoneController.dispose();
+  passwordController.dispose();
+  pageController.dispose();
+  super.onClose();
+}
 
 }

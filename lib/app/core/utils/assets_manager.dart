@@ -22,6 +22,7 @@ class AssetsManager {
   static const String adminVideoIcon = '$iconPath/admin_video_icon.png';
   static const String adminImageIcon = '$iconPath/admin_image_icon.png';
   static const String adminSoundIcon = '$iconPath/admin_sound_icon.png';
+  static const String showEyeIcon = '$iconPath/show_eye.png';
   static const String emptyBoxIcon = '$iconPath/empty-box.png';
   static const String homeIcon = '$iconPath/home.png';
   static const String lessonIcon = '$iconPath/lesson.png';
@@ -36,4 +37,10 @@ class AssetsManager {
 
   ///=================<<Audio>>=================///
   static const String noorSound = '$soundPath/test_sound.mp3';
+  static const String enterUserNameSound = '$soundPath/enter_user_name.mp3';
+  static const String enterPasswordLoginSound = '$soundPath/enter_password_login.mp3';
+  static const String enterFullNameSound = '$soundPath/enter_full_name.mp3';
+  static const String enterEmailSound = '$soundPath/enter_email.mp3';
+  static const String enterPhoneNumberSound = '$soundPath/enter_phone_number.mp3';
+  static const String enterPasswordSignupSound = '$soundPath/enter_password_signup.mp3';
 }
