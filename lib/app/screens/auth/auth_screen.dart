@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -100,7 +99,9 @@ class AuthScreen extends StatelessWidget {
                       ),
                       AnimatedContainer(
                         duration: const Duration(milliseconds: 600),
-                        height: controller.currentIndex == 0?getHeight(context) / 2:getHeight(context) / 1.7,
+                        height: controller.currentIndex == 0
+                            ? getHeight(context) / 2
+                            : getHeight(context) / 1.7,
                         child: Form(
                           key: controller.formKey,
                           child: PageView(
@@ -123,11 +124,12 @@ class AuthScreen extends StatelessWidget {
                             horizontal: AppPadding.p40),
                         child: ButtonAppWidget(
                             onPressed: () {
-                              if(controller.formKey.currentState!.validate()){
-                                Get.offAllNamed(AppRoute.navBarAdminRoute);
-                                // Get.offAll(NavbarUserScreen());
+                              if (controller.formKey.currentState!.validate()) {
+                                // Get.offAllNamed(AppRoute.navBarAdminRoute);
+                                Get.offAll(NavbarUserScreen());
                               }
-                            }, text: AppString.registration),
+                            },
+                            text: AppString.registration),
                       )
                     ],
                   ),

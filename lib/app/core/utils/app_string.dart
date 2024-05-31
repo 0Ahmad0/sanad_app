@@ -7,6 +7,7 @@ class AppString {
   static const registration = "تسجيل";
   static const userName = "اسم المستخدم";
   static const passWord = "كلمة المرور";
+  static const loading = "تحميل...";
   static const thisMarkMeainingFiledIsRequired = "(*)هذه العلامة تعني يجب عليك ملء الحقل";
   static const fullName = "الاسم كاملاً";
   static const email = "البريد الالكتروني";

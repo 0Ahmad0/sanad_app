@@ -34,7 +34,9 @@ class ShowLessonWidget extends StatelessWidget {
             ShowMediaLessonWidget(
               image: AssetsManager.showEyeIcon,
               title: AppString.show,
-              onTap: (){},
+              onTap: (){
+                Get.toNamed(AppRoute.showTextUserRoute);
+              },
             ),
             ShowMediaLessonWidget(
               image: AssetsManager.adminSoundIcon,
@@ -46,7 +48,9 @@ class ShowLessonWidget extends StatelessWidget {
             ShowMediaLessonWidget(
               image: AssetsManager.adminVideoIcon,
               title: AppString.playLessonVideo,
-              onTap: (){},
+              onTap: (){
+                Get.toNamed(AppRoute.showVedioUserRoute);
+              },
             ),
 
           ],

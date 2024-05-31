@@ -20,7 +20,9 @@ import 'package:sanad_app/user/screens/questions_user_screen.dart';
 import 'package:sanad_app/user/screens/rate_lesson_screen.dart';
 import 'package:sanad_app/user/screens/show_audio_screen.dart';
 import 'package:sanad_app/user/screens/show_question_user_screen.dart';
+import 'package:sanad_app/user/screens/show_vedio_screen.dart';
 
+import '../../../user/screens/show_text_screen.dart';
 import '../../screens/auth/forget_password_screen.dart';
 
 class AppRoute {
@@ -50,7 +52,9 @@ class AppRoute {
   static const showQuestionUserRoute = '/showQuestionUser';
   static const managingLessonUserRoute = '/managingLessonUser';
   static const addLessonUserRoute = '/addLessonUser';
-  static const showAudioUserRoute = '/showAudioRoute';
+  static const showAudioUserRoute = '/showAudioUser';
+  static const showVedioUserRoute = '/showVedioUser';
+  static const showTextUserRoute = '/showTextUser';
 
   static List<GetPage> appPages = [
     GetPage(
@@ -154,6 +158,16 @@ class AppRoute {
     GetPage(
       name:showAudioUserRoute,
       page: () => ShowAudioScreen(),
+      transition: Transition.zoom,
+    ),
+    GetPage(
+      name:showVedioUserRoute,
+      page: () => ShowVedioScreen(),
+      transition: Transition.zoom,
+    ),
+    GetPage(
+      name:showTextUserRoute,
+      page: () => ShowTextScreen(),
       transition: Transition.zoom,
     ),
   ];

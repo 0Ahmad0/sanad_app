@@ -57,6 +57,7 @@ dependencies:
   cloud_firestore:
   firebase_database:
   video_player:
+  chewie:
   audio_waveforms:
   flutter_audio_waveforms:
 
