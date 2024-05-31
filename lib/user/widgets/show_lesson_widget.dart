@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:sanad_app/app/core/route/app_route.dart';
 import 'package:sanad_app/app/core/utils/app_string.dart';
 import 'package:sanad_app/app/core/utils/assets_manager.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
@@ -37,7 +39,9 @@ class ShowLessonWidget extends StatelessWidget {
             ShowMediaLessonWidget(
               image: AssetsManager.adminSoundIcon,
               title: AppString.playLessonSound,
-              onTap: (){},
+              onTap: (){
+                Get.toNamed(AppRoute.showAudioUserRoute);
+              },
             ),
             ShowMediaLessonWidget(
               image: AssetsManager.adminVideoIcon,

@@ -21,6 +21,12 @@ class AppString {
   static const editProfile = "تعديل الملف الشخصي";
   static const sex = "الجنس";
   static const saveEditing = "حفظ التعديلات";
+  static const cancle = "إلغاء";
+  static const yes = "نعم";
+  static const pickPhoto = "اختر صورة لملفك الشخصي";
+  static const pickFromCamera = "اختيار من الكاميرا";
+  static const pickFromGallery = "اختيار من المعرض";
+  static const areYouSureLogout = "هل أنت متأكد من تسجيل خروجك؟";
 
   ///Admin
   static const welcomeAdminTitle = "اهلا بك في تطبيق سَـند";
@@ -60,7 +66,7 @@ class AppString {
   static const lessons = "الدروس";
   static const homeUser = "الرئيسية";
   static const userAccount = "حسابي";
-  static const AneerName = "أنير";
+  static const aneerName = "أنير";
   static const showLessons = "عرض الدروس";
   static const requestLessons = "طلبات الدروس";
   static const rateLessons = "تقييم الدروس";
@@ -75,6 +81,8 @@ class AppString {
   static const update = "Update";
   static const resetPassword = "Reset password";
   static const  verifyEmail= "Verify Email";
+  static const requiredFiled = "هذا الحقل مطلوب";
+  static const  sendRequest= "إرسال طلب";
   static const  verify= "تحقق";
   static const  ok= "حسناً";
   static const  linkValidAt= "الرابط صالح لمدة 5دقائق :";
@@ -105,7 +113,8 @@ class AppString {
   static const userProfile = 'User Profile';
   static const addFromCamera = 'Add From Camera';
   static const addFromGallery = 'Add From Gallery';
-  static const deletePhoto = 'Delete Photo';
+  static const deletePhoto = 'حذف الصورة';
+  static const areYouSureDeletePhoto = 'هل أنت متاكد من حذف الصورة؟';
   static const addNewSchedule = 'Add New Schedule';
   static const pickDay = 'Pick Day :';
   static const firstTime = 'First Time';
@@ -115,7 +124,6 @@ class AppString {
 
 
   ///<User Message>//
-  static const requiredFiled = 'Filed is required*';
   static const enterValidEmail = 'Please enter a valid email';
   static const enterValidName = 'Please enter a valid Name';
 
@@ -173,4 +181,3 @@ class AppString {
 
 }
 
- 

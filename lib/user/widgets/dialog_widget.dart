@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -33,8 +34,8 @@ class DialogWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: AppMargin.m40),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppPadding.p40),
               child: ContainerAuthWidget(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

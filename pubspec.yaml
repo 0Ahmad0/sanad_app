@@ -56,7 +56,9 @@ dependencies:
   firebase_storage:
   cloud_firestore:
   firebase_database:
-
+  video_player:
+  audio_waveforms:
+  flutter_audio_waveforms:
 
 
 dev_dependencies:

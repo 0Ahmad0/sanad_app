@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:sanad_app/app/controller/profile_controller.dart';
 import 'package:sanad_app/app/core/utils/app_string.dart';
 import 'package:sanad_app/app/core/utils/assets_manager.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
@@ -11,6 +14,8 @@ import 'package:sanad_app/app/widgets/button_app_widget.dart';
 import 'package:sanad_app/app/widgets/container_auth_widget.dart';
 import 'package:sanad_app/app/widgets/custom_appbar_widget.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
+import 'package:sanad_app/app/widgets/picker_dialog.dart';
+import 'package:sanad_app/user/widgets/dialog_widget.dart';
 
 import '../widgets/textfield_app.dart';
 import 'auth/widgets/circle_profile_widget.dart';
@@ -26,15 +31,22 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: !showNourIcon?CustomAppBarWidget(
-          showBackButton: false,
-          child: [
-            CircleProfilePictureWidget(
-              path:
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS37JAC_YF1l4Nih5_FG15JI_EuFVRvVsveZKTGBNsmfqyeLGzTKMWY-prH8CGsLkxbb4&usqp=CAU',
-            )
-          ],
-        ):null,
+        appBar: !showNourIcon
+            ? CustomAppBarWidget(
+                showBackButton: false,
+                child: [
+                  GetBuilder<ProfileController>(
+                    init: ProfileController(),
+                    builder: (controller) {
+                      return CircleProfilePictureWidget(
+                        path: controller.profileImage?.path,
+                      );
+                    }
+                  ),
+
+                ],
+              )
+            : null,
         body: DefaultScaffoldWidget(
           child: SingleChildScrollView(
             child: Column(
@@ -43,7 +55,17 @@ class ProfileScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.dialog(
+                        DialogWidget(
+                          title: AppString.logout,
+                          text: AppString.areYouSureLogout,
+                          buttonNoText: AppString.cancle,
+                          buttonOkText: AppString.yes,
+                          onPressed: () {},
+                        ),
+                      );
+                    },
                     label: Icon(
                       Icons.power_settings_new,
                       color: ColorManager.errorColor,
@@ -55,37 +77,59 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-               Center(
-                 child: Column(
-                   children: [
-                     CircleProfilePictureWidget(
-                       radius: 74.sp,
-                       path:
-                       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS37JAC_YF1l4Nih5_FG15JI_EuFVRvVsveZKTGBNsmfqyeLGzTKMWY-prH8CGsLkxbb4&usqp=CAU',
-                     ),
-                     const SizedBox(
-                       height: AppSize.s10,
-                     ),
-                     Row(
-                       mainAxisSize: MainAxisSize.min,
-                       mainAxisAlignment: MainAxisAlignment.center,
-                       children: [
-                         IconButton(
-                             onPressed: () {
-                               //delete Picker
-                             },
-                             icon: Icon(Icons.delete)),
-                         IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
-                       ],
-                     ),
-                   ],
-                 ),
-               ),
+                Center(
+                  child: GetBuilder<ProfileController>(
+                      init: ProfileController(),
+                      builder: (controller) {
+                        return Column(
+                          children: [
+                            CircleProfilePictureWidget(
+                              radius: 74.sp,
+                              path: controller.profileImage?.path,
+                            ),
+                            const SizedBox(
+                              height: AppSize.s10,
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                    onPressed: () {
+                                      //delete Picker
+                                      Get.dialog(
+                                        DialogWidget(
+                                          title: AppString.deletePhoto,
+                                          text: AppString.areYouSureDeletePhoto,
+                                          buttonNoText: AppString.cancle,
+                                          buttonOkText: AppString.yes,
+                                          onPressed: () {
+                                            controller.deletePhoto();
+                                          },
+                                        ),
+                                      );
+                                    },
+                                    icon: Icon(Icons.delete)),
+                                IconButton(
+                                  onPressed: () {
+                                    Get.dialog(
+                                      PickerDialog(),
+                                    );
+                                  },
+                                  icon: Icon(Icons.edit),
+                                ),
+                              ],
+                            ),
+                          ],
+                        );
+                      }),
+                ),
                 const SizedBox(
                   height: AppSize.s10,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: AppPadding.p20),
                   child: Text(
                     AppString.editProfile,
                     style: StylesManager.textBoldStyle(
@@ -96,7 +140,8 @@ class ProfileScreen extends StatelessWidget {
                   height: AppSize.s10,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: AppPadding.p20),
                   child: DividerAuthWidget(),
                 ),
                 ContainerAuthWidget(
@@ -112,7 +157,6 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         const DividerAuthWidget(),
                         TextFiledApp(
-
                           suffixIcon: showNourIcon,
                           audioPath: AssetsManager.noorSound,
                           // controller: authController.emailController,
@@ -125,7 +169,9 @@ class ProfileScreen extends StatelessWidget {
                             return null;
                           },
                         ),
-                        const SizedBox(height: AppSize.s10,),
+                        const SizedBox(
+                          height: AppSize.s10,
+                        ),
                         Text(
                           AppString.email,
                           style: StylesManager.textNormalStyle(
@@ -146,8 +192,9 @@ class ProfileScreen extends StatelessWidget {
                             return null;
                           },
                         ),
-                        const SizedBox(height: AppSize.s10,),
-
+                        const SizedBox(
+                          height: AppSize.s10,
+                        ),
                         Text(
                           AppString.phone,
                           style: StylesManager.textNormalStyle(
@@ -167,8 +214,9 @@ class ProfileScreen extends StatelessWidget {
                             return null;
                           },
                         ),
-                        const SizedBox(height: AppSize.s10,),
-
+                        const SizedBox(
+                          height: AppSize.s10,
+                        ),
                         Text(
                           AppString.sex,
                           style: StylesManager.textNormalStyle(
@@ -201,8 +249,9 @@ class ProfileScreen extends StatelessWidget {
                   child: ButtonAppWidget(
                       onPressed: () {}, text: AppString.saveEditing),
                 ),
-                const SizedBox(height: AppSize.s100,),
-
+                const SizedBox(
+                  height: AppSize.s100,
+                ),
               ],
             ),
           ),
