@@ -42,7 +42,7 @@ class ManagingLessonUserScreen extends StatelessWidget {
                       ),
                     ),
                     IconButton(onPressed: (){
-                      Get.toNamed(AppRoute.addLessonAdminRoute);
+                      Get.toNamed(AppRoute.addLessonUserRoute);
                     }, icon: Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,

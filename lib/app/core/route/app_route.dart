@@ -11,6 +11,7 @@ import 'package:sanad_app/app/controller/auth_controller.dart';
 import 'package:sanad_app/app/screens/auth/auth_screen.dart';
 import 'package:sanad_app/app/screens/profile_screen.dart';
 import 'package:sanad_app/app/screens/splash_screen.dart';
+import 'package:sanad_app/user/screens/add_lesson_user_screen.dart';
 import 'package:sanad_app/user/screens/home_user_screen.dart';
 import 'package:sanad_app/user/screens/lessons_user_screen.dart';
 import 'package:sanad_app/user/screens/managing_lesson_user_screens.dart';
@@ -48,6 +49,7 @@ class AppRoute {
   static const questionUserRoute = '/questionUser';
   static const showQuestionUserRoute = '/showQuestionUser';
   static const managingLessonUserRoute = '/managingLessonUser';
+  static const addLessonUserRoute = '/addLessonUser';
   static const showAudioUserRoute = '/showAudioRoute';
 
   static List<GetPage> appPages = [
@@ -143,6 +145,11 @@ class AppRoute {
       name: managingLessonUserRoute,
       page: () => ManagingLessonUserScreen(),
       transition: Transition.cupertinoDialog,
+    ),
+    GetPage(
+      name:addLessonUserRoute,
+      page: () => AddLessonUserScreen(),
+      transition: Transition.native,
     ),
     GetPage(
       name:showAudioUserRoute,

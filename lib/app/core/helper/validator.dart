@@ -5,7 +5,7 @@ import '../utils/app_string.dart';
 class Validator{
   ///@--Email
   static String? validateEmail({required String email}){
-    if(email!.trim().isEmpty){
+    if(email.trim().isEmpty){
       return AppString.requiredFiled;
     }
     if(!email.isEmail){

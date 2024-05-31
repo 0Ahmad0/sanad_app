@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
@@ -74,19 +75,29 @@ class _WaveBubbleState extends State<WaveBubble> {
   late PlayerController controller;
   late StreamSubscription<PlayerState> playerStateSubscription;
 
-  final playerWaveStyle =  PlayerWaveStyle(
+  final playerWaveStyle = PlayerWaveStyle(
     fixedWaveColor: ColorManager.primaryColor.withOpacity(.5),
     liveWaveColor: ColorManager.primaryColor,
     spacing: 6,
   );
+
+  bool isCompleted = false;
 
   @override
   void initState() {
     super.initState();
     controller = PlayerController();
     _preparePlayer();
-    playerStateSubscription = controller.onPlayerStateChanged.listen((_) {
-      setState(() {});
+    playerStateSubscription = controller.onPlayerStateChanged.listen((state) {
+      if (state == PlayerState.stopped) {
+        setState(() {
+          isCompleted = true;
+        });
+      } else {
+        setState(() {
+          isCompleted = false;
+        });
+      }
     });
   }
 
@@ -112,38 +123,44 @@ class _WaveBubbleState extends State<WaveBubble> {
   Widget build(BuildContext context) {
     return widget.path != null
         ? Column(
-            children: [
-              AudioFileWaveforms(
-                continuousWaveform: true,
-                size: Size(MediaQuery.of(context).size.width - 20, 60),
-                playerController: controller,
-                waveformType: WaveformType.long,
-                playerWaveStyle: playerWaveStyle,
-                enableSeekGesture: false,
-                animationCurve: Curves.bounceIn,
-              ),
-              IconButton(
-                onPressed: () async {
-                  if (controller.playerState.isPlaying ||
-                      controller.playerState.isStopped) {
-                    await controller.pausePlayer();
-                  } else {
-                    controller.setRefresh(true);
-                    await controller.startPlayer();
-                  }
-                },
-                icon: Icon(
-                  controller.playerState.isPlaying
-                      ? Icons.pause
-                      : Icons.play_arrow,
-                  size: 60,
-                ),
-                color: Colors.white,
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-              ),
-            ],
-          )
+      children: [
+        AudioFileWaveforms(
+          continuousWaveform: true,
+          size: Size(MediaQuery.of(context).size.width - 20, 60),
+          playerController: controller,
+          waveformType: WaveformType.long,
+          playerWaveStyle: playerWaveStyle,
+          enableSeekGesture: false,
+          animationCurve: Curves.bounceIn,
+        ),
+        IconButton(
+          onPressed: () async {
+            if (controller.playerState.isPlaying ||
+                controller.playerState.isStopped) {
+              await controller.pausePlayer();
+            } else {
+              if (isCompleted) {
+                await controller.seekTo(0);
+                setState(() {
+                  isCompleted = false;
+                });
+              }
+              controller.setRefresh(true);
+              await controller.startPlayer();
+            }
+          },
+          icon: Icon(
+            isCompleted
+                ? Icons.replay
+                : (controller.playerState.isPlaying ? Icons.pause : Icons.play_arrow),
+            size: 60.sp,
+          ),
+          color: Colors.white,
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+        ),
+      ],
+    )
         : const SizedBox.shrink();
   }
 }

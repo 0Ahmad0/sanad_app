@@ -81,6 +81,8 @@ class AppString {
   static const update = "Update";
   static const resetPassword = "Reset password";
   static const  verifyEmail= "Verify Email";
+  static const requiredFiled = "هذا الحقل مطلوب";
+  static const  sendRequest= "إرسال طلب";
   static const  verify= "تحقق";
   static const  ok= "حسناً";
   static const  linkValidAt= "الرابط صالح لمدة 5دقائق :";
@@ -122,7 +124,6 @@ class AppString {
 
 
   ///<User Message>//
-  static const requiredFiled = 'Filed is required*';
   static const enterValidEmail = 'Please enter a valid email';
   static const enterValidName = 'Please enter a valid Name';
 
@@ -180,4 +181,3 @@ class AppString {
 
 }
 
- 
