@@ -9,6 +9,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
 
+import '../../app/widgets/custom_appbar_widget.dart';
+
 class ShowAudioScreen extends StatefulWidget {
   const ShowAudioScreen({Key? key}) : super(key: key);
 
@@ -40,6 +42,7 @@ class _ShowAudioScreenState extends State<ShowAudioScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBarWidget(),
       body: DefaultScaffoldWidget(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
