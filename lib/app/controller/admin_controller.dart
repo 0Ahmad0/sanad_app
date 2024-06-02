@@ -11,6 +11,7 @@ import 'package:sanad_app/admin/screens/elderly_management_admin_screen.dart';
 import 'package:sanad_app/admin/screens/home_admin_screen.dart';
 import 'package:sanad_app/admin/screens/lesson_requests_admin_screen.dart';
 import 'package:sanad_app/admin/screens/questions_manage_admin_screen.dart';
+import 'package:sanad_app/app/controller/auth_controller.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
 import 'package:sanad_app/app/screens/profile_screen.dart';
 import 'package:sanad_app/user/widgets/dialog_widget.dart';
@@ -37,7 +38,10 @@ class AdminController extends GetxController {
       Get.to(() => ProfileScreen());
     }
     if (index == 5) {
-      Get.dialog(DialogWidget(onPressed: () {},
+      Get.dialog(DialogWidget(onPressed: () {
+        Get.lazyPut(()=>AuthController());
+        AuthController.instance.signOut();
+      },
         text: 'النص هنا',
         title: 'هل أنت متأكد من تسجيل خروجك؟',)
       );

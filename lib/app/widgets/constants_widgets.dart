@@ -9,10 +9,8 @@ import '../core/utils/color_manager.dart';
 class ConstantsWidgets {
   static showLoading() async {
     return await Get.dialog(
-      WillPopScope(
-        onWillPop: () {
-          return Future(() => false);
-        },
+      PopScope(
+          canPop:false,
         child: Center(
           child: Container(
             width: 80,
@@ -30,6 +28,11 @@ class ConstantsWidgets {
         ),
       ),
       barrierDismissible: false,
+    );
+  }
+  static circularProgress()  {
+    return Center(
+      child: CircularProgressIndicator(),
     );
   }
   static TOAST(BuildContext context, {String textToast = "This Is Toast"}) {

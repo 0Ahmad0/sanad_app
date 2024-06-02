@@ -6,10 +6,14 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sanad_app/app/controller/admin_controller.dart';
 import 'package:sanad_app/app/core/helper/sizer_media_query.dart';
+import 'package:sanad_app/app/core/utils/app_string.dart';
 import 'package:sanad_app/app/core/utils/assets_manager.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
 import 'package:sanad_app/app/core/utils/styles_manager.dart';
 import 'package:sanad_app/app/core/utils/values_manager.dart';
+
+import '../../app/controller/profile_controller.dart';
+import '../../app/screens/auth/widgets/circle_profile_widget.dart';
 
 class CollapsingNavigationDrawer extends StatefulWidget {
   const CollapsingNavigationDrawer({super.key});
@@ -84,11 +88,17 @@ class _CollapsingNavigationDrawerState extends State<CollapsingNavigationDrawer>
                   const SizedBox(
                     height: AppSize.s10,
                   ),
-                  CollapsingListTileForImage(
-                      onTap: () {},
-                      title: 'John',
-                      icon: 'https',
-                      animationController: _animationController),
+                  GetBuilder<ProfileController>(
+                    // init: profileController,
+                      builder: (controller) {
+                        return  CollapsingListTileForImage(
+                            onTap: () {},
+                            title: controller.currentUser?.value?.name??'',
+                            icon: 'https',
+                            animationController: _animationController);
+                      }
+                  ),
+
                   const Divider(
                     color: ColorManager.greyColor,
                   ),
@@ -306,8 +316,12 @@ class _CollapsingListTileForImageState
             ? MainAxisAlignment.start
             : MainAxisAlignment.center,
         children: <Widget>[
+
           CircleAvatar(
             radius: 28.sp,
+            child: CircleProfilePictureWidget(
+              path: ProfileController.instance.currentUser?.value?.photoUrl,
+            ),
           ),
           SizedBox(
             width: sizedBoxAnimation.value,
@@ -340,12 +354,12 @@ class NavigationItem {
 /// ---------------------------
 
 List<NavigationItem> navigationItem = [
-  NavigationItem(title: 'Dashboard', icon: AssetsManager.adminDrawer1Icon),
-  NavigationItem(title: 'Favorites', icon: AssetsManager.adminDrawer2Icon),
-  NavigationItem(title: 'Music Videos', icon: AssetsManager.adminDrawer3Icon),
-  NavigationItem(title: 'Notification', icon: AssetsManager.adminDrawer4Icon),
-  NavigationItem(title: 'Notification', icon: AssetsManager.adminDrawer5Icon),
-  NavigationItem(title: 'Settings', icon: AssetsManager.logoutIcon)
+  NavigationItem(title:'Dashboard'/*'Dashboard'*/, icon: AssetsManager.adminDrawer1Icon),
+  NavigationItem(title:'Favorites' /*'Favorites'*/, icon: AssetsManager.adminDrawer2Icon),
+  NavigationItem(title:'Music Videos' /*'Music Videos'*/, icon: AssetsManager.adminDrawer3Icon),
+  NavigationItem(title:'Notification' /*'Notification'*/, icon: AssetsManager.adminDrawer4Icon),
+  NavigationItem(title:'Notification' /*'Notification'*/, icon: AssetsManager.adminDrawer5Icon),
+  NavigationItem(title:'Settings' /*'Settings'*/, icon: AssetsManager.logoutIcon)
 ];
 
 /// ---------------------------
