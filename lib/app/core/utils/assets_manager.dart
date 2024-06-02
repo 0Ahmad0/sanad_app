@@ -36,6 +36,7 @@ class AssetsManager {
   ///=================<<Json>>=================///
 
   ///=================<<Audio>>=================///
+
   static const String noorSound = '$soundPath/test_sound.mp3';
   static const String enterUserNameSound = '$soundPath/enter_user_name.mp3';
   static const String enterPasswordLoginSound = '$soundPath/enter_password_login.mp3';
@@ -43,4 +44,13 @@ class AssetsManager {
   static const String enterEmailSound = '$soundPath/enter_email.mp3';
   static const String enterPhoneNumberSound = '$soundPath/enter_phone_number.mp3';
   static const String enterPasswordSignupSound = '$soundPath/enter_password_signup.mp3';
+  static const String solveQuestionSound = '$soundPath/solve_question_sound.mp3';
+  static const String rateScreenSound = '$soundPath/rate_screen_sound.mp3';
+  static const String questionScreenSound = '$soundPath/question_screen_sound.mp3';
+  static const String managementLessonsScreenSound = '$soundPath/managment_lessons_screen_sound.mp3';
+  static const String lessonsScreenSound = '$soundPath/lessons_screen_sound.mp3';
+  static const String homeScreenSound = '$soundPath/home_screen_sound.mp3';
+  static const String editProfilePasswordSound = '$soundPath/edit_profile_password_sound.mp3';
+  static const String editProfileScreenSound = '$soundPath/edit_profile_screen_sound.mp3';
+  static const String addLessonScreenSound = '$soundPath/add_lesson_screen_sound.mp3';
 }
