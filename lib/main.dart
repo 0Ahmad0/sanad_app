@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,9 +13,12 @@ import 'package:sanad_app/app/screens/splash_screen.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:sanad_app/user/screens/questions_user_screen.dart';
 
+import 'app/controller/profile_controller.dart';
+
 AudioPlayer audio = AudioPlayer();
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -24,6 +28,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Get.put( ProfileController());
     return ScreenUtilInit(
         designSize: Size(AppConstants.designWidth, AppConstants.designHeight),
         builder: (context, _) {

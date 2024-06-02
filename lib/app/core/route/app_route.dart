@@ -68,7 +68,7 @@ class AppRoute {
     ),
     GetPage(
       name: profileRoute,
-      page: () => const ProfileScreen(),
+      page: () =>  ProfileScreen(),
       transition: Transition.fadeIn,
     ),
     GetPage(
@@ -143,6 +143,7 @@ class AppRoute {
     ),
     GetPage(
       name: showQuestionUserRoute,
+      fullscreenDialog:true,
       page: () => ShowQuestionUserScreen(),
       transition: Transition.downToUp,
     ), GetPage(

@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:sanad_app/app/controller/profile_controller.dart';
 
+import '../../../../user/widgets/picture/cach_picture_widget.dart';
+import '../../../../user/widgets/picture/profile_picture_widget.dart';
 import '../../../core/utils/color_manager.dart';
 
 class CircleProfilePictureWidget extends GetView<ProfileController> {
@@ -31,12 +33,36 @@ class CircleProfilePictureWidget extends GetView<ProfileController> {
         height: radius.sp,
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(shape: BoxShape.circle),
-        child:  controller.profileImage== null? Image.network(
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS37JAC_YF1l4Nih5_FG15JI_EuFVRvVsveZKTGBNsmfqyeLGzTKMWY-prH8CGsLkxbb4&usqp=CAU',
+        child:
+
+        // controller.profileImage== null? Image.network(
+        //   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS37JAC_YF1l4Nih5_FG15JI_EuFVRvVsveZKTGBNsmfqyeLGzTKMWY-prH8CGsLkxbb4&usqp=CAU',
+        //   width: radius.sp,
+        //   height: radius.sp,
+        //   fit: BoxFit.cover,
+        // )
+
+        controller.profileImage== null? CacheNetworkImage(
+          photoUrl:   // "https://th.bing.com/th/id/R.1b3a7efcd35343f64a9ae6ad5b5f6c52?rik=HGgUvyvtG4jbAQ&riu=http%3a%2f%2fwww.riyadhpost.live%2fuploads%2f7341861f7f918c109dfc33b73d8356b2.jpg&ehk=3Z4lADOKvoivP8Tbzi2Y56dxNrCWd0r7w7CHQEvpuUg%3d&risl=&pid=ImgRaw&r=0",
+          '${ controller.currentUser.value?.photoUrl??''}',
           width: radius.sp,
           height: radius.sp,
-          fit: BoxFit.cover,
-        ):Image.file(
+          boxFit: BoxFit.cover,
+          waitWidget: WidgetProfilePicture(
+            name: controller.currentUser.value?.name??'',
+            radius: radius.sp,
+            backgroundColor: ColorManager.secondaryColor,
+            textColor: ColorManager.primaryColor,
+          ),
+          errorWidget: WidgetProfilePicture(
+            name: controller.currentUser.value?.name??'',
+            radius: radius.sp,
+
+            backgroundColor: ColorManager.secondaryColor,
+            textColor: ColorManager.primaryColor,
+          ),
+        )
+            :Image.file(
           File(path!),
           width: radius.sp,
           height: radius.sp,

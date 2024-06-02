@@ -9,7 +9,9 @@ import 'package:sanad_app/app/core/utils/values_manager.dart';
 import 'package:sanad_app/app/widgets/button_app_widget.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
 
-class EmailRecoverySuccessBottomSheetWidget extends StatelessWidget {
+import '../../../controller/forget_password_controller.dart';
+
+class EmailRecoverySuccessBottomSheetWidget extends GetView<ForgetPasswordController> {
   const EmailRecoverySuccessBottomSheetWidget({
     super.key,
   });
@@ -35,7 +37,7 @@ class EmailRecoverySuccessBottomSheetWidget extends StatelessWidget {
             const SizedBox(
               height: AppSize.s20,
             ),
-            Text(AppString.emailRecoveryDescription('email'),style: StylesManager.textNormalStyle(
+            Text(AppString.emailRecoveryDescription(controller.emailController.value.text.substring(0,4)),style: StylesManager.textNormalStyle(
               color: ColorManager.primaryColor,
               size: 16.sp
             ),),
@@ -47,16 +49,21 @@ class EmailRecoverySuccessBottomSheetWidget extends StatelessWidget {
                 size: 18.sp
             ),),
             const Spacer(),
-            Center(child: Text('04:58',style: StylesManager.textBoldStyle(
+        GetBuilder<ForgetPasswordController>(
+            builder: (controller)=>
+
+            Center(child: Text(controller.getTimeDifference(),style: StylesManager.textBoldStyle(
               color: ColorManager.primaryColor,
               size: 40.sp
-            ),)),
+            ),))),
             const SizedBox(
               height: AppSize.s10,
             ),
             const Spacer(),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                controller.send();
+              },
               child: Text(AppString.resendLink,style: StylesManager.textNormalStyle(
                   color: ColorManager.primaryColor,
                   size: 16.sp

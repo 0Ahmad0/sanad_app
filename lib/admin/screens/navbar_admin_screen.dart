@@ -15,11 +15,23 @@ import 'package:sanad_app/app/core/utils/styles_manager.dart';
 import 'package:sanad_app/app/core/utils/values_manager.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
 
+import '../../app/controller/profile_controller.dart';
 import '../widgets/collapsing_drawer_widget.dart';
 
-class NavBarAdminScreen extends StatelessWidget {
+class NavBarAdminScreen extends StatefulWidget {
   const NavBarAdminScreen({super.key});
 
+  @override
+  State<NavBarAdminScreen> createState() => _NavBarAdminScreenState();
+}
+
+class _NavBarAdminScreenState extends State<NavBarAdminScreen> {
+  @override
+  void initState() {
+    Get.lazyPut(() => ProfileController());
+    ProfileController.instance.getUser();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(AdminController());

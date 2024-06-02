@@ -153,6 +153,15 @@ class AppString {
   static const message_account_not_active= "Account not Active";
   static const message_unable_connection= "Unable connection";
 
+
+  ///<Message Firebase>//
+  static const message_success= "Success";
+  static const message_failure= "Failure";
+  static const message_successful_login= "Successful login";
+  static const message_user_name_invalid= "اسم المستخدم غير صحيح";
+  static const message_successful_get_user= "تم جلب معلومات المستخدم بنجاح";
+
+
   ///<Message Notification>//
   static const notify_new_plant_title= "New Plant";
   static const notify_delete_plant_title= "Delete Plant";

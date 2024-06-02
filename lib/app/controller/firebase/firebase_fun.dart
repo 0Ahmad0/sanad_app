@@ -39,6 +39,15 @@ class FirebaseFun {
         .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
     return result;
   }
+
+  static fetchUserByUserName( {required String userName})  async {
+    final result=await FirebaseFirestore.instance.collection(FirebaseConstants.collectionUser)
+        .where('userName',isEqualTo: userName)
+        .get()
+        .then((onValueFetchUserByUserName))
+        .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
   static fetchUserId( {required String id,required String typeUser})  async {
     final result=await FirebaseFirestore.instance.collection(typeUser)
         .where('id',isEqualTo: id)
@@ -69,7 +78,7 @@ class FirebaseFun {
     return {
       'status':false,
       'message':error,
-      //'body':""
+      // 'body':null
     };
   }
   static Future<Map<String,dynamic>>  onTimeOut() async {
@@ -98,6 +107,13 @@ class FirebaseFun {
       'body':(value.docs.length>0)?UserModel.fromJson(value.docs[0]).toJson():null
     };
   }
+  static Future<Map<String,dynamic>> onValueFetchUserByUserName(value) async{
+    return {
+      'status':true,
+      'message':'Account successfully logged',
+      'body':(value.docs.length>0)?UserModel.fromJson(value.docs[0]).toJson():null
+    };
+  }
   static Future<Map<String,dynamic>> onValueFetchUserId(value) async{
     return {
       'status':true,
@@ -118,6 +134,80 @@ class FirebaseFun {
 
 
   static String findTextToast(String text){
+    String errorMessage;
+    switch(text){
+      // login
+      case "user-not-found":
+        errorMessage = "No user found with this email.";
+        break;
+      case "wrong-password":
+        errorMessage = "Incorrect password.";
+        break;
+      case "invalid-email":
+        errorMessage = "Invalid email.";
+        break;
+      case "user-disabled":
+        errorMessage = "User account is disabled.";
+        break;
+      case "too-many-requests":
+        errorMessage =
+        "Login attempts exceeded. Please try again later.";
+        break;
+      // register
+      case "email-already-in-use":
+        errorMessage = "This email is already in use.";
+        break;
+      case "invalid-email":
+        errorMessage = "Invalid email.";
+        break;
+      case "weak-password":
+        errorMessage = "Password is too weak. It must be at least 6 characters long, including at least one uppercase letter, one lowercase letter, and one digit.";
+        break;
+
+      case "":
+        errorMessage =
+        "";
+        break;
+      case "":
+        errorMessage =
+        "";
+        break;
+      case "":
+        errorMessage =
+        "";
+        break;
+      case "":
+        errorMessage =
+        "";
+        break;
+      case "":
+        errorMessage =
+        "";
+        break;
+      case "":
+        errorMessage =
+        "";
+        break;
+      case "":
+        errorMessage =
+        "";
+        break;
+      case "":
+        errorMessage =
+        "";
+        break;
+      case "":
+        errorMessage =
+        "";
+        break;
+      case "":
+        errorMessage =
+        "";
+        break;
+      default:
+        errorMessage = "An unexpected error occurred. Please try again later.";
+    }
+
     // if(text.contains("Password should be at least 6 characters")){
     //   return tr(LocaleKeys.toast_short_password);
     // }else if(text.contains("The email address is already in use by another account")){

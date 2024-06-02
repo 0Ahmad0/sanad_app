@@ -2,8 +2,18 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sanad_app/admin/screens/home_admin_screen.dart';
+import 'package:sanad_app/admin/screens/navbar_admin_screen.dart';
+import 'package:sanad_app/app/core/local/storage.dart';
+import 'package:sanad_app/app/core/utils/app_constant.dart';
+import 'package:sanad_app/app/core/utils/app_string.dart';
+import 'package:sanad_app/app/screens/auth/auth_screen.dart';
+import 'package:sanad_app/app/screens/splash_screen.dart';
+import 'package:sanad_app/user/screens/home_user_screen.dart';
+import 'package:sanad_app/user/screens/navbar_user_screen.dart';
 
 import '../core/utils/color_manager.dart';
 import '../models/user_model.dart';
@@ -13,10 +23,17 @@ import 'firebase/firebase_fun.dart';
 class ProfileController extends GetxController {
   late final ImagePicker _imagePicker;
   File? profileImage;
+  String?  imagePath;
   final FirebaseAuth auth = FirebaseAuth.instance;
-  static ProfileController  get instance => Get.find();
+  static ProfileController  get instance => Get.find<ProfileController>();
   final Rx<UserModel?> currentUser = Rx(null);
   final timeLimit = Duration(seconds: 60);
+  //controllers
+  TextEditingController nameController = TextEditingController();
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController genderController = TextEditingController();
 
   Future<void> updateImage(XFile? image) async {
     try {
@@ -36,7 +53,7 @@ class ProfileController extends GetxController {
             'Successful update image',
             backgroundColor: ColorManager.successColor
         );
-        Get.offAll(HomePage());
+        // Get.offAll(HomePage());
       });
 
     } catch (e) {
@@ -51,24 +68,26 @@ class ProfileController extends GetxController {
     }
   }
   Future<void> updateUser(
-      {required String name,
-        required String email,
-        String? password,
-        String? imagePath,
-        XFile? image}) async {
+      ) async {
+    String name=nameController.value.text;
+        String email=emailController.value.text;
     try {
       ConstantsWidgets.showLoading();
-      if(image!=null){
-        imagePath=await FirebaseFun.uploadImage(image: image);
+      if(profileImage!=null){
+        imagePath=await FirebaseFun.uploadImage(image: XFile(profileImage!.path));
+        profileImage=null;
       }
       if(email!=currentUser.value?.email)
-        auth.currentUser?.updateEmail(email);
-      if(password!=''&&password!=null)
-        auth.currentUser?.updatePassword(password!);
+        auth.currentUser?.verifyBeforeUpdateEmail(email);
+        // auth.currentUser?.updateEmail();
+      // if(password!=''&&password!=null)
+      //   auth.currentUser?.updatePassword(password!);
 
       UserModel? userModel=UserModel(
         name: name,
         email: email,
+        phoneNumber: phoneController.value.text,
+        userName: userNameController.value.text,
         photoUrl: imagePath,
         uid:currentUser.value?.uid ,
         id: currentUser.value?.id,
@@ -82,12 +101,13 @@ class ProfileController extends GetxController {
         update();
         Get.back();
         Get.snackbar(
-            "Success",
-            'Successful update user',
+            AppString.message_success,
+            AppString.message_successfully_update,
             backgroundColor: ColorManager.successColor
         );
-        if(email!=currentUser.value?.email||(password!=''&&password!=null))
-          Get.offAll(LoginPage());
+        // if(email!=currentUser.value?.email||(password!=''&&password!=null))
+        //    Get.offAll(SplashScreen());
+
       });
 
     } catch (e) {
@@ -95,7 +115,7 @@ class ProfileController extends GetxController {
       errorMessage = "An unexpected error occurred. Please try again later.";
       Get.back();
       Get.snackbar(
-          "خطأ",
+          AppString.message_failure,
           errorMessage,
           backgroundColor: ColorManager.errorColor
       );
@@ -103,38 +123,48 @@ class ProfileController extends GetxController {
   }
   Future<void> getUser() async {
     try {
-
+      ;
       await FirebaseFirestore.instance
           .collection('Users')
-          .doc(FirebaseAuth.instance.currentUser?.uid ?? '')
+          .doc(FirebaseAuth.instance.currentUser?.uid ??
+          '${await AppStorage.storageRead(key: AppConstants.uidKEY)}'??'')
           .get()
           .then((value){
         currentUser.value=UserModel.fromJson(value);
         update();
-
         Get.snackbar(
-            "Success",
-            'Successful get user',
+            AppString.message_success,
+            AppString.message_successful_get_user,
             backgroundColor: ColorManager.successColor
         );
       });
+      // if(currentUser.value?.isAdmin??false)
+      //   Get.offAll(NavBarAdminScreen());
+      // else
+      //   Get.offAll(NavbarUserScreen());
+
+
 
     } catch (e) {
       String errorMessage;
       errorMessage = "An unexpected error occurred. Please try again later.";
       Get.snackbar(
-          "خطأ",
+          AppString.message_failure,
           errorMessage,
           backgroundColor: ColorManager.errorColor
       );
+      Get.offAll(AuthScreen());
     }
   }
+
 
 
   ///image local
   void deletePhoto() {
     Get.back();
     profileImage = null;
+    imagePath=null;
+    ProfileController.instance.update();
     update();
   }
 
@@ -147,6 +177,15 @@ class ProfileController extends GetxController {
     }
   }
 
+
+  void refresh(){
+    nameController = TextEditingController(text: currentUser.value?.name);
+    userNameController = TextEditingController(text: currentUser.value?.userName);
+    emailController = TextEditingController(text: currentUser.value?.email);
+    phoneController = TextEditingController(text: currentUser.value?.phoneNumber);
+    genderController = TextEditingController();
+    imagePath=currentUser.value?.photoUrl;
+  }
   @override
   void onInit() {
     _imagePicker = ImagePicker();

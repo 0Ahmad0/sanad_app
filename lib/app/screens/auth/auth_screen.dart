@@ -124,9 +124,13 @@ class AuthScreen extends StatelessWidget {
                             horizontal: AppPadding.p40),
                         child: ButtonAppWidget(
                             onPressed: () {
+
                               if (controller.formKey.currentState!.validate()) {
                                 // Get.offAllNamed(AppRoute.navBarAdminRoute);
-                                Get.offAll(NavbarUserScreen());
+                                // Get.offAll(NavbarUserScreen());
+                                controller.currentIndex==0?
+                                controller.login()
+                                    : controller.signUp();
                               }
                             },
                             text: AppString.registration),

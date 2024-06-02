@@ -12,14 +12,12 @@ class AppConstants {
   static const tokenKEY = "token";
   static const idKEY = "id";
   static const uidKEY = "uid";
+  static const EMAIL_KEY = "emailKey";
+  static const USER_NAME_KEY = "userNameKey";
+  static const PASSWORD_KEY = "passwordKey";
 
   //collection
   static String collection = "";
   static String collectionUser = "User";
-  static String collectionSchedule = "Times";
-  static String collectionDays = "Days";
-  static String collectionNotification = "Notification";
-  static String collectionPlant = "Plant";
-  static String collectionDefaultPlanet = "Default Planet";
-  static String strawberry = "Strawberry";
+  static String collectionAdmin = "Admin";
 }

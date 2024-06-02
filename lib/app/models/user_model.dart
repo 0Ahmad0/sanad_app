@@ -1,19 +1,29 @@
+import 'package:sanad_app/app/core/utils/app_constant.dart';
+
 class UserModel {
   String? id;
   String? uid;
   String? name;
+  String? userName;
   String? photoUrl;
+  String? phoneNumber;
   String? email;
   String? password;
+  String? typeUser;
   bool isAdd = false;
+
+  bool get isAdmin=>typeUser?.toLowerCase().contains(AppConstants.collectionAdmin.toLowerCase())??false;
 
   UserModel({
     this.id,
     this.uid,
     this.name,
+    this.userName,
     this.email,
     this.photoUrl,
-    this.password
+    this.phoneNumber,
+    this.password,
+    this.typeUser
   });
 
   factory UserModel.fromJson(json) {
@@ -22,9 +32,12 @@ class UserModel {
     return UserModel(
       id: json['id'],
       uid: json["uid"],
-      name: name,
+      name: json["name"],
+      phoneNumber: json["phoneNumber"],
+      userName: json["userName"],
       email: json["email"],
       photoUrl: json["photoUrl"],
+      typeUser: json["typeUser"],
       //  password:json['password']
     );
   }
@@ -35,6 +48,7 @@ class UserModel {
       uid: '',
       name: '',
       email: '',
+      typeUser: '',
     //  password: ''
     );
   }
@@ -44,7 +58,10 @@ class UserModel {
         'uid': uid,
         'name': name,
         'email': email,
+        'userName': userName,
+        'phoneNumber': phoneNumber,
         'photoUrl': photoUrl,
+        'typeUser': typeUser,
       };
 }
 

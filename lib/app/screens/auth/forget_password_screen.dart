@@ -74,7 +74,9 @@ class ForgetPasswordScreen extends StatelessWidget {
                           height: AppSize.s10,
                         ),
                         TextFiledApp(
+                          controller: controller.emailController,
                           hintText: AppString.emailExample,
+                          validator:(value)=> AuthController.instance.validateEmail(value!),
                         ),
                         SizedBox(
                           height: AppSize.s60.sp,
@@ -95,8 +97,11 @@ class ForgetPasswordScreen extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: AppPadding.p40),
                   child: ButtonAppWidget(
-                      onPressed: () {
+                      onPressed: () async {
                         if (controller.formKey.currentState!.validate()) {
+
+                         bool? isSend= await controller.send();
+                         if(isSend??false)
                           showModalBottomSheet(
 
                             clipBehavior: Clip.hardEdge,

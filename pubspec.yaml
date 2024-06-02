@@ -60,6 +60,7 @@ dependencies:
   chewie:
   audio_waveforms:
   flutter_audio_waveforms:
+  cached_network_image:
 
 
 dev_dependencies:

@@ -9,6 +9,9 @@ import 'package:sanad_app/app/core/utils/values_manager.dart';
 import 'package:sanad_app/app/widgets/button_app_widget.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
 
+import '../controller/profile_controller.dart';
+import '../controller/splash_controller.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -17,6 +20,12 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+     Get.put(SplashController());
+
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

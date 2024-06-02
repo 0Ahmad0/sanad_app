@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:sanad_app/app/controller/auth_controller.dart';
 import 'package:sanad_app/app/controller/profile_controller.dart';
 import 'package:sanad_app/app/core/utils/app_string.dart';
 import 'package:sanad_app/app/core/utils/assets_manager.dart';
@@ -20,8 +21,8 @@ import 'package:sanad_app/user/widgets/dialog_widget.dart';
 import '../widgets/textfield_app.dart';
 import 'auth/widgets/circle_profile_widget.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({
+class ProfileScreen extends StatefulWidget {
+   ProfileScreen({
     super.key,
     this.showNourIcon = false,
   });
@@ -29,14 +30,23 @@ class ProfileScreen extends StatelessWidget {
   final bool showNourIcon;
 
   @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  @override
   Widget build(BuildContext context) {
+    // Get.put(ProfileController());
+    ProfileController profileController=ProfileController.instance;
+     profileController.refresh();
+
     return Scaffold(
-        appBar: !showNourIcon
+        appBar: !widget.showNourIcon
             ? CustomAppBarWidget(
                 showBackButton: false,
                 child: [
                   GetBuilder<ProfileController>(
-                    init: ProfileController(),
+                    // init: profileController,
                     builder: (controller) {
                       return CircleProfilePictureWidget(
                         path: controller.profileImage?.path,
@@ -62,7 +72,10 @@ class ProfileScreen extends StatelessWidget {
                           text: AppString.areYouSureLogout,
                           buttonNoText: AppString.cancle,
                           buttonOkText: AppString.yes,
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.lazyPut(() => AuthController());
+                            AuthController.instance.signOut();
+                          },
                         ),
                       );
                     },
@@ -79,8 +92,9 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 Center(
                   child: GetBuilder<ProfileController>(
-                      init: ProfileController(),
+                      // init: profileController,
                       builder: (controller) {
+
                         return Column(
                           children: [
                             CircleProfilePictureWidget(
@@ -105,6 +119,7 @@ class ProfileScreen extends StatelessWidget {
                                           buttonOkText: AppString.yes,
                                           onPressed: () {
                                             controller.deletePhoto();
+                                            setState(() {});
                                           },
                                         ),
                                       );
@@ -115,6 +130,7 @@ class ProfileScreen extends StatelessWidget {
                                     Get.dialog(
                                       PickerDialog(),
                                     );
+                                    setState(() {});
                                   },
                                   icon: Icon(Icons.edit),
                                 ),
@@ -151,18 +167,33 @@ class ProfileScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
+                          AppString.userName,
+                          style: StylesManager.textNormalStyle(
+                              size: 16.sp, color: ColorManager.primaryColor),
+                        ),
+                        const DividerAuthWidget(),
+                        TextFiledApp(
+                          readOnly: true,
+                          suffixIcon: widget.showNourIcon,
+                          audioPath: AssetsManager.noorSound,
+                          controller: profileController.userNameController,
+                          hintText: AppString.userName,
+                        ),
+                        const SizedBox(
+                          height: AppSize.s10,
+                        ),
+                        Text(
                           AppString.fullName,
                           style: StylesManager.textNormalStyle(
                               size: 16.sp, color: ColorManager.primaryColor),
                         ),
                         const DividerAuthWidget(),
                         TextFiledApp(
-                          suffixIcon: showNourIcon,
+                          suffixIcon: widget.showNourIcon,
                           audioPath: AssetsManager.noorSound,
-                          // controller: authController.emailController,
+                           controller: profileController.nameController,
                           hintText: AppString.userName,
                           validator: (value) {
-                            print('object');
                             if (value!.isEmpty) {
                               return 'خطأ!';
                             }
@@ -179,10 +210,10 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         const DividerAuthWidget(),
                         TextFiledApp(
-                          suffixIcon: showNourIcon,
+                          suffixIcon: widget.showNourIcon,
 
                           audioPath: AssetsManager.noorSound,
-                          // controller: authController.emailController,
+                           controller: profileController.emailController,
                           hintText: AppString.email,
                           validator: (value) {
                             print('object');
@@ -202,12 +233,11 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         const DividerAuthWidget(),
                         TextFiledApp(
-                          suffixIcon: showNourIcon,
+                          suffixIcon: widget.showNourIcon,
                           audioPath: AssetsManager.noorSound,
-                          // controller: authController.emailController,
+                          controller: profileController.phoneController,
                           hintText: AppString.phone,
                           validator: (value) {
-                            print('object');
                             if (value!.isEmpty) {
                               return 'خطأ!';
                             }
@@ -224,9 +254,9 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         const DividerAuthWidget(),
                         TextFiledApp(
-                          suffixIcon: showNourIcon,
+                          suffixIcon: widget.showNourIcon,
                           audioPath: AssetsManager.noorSound,
-                          // controller: authController.emailController,
+                          controller: profileController.genderController,
                           hintText: AppString.sex,
                           validator: (value) {
                             print('object');
@@ -247,7 +277,10 @@ class ProfileScreen extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: AppPadding.p20),
                   child: ButtonAppWidget(
-                      onPressed: () {}, text: AppString.saveEditing),
+                      onPressed: () {
+                        
+                        profileController.updateUser();
+                      }, text: AppString.saveEditing),
                 ),
                 const SizedBox(
                   height: AppSize.s100,
