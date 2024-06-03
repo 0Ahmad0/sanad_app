@@ -89,6 +89,7 @@ class ProfileController extends GetxController {
         phoneNumber: phoneController.value.text,
         userName: userNameController.value.text,
         photoUrl: imagePath,
+        typeUser: currentUser.value?.typeUser,
         uid:currentUser.value?.uid ,
         id: currentUser.value?.id,
       );

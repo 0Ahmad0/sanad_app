@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:sanad_app/app/core/utils/values_manager.dart';
 
+import '../../app/core/utils/app_string.dart';
 import '../../app/core/utils/color_manager.dart';
 
 class ConstantsWidgets {
@@ -29,8 +31,43 @@ class ConstantsWidgets {
       barrierDismissible: false,
     );
   }
-  static TOAST(BuildContext context, {String textToast = "This Is Toast"}) {
-     Get.snackbar('title', textToast);
+  static showProgress(double progress)  {
+    return
+      // await Get.dialog(
+      PopScope(
+        canPop:true
+        ,
+        child: Center(
+          child: Container(
+             width: 100,
+             height: 100,
+            padding: const EdgeInsets.all(10.0),
+            decoration: BoxDecoration(
+              color: ColorManager.whiteColor,
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SpinKitWave(
+                  size: 46,
+
+                  color: ColorManager.primaryColor,
+                ),
+                SizedBox(height: AppSize.s10,),
+                Text('${(progress*100).toInt()}%',style: TextStyle(fontSize: 14,color:ColorManager.textFieldColor ),)
+              ],
+            ),
+          ),
+        ),
+      );
+    //   barrierDismissible: false,
+    // );
+  }
+  static TOAST(BuildContext context, {String textToast = "This Is Toast",bool? state}) {
+    Get.snackbar( AppString.message_success, textToast,
+        backgroundColor: state==null?null:state?ColorManager.successColor:ColorManager.errorColor,
+        colorText:  state==null?null:ColorManager.whiteColor);
     // showToast(
     //     textToast,
     //     context: context,

@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../core/utils/color_manager.dart';
+import '../../models/lesson_model.dart';
 import '../../models/user_model.dart';
 import 'firebase_constants.dart';
 
@@ -74,6 +75,41 @@ class FirebaseFun {
     return result;
   }
 
+
+  ///Lesson
+  static addLesson( {required LessonModel lesson}) async {
+    final result= await FirebaseFirestore.instance.collection(FirebaseConstants.collectionLesson)
+        .doc(lesson.id)
+        .set(lesson.toJson()).then(onValueAddLesson).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static deleteLesson( {required String idLesson}) async {
+    final result =await FirebaseFirestore.instance
+        .collection(FirebaseConstants.collectionLesson)
+        .doc(idLesson)
+        .delete().then(onValueDeleteLesson)
+        .catchError(onError);
+    return result;
+  }
+  static updateLesson( {required LessonModel lesson}) async {
+    final result= await FirebaseFirestore.instance.collection(FirebaseConstants.collectionLesson).doc(
+        lesson.id
+    ).update(lesson.toJson()).then(onValueUpdateLesson).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static fetchLessonsByIdUser({required String idUser})  async {
+    final result=await FirebaseFirestore.instance.collection(FirebaseConstants.collectionLesson)
+        .where('idUser',isEqualTo: idUser)
+        .get()
+        .then((onValueFetchLessons))
+        .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+
+
+
+
+
   static Future<Map<String,dynamic>>  onError(error) async {
     return {
       'status':false,
@@ -130,6 +166,40 @@ class FirebaseFun {
       'body':value.docs
     };
   }
+
+
+
+
+  static Future<Map<String,dynamic>>onValueAddLesson(value) async{
+    return {
+      'status':true,
+      'message':'Lesson successfully add',
+      'body':{},//{'id':value.id}
+    };
+  }
+  static Future<Map<String,dynamic>>onValueUpdateLesson(value) async{
+    return {
+      'status':true,
+      'message':'Lesson successfully update',
+      'body':{}
+    };
+  }
+  static Future<Map<String,dynamic>> onValueFetchLessons(value) async{
+    return {
+      'status':true,
+      'message':'Lesson successfully fetch',
+      'body':value.docs
+    };
+  }
+  static Future<Map<String,dynamic>>onValueDeleteLesson(value) async{
+    return {
+      'status':true,
+      'message':'Lesson successfully delete',
+      'body':{}
+    };
+  }
+
+
 
 
 

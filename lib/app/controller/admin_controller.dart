@@ -55,7 +55,13 @@ class AdminController extends GetxController {
   File? audioFile;
   List<File> images = [];
 
+  refreshPicker(){
+    videoFile=null;
+    audioFile=null;
+    images.clear();
+  }
   Future pickImages() async {
+
     final pickedFile = await picker.pickMultiImage();
     List<XFile> xfilePick = pickedFile;
 

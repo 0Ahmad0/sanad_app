@@ -47,9 +47,6 @@ class UsersController extends GetxController{
   filterUsers({required String term}) async {
     usersWithFilter.users=[];
     users.users.forEach((element) {
-      print(element.userName?.toLowerCase());
-      print(term);
-      print((element.userName?.toLowerCase().contains(term.toLowerCase())??false));
       if((element.name?.toLowerCase().contains(term.toLowerCase())??false)
           ||(element.userName?.toLowerCase().contains(term.toLowerCase())??false))
         usersWithFilter.users.add(element);

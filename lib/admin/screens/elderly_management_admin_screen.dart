@@ -70,8 +70,7 @@ class _ElderlyManagementAdminScreenState extends State<ElderlyManagementAdminScr
           Expanded(
             child: ContainerAuthWidget(
               child:   StreamBuilder<QuerySnapshot>(
-                //prints the messages to the screen0
-                  stream: controller.getUsers,
+               stream: controller.getUsers,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return    ConstantsWidgets.circularProgress();
@@ -87,7 +86,6 @@ class _ElderlyManagementAdminScreenState extends State<ElderlyManagementAdminScr
                           controller.users?.users =
                               Users.fromJson(snapshot.data!.docs!).users;
                         }
-
                         controller.filterUsers(term: controller.searchController.value.text);
                         return
                           GetBuilder<UsersController>(

@@ -8,6 +8,7 @@ import 'package:sanad_app/app/controller/admin_controller.dart';
 import 'package:sanad_app/app/core/utils/assets_manager.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
 
+import '../../app/controller/lesson_controller.dart';
 import '../../app/core/utils/app_string.dart';
 import '../../app/core/utils/color_manager.dart';
 import '../../app/core/utils/styles_manager.dart';
@@ -19,10 +20,14 @@ import '../../app/widgets/textfield_app.dart';
 import '../widgets/elderly_widget.dart';
 
 class AddLessonAdminScreen extends StatelessWidget {
-  const AddLessonAdminScreen({super.key});
+   AddLessonAdminScreen({super.key});
+  late LessonController controller;
 
   @override
   Widget build(BuildContext context) {
+    controller = Get.put(LessonController());
+    Get.put(AdminController()).refreshPicker();
+
     return Scaffold(
       body: DefaultScaffoldWidget(
         child: FadeIn(
@@ -57,6 +62,7 @@ class AddLessonAdminScreen extends StatelessWidget {
                         ),
                         const DividerAuthWidget(),
                         TextFiledApp(
+                          controller: controller.nameController,
                           suffixIcon: false,
                         ),
                         const SizedBox(
@@ -67,6 +73,7 @@ class AddLessonAdminScreen extends StatelessWidget {
                                 color: ColorManager.primaryColor, size: 14.sp)),
                         const DividerAuthWidget(),
                         TextFiledApp(
+                          controller: controller.descriptionController,
                           suffixIcon: false,
                           minLine: 3,
                           maxLine: 8,
@@ -163,7 +170,12 @@ class AddLessonAdminScreen extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(horizontal: AppPadding.p20),
                     child:
-                        ButtonAppWidget(onPressed: () {}, text: AppString.save),
+                        ButtonAppWidget(onPressed: () {
+                          AdminController adminController=Get.put(AdminController());
+                          controller.addLesson(context,videoFile: adminController.videoFile,
+                              audioFile: adminController.audioFile,
+                              images:adminController.images );
+                        }, text: AppString.save),
                   ),
                   const SizedBox(
                     height: AppSize.s20,
