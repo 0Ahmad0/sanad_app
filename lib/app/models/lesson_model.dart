@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:sanad_app/app/models/question_model.dart';
 enum StatusLesson{
   accepted,
   rejected,
@@ -11,6 +12,7 @@ class LessonModel {
   String? filePath;
   String? videoPath;
   List<String> imagesPath;
+  List<Question> questions;
   String? status;
 
   StatusLesson get statusEnum=>StatusLesson.values.firstWhereOrNull((element)=>element.name.toLowerCase().contains(status?.toLowerCase()??''))
@@ -23,6 +25,7 @@ class LessonModel {
     this.filePath,
     this.videoPath,
     this.imagesPath=const[],
+    this.questions=const[],
     this.status,
   });
 
@@ -33,12 +36,20 @@ class LessonModel {
       String temp = '${json['imagesPath'][i]}';
       itemList.add(temp);
     }
+//questions
+    List<Question> itemList2 = [];
+
+    for (int i = 0; i < json['questions'].length; i++) {
+      Question temp = Question.fromJson(json['questions'][i]);
+      itemList2.add(temp);
+    }
     return LessonModel(
       id: json['id'],
       name: json["name"],
       description: json["description"],
       filePath: json["filePath"],
       imagesPath: itemList,
+      questions: itemList2,
       videoPath: json["videoPath"],
       status: json["status"],
     );
@@ -52,15 +63,22 @@ class LessonModel {
     );
   }
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'description': description,
-        'filePath': filePath,
-        'videoPath': videoPath,
-        'imagesPath': imagesPath,
-        'status': status,
-      };
+  Map<String, dynamic> toJson() {
+    List<Map<String, dynamic>> itemList = [];
+    for (Question item in questions) {
+      itemList.add(item.toJson());
+    }
+    return  {
+      'id': id,
+      'name': name,
+      'description': description,
+      'filePath': filePath,
+      'videoPath': videoPath,
+      'imagesPath': imagesPath,
+      'questions': itemList,
+      'status': status,
+    };
+  }
 }
 
 //LessonsModel

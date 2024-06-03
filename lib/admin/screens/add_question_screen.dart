@@ -30,7 +30,7 @@ class _AddQuestionPageState extends State<AddQuestionPage> {
       List.generate(4, (_) => TextEditingController());
   int _correctOptionIndex = -1;
 
-  void _saveQuestion() {
+  Future<void> _saveQuestion() async {
     if (_formKey.currentState?.validate() ?? false) {
       final question = Question(
         text: _questionController.text,
@@ -38,8 +38,8 @@ class _AddQuestionPageState extends State<AddQuestionPage> {
             _optionControllers.map((controller) => controller.text).toList(),
         correctOptionIndex: _correctOptionIndex,
       );
-      widget.onSave(question);
-      Navigator.of(context).pop();
+      await widget.onSave(question);
+      // Navigator.of(context).pop();
     }
   }
 

@@ -12,42 +12,36 @@ import 'package:sanad_app/app/core/utils/values_manager.dart';
 import 'package:sanad_app/app/widgets/custom_appbar_widget.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
 
-import '../../app/controller/lesson_questions_admin_controller.dart';
 import '../../app/models/question_model.dart';
 import '../../app/widgets/empty_widget.dart';
-import 'add_question_screen.dart';
 
-class AddQuestionsAdminScreen extends StatelessWidget {
+class AddQuestionsAdminScreenOld extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(LessonQuestionsController());
-     controller.refreshQuestion();
+    final controller = Get.put(AdminController());
     return Scaffold(
       appBar: CustomAppBarWidget(),
       body: DefaultScaffoldWidget(
-        child: controller.lesson?.questions.isEmpty??true
+        child: controller.questions.isEmpty
             ? EmptyWidget(
           text: AppString.noQuestionFoundYet,
         )
-            : GetBuilder<LessonQuestionsController>(builder: (lessonQuestionsController) {
+            : GetBuilder<AdminController>(builder: (adminController) {
                 return StatefulBuilder(builder: (context, setStateQuestion) {
                   return ReorderableColumn(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children:
-
-
-                        List.generate(controller.lesson!.questions.length, (index) {
-                      return QuestionWidget(question: controller.lesson!.questions[index], index: index);
+                        List.generate(adminController.questions.length, (index) {
+                      return QuestionWidget(question: adminController.questions[index], index: index);
                     }),
                     onReorder: (int oldIndex, int newIndex) {
-                      controller.deleteQuestion(context, question: controller.lesson!.questions[oldIndex]);
-                      // setStateQuestion(() {
-                      //   if (newIndex > oldIndex) {
-                      //     newIndex -= 1;
-                      //   }
-                      //   final item = adminController.questions.removeAt(oldIndex);
-                      //   adminController.questions.insert(newIndex, item);
-                      // });
+                      setStateQuestion(() {
+                        if (newIndex > oldIndex) {
+                          newIndex -= 1;
+                        }
+                        final item = adminController.questions.removeAt(oldIndex);
+                        adminController.questions.insert(newIndex, item);
+                      });
                     },
                   );
                 });
@@ -55,18 +49,7 @@ class AddQuestionsAdminScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: ColorManager.secondaryColor,
-        onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) =>
-                AddQuestionPage(
-                  onSave: (question) {
-                    controller.addQuestion(context,question: question);
-                    // questions.add(question);
-                    // update();
-                  },
-                ),
-          ),
-        ),
+        onPressed: () => controller.addQuestion(context),
         icon: Icon(Icons.add),
         label: Text(AppString.addQuestion),
       ),
