@@ -2,6 +2,9 @@ import 'dart:io';
 
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:sanad_app/admin/screens/add_lesson_admin_screen.dart';
 import 'package:sanad_app/app/core/utils/app_string.dart';
 import 'package:sanad_app/app/widgets/custom_appbar_widget.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
@@ -29,6 +32,9 @@ class _ShowVedioScreenState extends State<ShowVedioScreen> {
 
   @override
   void initState() {
+    String? path=Get.parameters['path'];
+    if(path!=null||path!.isNotEmpty)
+      srcs=[path,path];
     super.initState();
     initializePlayer();
   }

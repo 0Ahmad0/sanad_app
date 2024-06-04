@@ -118,14 +118,14 @@ class AuthController extends GetxController {
             backgroundColor: ColorManager.successColor
         );
 
+        await AppStorage.storageWrite(key:AppConstants.rememberMe,value:  true);
+        await AppStorage.storageWrite(key:AppConstants.uidKEY, value: auth.currentUser?.uid);
+        await AppStorage.storageWrite(key:AppConstants.EMAIL_KEY,value:  email);
+        await AppStorage.storageWrite(key:AppConstants.PASSWORD_KEY,value:  password);
+
 
           //Get.offAll(HomePage());
         await ProfileController.instance.getUser();
-
-        await AppStorage.storageWrite(key:AppConstants.rememberMe,value:  true);
-        await AppStorage.storageWrite(key:AppConstants.uidKEY, value: auth.currentUser?.uid);
-        AppStorage.storageWrite(key:AppConstants.EMAIL_KEY,value:  email);
-        AppStorage.storageWrite(key:AppConstants.PASSWORD_KEY,value:  password);
 
         Get.back();
         if(ProfileController.instance.currentUser.value?.isAdmin??false)

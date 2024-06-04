@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sanad_app/app/controller/profile_controller.dart';
 import 'package:sanad_app/app/core/utils/app_constant.dart';
 import 'package:sanad_app/app/core/utils/app_string.dart';
 import 'package:sanad_app/app/models/user_model.dart';
@@ -24,17 +25,20 @@ class LessonController extends GetxController{
   late TextEditingController descriptionController ;
   int currentProgress=0;
   int fullProgress=0;
-  LessonModel lesson=LessonModel.init();
+  String? uid;
+  LessonModel? lesson;
 
   @override
   void onInit() {
-    nameController=TextEditingController(text:lesson.name );
-    descriptionController=TextEditingController(text:lesson.description );
+    lesson=Get.arguments['lesson'];
+    uid= ProfileController.instance.currentUser.value?.uid;
+    nameController=TextEditingController(text:lesson?.name );
+    descriptionController=TextEditingController(text:lesson?.description );
     super.onInit();
     }
 
 
-  addLesson(context,{ File? videoFile,File? audioFile,List<File> images = const[],String? status}) async {
+  addLesson(context,{ File? videoFile,File? audioFile,List<File> images = const[],String? status,bool withUserId=false}) async {
     _calculateProgress(videoFile, audioFile, images);
      Get.dialog(
       GetBuilder<LessonController>(
@@ -45,7 +49,7 @@ class LessonController extends GetxController{
     );
 
     String name=nameController.value.text;
-     status=StatusLesson.accepted.name;
+     status=status??StatusLesson.accepted.name;
     String? videoPath;
     String? filePath;
     List<String> imagesPath=[];
@@ -71,11 +75,56 @@ class LessonController extends GetxController{
       imagesPath: imagesPath,
       videoPath: videoPath,
       filePath: filePath,
-      status: status
+      dateTime: DateTime.now(),
+      status: status,
+      idUser: withUserId?uid:null
     );
 
     var
     result=await FirebaseFun.addLesson(lesson:lessonModel);
+    Get.back();
+    if(result['status'])
+      Get.back();
+    ConstantsWidgets.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()),state: result['status']);
+    return result;
+  }
+  updateLesson(context,{ File? videoFile,File? audioFile,List<File> images = const[]}) async {
+    _calculateProgress(videoFile, audioFile, images);
+    Get.dialog(
+      GetBuilder<LessonController>(
+          builder: (LessonController controller) =>
+              ConstantsWidgets.showProgress(controller.currentProgress/controller.fullProgress)
+      ),
+      barrierDismissible: false,
+    );
+
+    String name=nameController.value.text;
+
+    String? videoPath;
+    String? filePath;
+    List<String> imagesPath=[];
+    if(videoFile!=null){
+      videoPath=await FirebaseFun.uploadImage(image: XFile(videoFile.path),folder: FirebaseConstants.collectionLesson+'/$name');
+      _plusProgress();
+    }
+    if(audioFile!=null){
+      filePath=await FirebaseFun.uploadImage(image: XFile(audioFile.path),folder: FirebaseConstants.collectionLesson+'/$name');
+      _plusProgress();
+    }
+    for(File image in images){
+      String? imagePath=await FirebaseFun.uploadImage(image: XFile(image.path),folder: FirebaseConstants.collectionLesson+'/$name');
+      if(imagePath!=null)
+        imagesPath.add(imagePath);
+      _plusProgress();
+    }
+    lesson?.name=name;
+    lesson?.description= descriptionController.value.text;
+    lesson?.imagesPath=imagesPath;
+    lesson?.videoPath=videoPath;
+    lesson?.filePath=filePath;
+
+    var
+    result=await FirebaseFun.updateLesson(lesson:lesson!);
     Get.back();
     if(result['status'])
       Get.back();

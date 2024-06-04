@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,12 +14,25 @@ import 'package:sanad_app/app/widgets/textfield_app.dart';
 import 'package:sanad_app/user/widgets/show_lesson_widget.dart';
 
 import '../../admin/widgets/lesson_widget.dart';
+import '../../app/controller/lessons_controller.dart';
 import '../../app/controller/user_controller.dart';
+import '../../app/models/lesson_model.dart';
 import '../../app/screens/auth/widgets/divider_auth_widgets.dart';
+import '../../app/widgets/constants_widgets.dart';
 
-class LessonUserScreen extends StatelessWidget {
+class LessonUserScreen extends StatefulWidget {
   const LessonUserScreen({super.key});
 
+  @override
+  State<LessonUserScreen> createState() => _LessonUserScreenState();
+}
+
+class _LessonUserScreenState extends State<LessonUserScreen> {
+  late LessonsController controller;
+  void initState() {
+    controller = Get.put(LessonsController());
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final lessonController = Get.put(UserController());
@@ -45,7 +59,9 @@ class LessonUserScreen extends StatelessWidget {
                      height: AppSize.s20,
                    ),
                    TextFiledApp(
-                     controller: lessonController.searchController,
+                     // controller: lessonController.searchController,
+                     controller: controller.searchController,
+                     onChanged: (_)=>controller.filterLessons(term: controller.searchController.value.text),
                      hintText: AppString.search,
                      iconData: Icons.search,
                      noPrefixIcon: false,
@@ -56,17 +72,59 @@ class LessonUserScreen extends StatelessWidget {
              ),
               Expanded(
                   child: ContainerAuthWidget(
-                child: ListView.separated(
-                  separatorBuilder: (_, __) => DividerAuthWidget(),
-                  itemBuilder: (context, index) => ShowLessonWidget(lessonName: 'الدرس ${index+1}'),
-                  itemCount: 10,
-                ),
+                child:  StreamBuilder<QuerySnapshot>(
+                    stream: controller.getLessons,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return    ConstantsWidgets.circularProgress();
+                      } else if (snapshot.connectionState ==
+                          ConnectionState.active) {
+                        if (snapshot.hasError) {
+                          return const Text('Error');
+                        } else if (snapshot.hasData) {
+                          ConstantsWidgets.circularProgress();
+                          controller.lessons?.items.clear();
+
+                          if (snapshot.data!.docs!.length > 0) {
+                            controller.lessons?.items =
+                                LessonsModel.fromJson(snapshot.data!.docs!).items;
+                          }
+                          controller.filterLessons(term: controller.searchController.value.text);
+                          return
+                            GetBuilder<LessonsController>(
+                                builder: (LessonsController lessonsController)=>
+                                (lessonsController.lessonsWithFilter?.items?.isEmpty ?? true)
+                                    ? ConstantsWidgets.emptyWidget(context,
+                                    text: "No Lessons Yet")
+                                    :
+
+                                buildLessons(context, controller.lessonsWithFilter?.items ?? []));
+                        } else {
+                          return const Text('Empty data');
+                        }
+                      } else {
+                        return Text('State: ${snapshot.connectionState}');
+                      }
+                    }),
               ))
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget buildLessons(BuildContext context,List<LessonModel> items){
+    return
+      ListView.separated(
+        separatorBuilder: (_, __) => DividerAuthWidget(),
+        itemBuilder: (context, index) => ShowLessonWidget(
+          lessonName: '${items[index].name}',
+          lesson: items[index],
+        ),
+        itemCount: items.length,
+      );
+
   }
 }
 

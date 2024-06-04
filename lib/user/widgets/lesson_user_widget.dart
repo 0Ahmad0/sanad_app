@@ -10,13 +10,17 @@ import 'package:sanad_app/app/core/utils/color_manager.dart';
 import 'package:sanad_app/app/core/utils/styles_manager.dart';
 import 'package:sanad_app/app/widgets/container_auth_widget.dart';
 
+import '../../app/models/lesson_model.dart';
+
 class LessonUserWidget extends StatelessWidget {
   const LessonUserWidget({
     super.key,
     required this.name,
+    required this.lesson,
   });
 
   final String name;
+  final LessonModel? lesson;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,7 @@ class LessonUserWidget extends StatelessWidget {
           ),
           trailing: IconButton(
             onPressed: (){
-              Get.toNamed(AppRoute.showQuestionUserRoute);
+              Get.toNamed(AppRoute.showQuestionUserRoute,arguments: {'lesson':lesson});
             },
             icon: Icon(Icons.arrow_forward_ios_outlined),
           ),

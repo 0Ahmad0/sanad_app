@@ -76,6 +76,7 @@ class AppString {
   static const playLessonVideo = "تشغيل فيديو الدرس";
   static const showRateLesson = "عرض التقييم";
   static const myRateLesson = "عرض تقييمي";
+  static const notFoundRate = "لا يوجد تقييم";
   static const rateDegree = "لقد حصلت على الدرجة  : ";
   static const manageLesson = "ادارة طلبات الدروس";
   static const statusLessons = "الحالة : ";

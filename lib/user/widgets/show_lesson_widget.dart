@@ -6,6 +6,7 @@ import 'package:sanad_app/app/core/utils/app_string.dart';
 import 'package:sanad_app/app/core/utils/assets_manager.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
 import 'package:sanad_app/app/core/utils/styles_manager.dart';
+import 'package:sanad_app/app/models/lesson_model.dart';
 import 'package:sanad_app/app/widgets/container_auth_widget.dart';
 
 import 'show_media_lesson_widget.dart';
@@ -13,10 +14,11 @@ import 'show_media_lesson_widget.dart';
 class ShowLessonWidget extends StatelessWidget {
   const ShowLessonWidget({
     super.key,
-    required this.lessonName,
+    required this.lessonName, this.lesson,
   });
 
   final String lessonName;
+  final LessonModel? lesson;
 
   @override
   Widget build(BuildContext context) {
@@ -35,22 +37,28 @@ class ShowLessonWidget extends StatelessWidget {
               image: AssetsManager.showEyeIcon,
               title: AppString.show,
               onTap: (){
-                Get.toNamed(AppRoute.showTextUserRoute);
+                Get.toNamed(AppRoute.showTextUserRoute,arguments: {'lesson':lesson});
               },
             ),
-            ShowMediaLessonWidget(
-              image: AssetsManager.adminSoundIcon,
-              title: AppString.playLessonSound,
-              onTap: (){
-                Get.toNamed(AppRoute.showAudioUserRoute);
-              },
+            Visibility(
+              visible: lesson?.filePath!=null,
+              child: ShowMediaLessonWidget(
+                image: AssetsManager.adminSoundIcon,
+                title: AppString.playLessonSound,
+                onTap: (){
+                  Get.toNamed(AppRoute.showAudioUserRoute,parameters: {'path':lesson?.filePath??''});
+                },
+              ),
             ),
-            ShowMediaLessonWidget(
-              image: AssetsManager.adminVideoIcon,
-              title: AppString.playLessonVideo,
-              onTap: (){
-                Get.toNamed(AppRoute.showVedioUserRoute);
-              },
+            Visibility(
+              visible: lesson?.videoPath!=null,
+              child: ShowMediaLessonWidget(
+                image: AssetsManager.adminVideoIcon,
+                title: AppString.playLessonVideo,
+                onTap: (){
+                  Get.toNamed(AppRoute.showVedioUserRoute,parameters: {'path':lesson?.videoPath??''});
+                },
+              ),
             ),
 
           ],

@@ -6,8 +6,10 @@ import 'package:get/get.dart';
 import 'package:path/path.dart';
 import 'package:sanad_app/app/controller/admin_controller.dart';
 import 'package:sanad_app/app/core/utils/assets_manager.dart';
+import 'package:sanad_app/app/models/lesson_model.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
 
+import '../../app/controller/lesson_controller.dart';
 import '../../app/core/utils/app_string.dart';
 import '../../app/core/utils/color_manager.dart';
 import '../../app/core/utils/styles_manager.dart';
@@ -18,10 +20,14 @@ import '../../app/widgets/container_auth_widget.dart';
 import '../../app/widgets/textfield_app.dart';
 
 class AddLessonUserScreen extends StatelessWidget {
-  const AddLessonUserScreen({super.key});
+   AddLessonUserScreen({super.key});
 
+  late LessonController controller;
   @override
   Widget build(BuildContext context) {
+    controller = Get.put(LessonController());
+    Get.put(AdminController()).refreshPicker();
+
     return Scaffold(
       body: DefaultScaffoldWidget(
         child: FadeIn(
@@ -62,6 +68,7 @@ class AddLessonUserScreen extends StatelessWidget {
                       ),
                       const DividerAuthWidget(),
                       TextFiledApp(
+                        controller: controller.nameController,
                         suffixIcon: false,
                       ),
                       const SizedBox(
@@ -72,6 +79,7 @@ class AddLessonUserScreen extends StatelessWidget {
                               color: ColorManager.primaryColor, size: 14.sp)),
                       const DividerAuthWidget(),
                       TextFiledApp(
+                        controller: controller.descriptionController,
                         suffixIcon: false,
                         textInputAction: TextInputAction.newline,
                         keyboardType: TextInputType.multiline,
@@ -91,7 +99,16 @@ class AddLessonUserScreen extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: AppPadding.p20),
                   child:
-                      ButtonAppWidget(onPressed: () {}, text: AppString.sendRequest),
+                      ButtonAppWidget(onPressed: () {
+                        controller.lesson!=null?
+                        controller.updateLesson(context)
+                        :controller.addLesson(context,status: StatusLesson.pending.name,withUserId: true );
+
+                      }, text:
+                      controller.lesson!=null?
+                      AppString.saveEditing
+                      :AppString.sendRequest
+                      ),
                 ),
                 const SizedBox(
                   height: AppSize.s20,

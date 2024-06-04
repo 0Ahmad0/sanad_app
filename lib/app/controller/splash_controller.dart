@@ -29,6 +29,7 @@ class SplashController extends GetxController with GetSingleTickerProviderStateM
       // Get.offAll(page);
     });
 
+
     if((await AppStorage.storageRead(key: AppConstants.rememberMe) as bool?) ??false){
       ConstantsWidgets.showLoading();
       await ProfileController.instance.getUser();

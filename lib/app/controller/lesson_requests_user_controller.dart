@@ -5,10 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:sanad_app/app/controller/profile_controller.dart';
 import 'package:sanad_app/app/core/utils/app_constant.dart';
 import 'package:sanad_app/app/core/utils/app_string.dart';
 import 'package:sanad_app/app/models/user_model.dart';
-import 'package:sanad_app/user/widgets/dialog_widget.dart';
 
 import '../../user/widgets/constants_widgets.dart';
 import '../models/lesson_model.dart';
@@ -16,16 +16,19 @@ import 'firebase/firebase_constants.dart';
 import 'firebase/firebase_fun.dart';
 
 
-class LessonsController extends GetxController{
+class LessonsRequestsUserController extends GetxController{
 
   final searchController = TextEditingController();
   LessonsModel lessons=LessonsModel(items: []);
   LessonsModel lessonsWithFilter=LessonsModel(items: []);
+  String? uid;
   var getLessons;
   @override
   void onInit() {
     searchController.clear();
+    uid= ProfileController.instance.currentUser.value?.uid;
     getLessonsFun();
+
     super.onInit();
     }
 
@@ -39,30 +42,20 @@ class LessonsController extends GetxController{
     super.dispose();
   }
 
-  deleteLesson(context,{required String? idLesson}) async{
-    var result;
-     Get.dialog(DialogWidget(
-         title: 'حذف الدرس',
-     text: 'هل أنت متأكد أنك تريد حذف الدرس؟',
-         onPressed:() async {
-           Get.back();
-           ConstantsWidgets.showLoading();
-           result=await FirebaseFun
-               .deleteLesson(idLesson: idLesson??'',);
-           ConstantsWidgets.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()),state: result['status']);
-
-           Get.back();
-           update();
-         }
-     ));
-
+  ChangeStatus(context,{required LessonModel lesson,required StatusLesson status}) async{
+    lesson.status=status.name;
+    var result =await FirebaseFun
+        .updateLesson(lesson: lesson,);
+    String message=result['status']?'تم ${status.name} الطلب':result['message'].toString();
+    ConstantsWidgets.TOAST(context,textToast: FirebaseFun.findTextToast(message),state: result['status']);
+    update();
     return result;
-
   }
   _fetchLessonsStream() {
+
     final result= FirebaseFirestore.instance
         .collection(FirebaseConstants.collectionLesson)
-        .where('status',isEqualTo: StatusLesson.accepted.name)
+        .where('idUser',isEqualTo: uid)
         .snapshots();
     return result;
 
@@ -71,7 +64,8 @@ class LessonsController extends GetxController{
     lessonsWithFilter.items=[];
     lessons.items.forEach((element) {
 
-      if((element.name?.toLowerCase().contains(term.toLowerCase())??false))
+      if((element.name?.toLowerCase().contains(term.toLowerCase())??false)
+      ||(element.status?.toLowerCase().contains(term.toLowerCase())??false))
         lessonsWithFilter.items.add(element);
     });
      update();

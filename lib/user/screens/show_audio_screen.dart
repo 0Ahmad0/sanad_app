@@ -5,6 +5,8 @@ import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
@@ -23,6 +25,8 @@ class _ShowAudioScreenState extends State<ShowAudioScreen> {
 
   @override
   void initState() {
+    String? path=Get.parameters['path'];
+    if(path!=null||path!.isNotEmpty);
     super.initState();
     _loadAudioFile();
   }

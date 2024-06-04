@@ -7,11 +7,13 @@ import 'package:sanad_app/app/widgets/custom_appbar_widget.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
 import 'package:sanad_app/user/widgets/dialog_widget.dart';
 
+import '../../app/controller/lesson_questions_user_controller.dart';
 import '../../app/controller/user_controller.dart';
 import '../../app/core/utils/app_string.dart';
 import '../../app/core/utils/color_manager.dart';
 import '../../app/core/utils/styles_manager.dart';
 import '../../app/models/question_model.dart';
+import '../../app/widgets/empty_widget.dart';
 
 class ShowQuestionUserScreen extends StatelessWidget {
   const ShowQuestionUserScreen({super.key});
@@ -19,6 +21,7 @@ class ShowQuestionUserScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userController = Get.put(() => UserController());
+    LessonQuestionUserController lessonQuestionUserController = Get.put( LessonQuestionUserController());
     List<Question> questions = [
       Question(
           text: 'text', options: ['1', '2', '3', '4'], correctOptionIndex: 3),
@@ -31,10 +34,20 @@ class ShowQuestionUserScreen extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBarWidget(),
       body: DefaultScaffoldWidget(
-        child: ListView.builder(
-          itemCount: questions.length,
-          itemBuilder: (context, index) =>
-              QuestionWidget(question: questions[index], index: index),
+        child: GetBuilder<LessonQuestionUserController>(
+
+          builder:(controller){
+            questions=lessonQuestionUserController.lesson?.questions??[];
+           return
+             questions.length==0?
+             EmptyWidget(
+               text: AppString.noQuestionFoundYet,
+             ):
+             ListView.builder(
+            itemCount:questions.length,
+            itemBuilder: (context, index) =>
+                QuestionWidget(question: questions[index], index: index),
+          );},
         ),
       ),
     );
