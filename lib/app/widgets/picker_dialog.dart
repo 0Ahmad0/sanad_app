@@ -12,8 +12,10 @@ import 'package:sanad_app/app/widgets/container_auth_widget.dart';
 import 'package:animate_do/animate_do.dart';
 import '../screens/auth/widgets/divider_auth_widgets.dart';
 
+// class PickerDialog extends GetView<ProfileController> {
 class PickerDialog extends GetView<ProfileController> {
-  const PickerDialog({super.key});
+  const PickerDialog( {super.key,this.onChange});
+  final VoidCallback? onChange;
 
   @override
   Widget build(BuildContext context) {
@@ -43,16 +45,18 @@ class PickerDialog extends GetView<ProfileController> {
                       contentPadding: EdgeInsets.zero,
                       leading: Icon(Icons.camera_alt_outlined),
                       title: Text(AppString.pickFromCamera),
-                      onTap: (){
-                        controller.pickPhoto(ImageSource.camera);
+                      onTap: () async {
+                       await  controller.pickPhoto(ImageSource.camera);
+                        onChange?.call();
                       },
                     ),
                     ListTile(
                       contentPadding: EdgeInsets.zero,
                       leading: Icon(Icons.insert_photo_outlined),
                       title: Text(AppString.pickFromGallery),
-                      onTap: (){
-                        controller.pickPhoto(ImageSource.gallery);
+                      onTap: () async {
+                         await controller.pickPhoto(ImageSource.gallery);
+                         onChange?.call();
                       },
                     ),
                     Row(

@@ -28,8 +28,10 @@ class NavBarAdminScreen extends StatefulWidget {
 class _NavBarAdminScreenState extends State<NavBarAdminScreen> {
   @override
   void initState() {
-    Get.lazyPut(() => ProfileController());
-    ProfileController.instance.getUser();
+    // Get.lazyPut(() => ProfileController());
+    // ProfileController.instance.getUser();
+    // ProfileController profileController=Get.put(ProfileController());
+    //  profileController.getUser();
     super.initState();
   }
   @override

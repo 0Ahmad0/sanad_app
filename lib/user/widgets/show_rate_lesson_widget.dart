@@ -27,15 +27,18 @@ class ShowRateLessonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? uid=ProfileController.instance.currentUser.value?.uid;
+    ProfileController profileController=Get.put(ProfileController());
+    // String? uid=ProfileController.instance.currentUser.value?.uid;
+    String? uid=profileController.currentUser.value?.uid;
     return ContainerAuthWidget(
       child: ListTile(
         trailing:
         (lesson?.mapRateLessons.containsKey(uid)??false)?
         TextButton.icon(
             onPressed: () {
+
               Get.dialog(RateDialogWidget(
-                degreeRate: 5,
+                degreeRate: ((lesson?.getRateByUser(uid!)??0)*10/(lesson?.questions.length??3)).toInt(),
               ));
             },
             icon: Image.asset(
@@ -48,7 +51,7 @@ class ShowRateLessonWidget extends StatelessWidget {
             )
         )
        : TextButton.icon(
-            onPressed: () {},
+            onPressed:null,
             icon: Image.asset(
               AssetsManager.emptyBoxIcon,
               width: 20.sp,

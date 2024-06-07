@@ -15,6 +15,7 @@ import 'package:sanad_app/app/widgets/default_scaffold.dart';
 import '../../app/controller/lesson_questions_admin_controller.dart';
 import '../../app/models/question_model.dart';
 import '../../app/widgets/empty_widget.dart';
+import '../../user/widgets/dialog_widget.dart';
 import 'add_question_screen.dart';
 
 class AddQuestionsAdminScreen extends StatelessWidget {
@@ -22,6 +23,7 @@ class AddQuestionsAdminScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(LessonQuestionsController());
      controller.refreshQuestion();
+
     return Scaffold(
       appBar: CustomAppBarWidget(),
       body: DefaultScaffoldWidget(
@@ -34,13 +36,20 @@ class AddQuestionsAdminScreen extends StatelessWidget {
                   return ReorderableColumn(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children:
-
-
                         List.generate(controller.lesson!.questions.length, (index) {
-                      return QuestionWidget(question: controller.lesson!.questions[index], index: index);
+                      return QuestionWidget(key:Key('$index'),question: controller.lesson!.questions[index], index: index);
                     }),
                     onReorder: (int oldIndex, int newIndex) {
-                      controller.deleteQuestion(context, question: controller.lesson!.questions[oldIndex]);
+                      setStateQuestion(() {
+                        if (newIndex > oldIndex) {
+                          newIndex -= 1;
+                        }
+                        final item = controller.lesson!.questions.removeAt(oldIndex);
+                        controller.lesson!.questions.insert(newIndex, item);
+                      });
+                      controller.updateQuestions(context, lesson:  controller.lesson);
+
+                      // controller.deleteQuestion(context, question: controller.lesson!.questions[oldIndex]);
                       // setStateQuestion(() {
                       //   if (newIndex > oldIndex) {
                       //     newIndex -= 1;
@@ -55,7 +64,17 @@ class AddQuestionsAdminScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: ColorManager.secondaryColor,
-        onPressed: () => Navigator.of(context).push(
+        onPressed: () =>
+        //TODO add only 3 question
+        (controller.lesson?.questions.length??0)>=3?
+
+        Get.dialog(DialogWidget(
+            title: 'خطأ',
+            text : 'لا يمكنك إضافة أكثر من 3 أسئلة',
+            buttonNoText: AppString.ok,
+            onPressed: null
+        ))
+            :Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) =>
                 AddQuestionPage(
@@ -88,6 +107,8 @@ class QuestionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LessonQuestionsController());
+
     return Theme(
       key: ValueKey(question),
       data: ThemeData(
@@ -125,6 +146,7 @@ class QuestionWidget extends StatelessWidget {
                                 setStateOptions(() {
                                   question.correctOptionIndex = value as int;
                                 });
+                                controller.updateQuestion(context, index: index, question: question);
                               },
                             );
 

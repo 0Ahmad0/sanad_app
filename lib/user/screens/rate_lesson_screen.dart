@@ -117,7 +117,11 @@ class _RateLessonScreenState extends State<RateLessonScreen> {
     return
       ListView.separated(
         separatorBuilder: (_, __) => DividerAuthWidget(),
-        itemBuilder: (context, index) => ShowRateLessonWidget(lessonName: '${items[index].name}',
+        itemBuilder: (context, index) => ShowRateLessonWidget(
+          lessonName: '${items[index].name
+
+
+          }',
           lesson: items[index],
         ),
         itemCount: items.length,

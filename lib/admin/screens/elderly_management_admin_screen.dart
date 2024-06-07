@@ -14,6 +14,7 @@ import 'package:sanad_app/app/screens/auth/widgets/divider_auth_widgets.dart';
 import 'package:sanad_app/app/widgets/button_app_widget.dart';
 import 'package:sanad_app/app/widgets/container_auth_widget.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
+import 'package:sanad_app/app/widgets/empty_widget.dart';
 import 'package:sanad_app/app/widgets/textfield_app.dart';
 
 import '../../app/models/user_model.dart';
@@ -91,8 +92,9 @@ class _ElderlyManagementAdminScreenState extends State<ElderlyManagementAdminScr
                           GetBuilder<UsersController>(
                               builder: (UsersController usersController)=>
                           (controller.usersWithFilter?.users?.isEmpty ?? true)
-                            ? ConstantsWidgets.emptyWidget(context,
-                            text: "No Users Yet")
+                            ? EmptyWidget(
+                            text: AppString.infoNotLessonYet,
+                          )
                             :
 
                         buildUsers(context, controller.usersWithFilter?.users ?? []));

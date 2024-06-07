@@ -25,7 +25,14 @@ class ProfileController extends GetxController {
   File? profileImage;
   String?  imagePath;
   final FirebaseAuth auth = FirebaseAuth.instance;
-  static ProfileController  get instance => Get.find<ProfileController>();
+  // static ProfileController?   _instance;
+  // static ProfileController  get instance =>init();
+  // static init(){
+  //   if(_instance!=null)
+  //     _instance=Get.put(ProfileController());
+  //   return _instance!;
+  // }
+  // static ProfileController  get instance => Get.find<ProfileController>();
   final Rx<UserModel?> currentUser = Rx(null);
   final timeLimit = Duration(seconds: 60);
   //controllers
@@ -165,7 +172,7 @@ class ProfileController extends GetxController {
     Get.back();
     profileImage = null;
     imagePath=null;
-    ProfileController.instance.update();
+
     update();
   }
 

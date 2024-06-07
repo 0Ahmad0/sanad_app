@@ -118,17 +118,18 @@ class AuthController extends GetxController {
             backgroundColor: ColorManager.successColor
         );
 
-        await AppStorage.storageWrite(key:AppConstants.rememberMe,value:  true);
-        await AppStorage.storageWrite(key:AppConstants.uidKEY, value: auth.currentUser?.uid);
-        await AppStorage.storageWrite(key:AppConstants.EMAIL_KEY,value:  email);
-        await AppStorage.storageWrite(key:AppConstants.PASSWORD_KEY,value:  password);
+         AppStorage.storageWrite(key:AppConstants.rememberMe,value:  true);
+         AppStorage.storageWrite(key:AppConstants.uidKEY, value: auth.currentUser?.uid);
+         AppStorage.storageWrite(key:AppConstants.EMAIL_KEY,value:  email);
+         AppStorage.storageWrite(key:AppConstants.PASSWORD_KEY,value:  password);
 
 
           //Get.offAll(HomePage());
-        await ProfileController.instance.getUser();
+        ProfileController profileController=Get.put(ProfileController());;
+        await profileController.getUser();
 
         Get.back();
-        if(ProfileController.instance.currentUser.value?.isAdmin??false)
+        if(profileController.currentUser.value?.isAdmin??false)
           Get.offAll(NavBarAdminScreen());
         else
           Get.offAll(NavbarUserScreen());
@@ -141,7 +142,7 @@ class AuthController extends GetxController {
       Get.back();
       Get.snackbar(
           AppString.message_failure,
-          errorMessage,
+         errorMessage,
           backgroundColor: ColorManager.errorColor
       );
     }
@@ -179,9 +180,10 @@ class AuthController extends GetxController {
       await AppStorage.storageWrite(key:AppConstants.rememberMe,value:  true);
       await AppStorage.storageWrite(key:AppConstants.uidKEY,value:  user.uid);
 
-      ProfileController.instance.getUser();
+      // ProfileController.instance.getUser();
 
-      if(ProfileController.instance.currentUser.value?.isAdmin??false)
+      ProfileController profileController=Get.put(ProfileController());
+      if(profileController.currentUser.value?.isAdmin??false)
         Get.offAll(NavBarAdminScreen());
       else
         Get.offAll(NavbarUserScreen());

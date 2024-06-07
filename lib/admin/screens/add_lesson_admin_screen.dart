@@ -102,12 +102,17 @@ class AddLessonAdminScreen extends StatelessWidget {
                                 },
                                 leading:
                                     Image.asset(AssetsManager.adminImageIcon),
-                                subtitle: adminController.images.isEmpty
+                                subtitle:
+                                adminController.images.isEmpty&&(controller.lesson?.imagesPath.isEmpty??true)
                                     ? null
                                     : Text.rich(TextSpan(
                                   children: [
                                     TextSpan(
-                                      text: '${adminController.images.length} - ',
+                                      text: '${
+                                          adminController.images.isNotEmpty?
+                                          adminController.images.length
+                                          :controller.lesson?.imagesPath.length
+                                      } - ',
                                         style: StylesManager.textNormalStyle(
                                             color: ColorManager.secondaryColor
                                         )
@@ -130,9 +135,9 @@ class AddLessonAdminScreen extends StatelessWidget {
                                 },
                                 leading:
                                     Image.asset(AssetsManager.adminSoundIcon),
-                                subtitle: adminController.images.isEmpty
+                                subtitle: adminController.audioFile==null&&(controller.lesson?.filePath==null)
                                     ? null
-                                    : Text('${basename(adminController.audioFile?.path?? '') }'),
+                                    : Text('${basename(adminController.audioFile?.path?? controller.lesson?.filePath??'') }'),
                                 title: Text(
                                   AppString.uploadSoundAdmin,
                                   style: StylesManager.textNormalStyle(
@@ -146,9 +151,9 @@ class AddLessonAdminScreen extends StatelessWidget {
                                 },
                                 leading:
                                     Image.asset(AssetsManager.adminVideoIcon),
-                                subtitle: adminController.images.isEmpty
+                                subtitle: adminController.videoFile==null&&(controller.lesson?.videoPath==null)
                                     ? null
-                                    : Text('${basename(adminController.videoFile?.path ?? '')}'),
+                                    : Text('${basename(adminController.videoFile?.path ??controller.lesson?.videoPath?? '')}'),
                                 title: Text(
                                   AppString.uploadVideoAdmin,
                                   style: StylesManager.textNormalStyle(
@@ -170,12 +175,22 @@ class AddLessonAdminScreen extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(horizontal: AppPadding.p20),
                     child:
+                    controller.lesson==null?
+                    ButtonAppWidget(onPressed: () {
+                      AdminController adminController=Get.put(AdminController());
+
+                        controller.addLesson(context,videoFile: adminController.videoFile,
+                            audioFile: adminController.audioFile,
+                            images:adminController.images );
+
+                    }, text: AppString.save)
+                    :
                         ButtonAppWidget(onPressed: () {
                           AdminController adminController=Get.put(AdminController());
-                          controller.addLesson(context,videoFile: adminController.videoFile,
+                          controller.updateLesson(context,videoFile: adminController.videoFile,
                               audioFile: adminController.audioFile,
                               images:adminController.images );
-                        }, text: AppString.save),
+                        }, text: AppString.edit),
                   ),
                   const SizedBox(
                     height: AppSize.s20,

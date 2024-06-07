@@ -3,21 +3,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:sanad_app/app/core/utils/app_string.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
 import 'package:sanad_app/app/core/utils/styles_manager.dart';
 import 'package:sanad_app/app/widgets/container_auth_widget.dart';
 
+import '../../app/controller/users_controller.dart';
+import '../../user/widgets/dialog_widget.dart';
+
 class ElderlyWidget extends StatelessWidget {
-  const ElderlyWidget({
+   ElderlyWidget({
     super.key,
     required this.name,
   });
 
   final String name;
+  late UsersController controller;
 
   @override
   Widget build(BuildContext context) {
+    controller = Get.put(UsersController());
     return FadeInRight(
       child: ContainerAuthWidget(
         child: Row(
@@ -38,7 +45,20 @@ class ElderlyWidget extends StatelessWidget {
               children: [
                 FittedBox(
                   child: TextButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.dialog(
+                          DialogWidget(
+                            title: AppString.deleteUser,
+                            text: AppString.areYouSureDeleteUser,
+                            buttonNoText: AppString.cancle,
+                            buttonOkText: AppString.yes,
+                            onPressed: () {
+
+                              // controller.deleteUser();
+                            },
+                          ),
+                        );
+                      },
                       icon: CircleAvatar(
                         radius: 10.sp,
                           backgroundColor: ColorManager.errorColor,

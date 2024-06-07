@@ -13,6 +13,7 @@ import 'package:sanad_app/app/models/lesson_model.dart';
 import 'package:sanad_app/app/widgets/container_auth_widget.dart';
 
 import '../../app/controller/lessons_controller.dart';
+import '../../app/core/route/app_route.dart';
 
 class EducationalMaterialsManagementWidget extends StatelessWidget {
   const EducationalMaterialsManagementWidget({
@@ -45,7 +46,9 @@ class EducationalMaterialsManagementWidget extends StatelessWidget {
               children: [
                 FittedBox(
                   child: TextButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed(AppRoute.addLessonAdminRoute,arguments: {'lesson':lesson});
+                      },
                       icon: CircleAvatar(
                         radius: 10.sp,
                           backgroundColor: ColorManager.secondaryColor,

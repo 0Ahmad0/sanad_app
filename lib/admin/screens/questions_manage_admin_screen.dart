@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:sanad_app/app/core/route/app_route.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
+import 'package:sanad_app/app/widgets/empty_widget.dart';
 
 import '../../app/controller/lesson_questions_admin_controller.dart';
 import '../../app/controller/lessons_controller.dart';
@@ -99,12 +100,12 @@ class _QuestionsManageAdminScreenState extends State<QuestionsManageAdminScreen>
                           Get.put(LessonQuestionsController()).updateLesson( controller.lessons?.items??[]);
                         }
                         controller.filterLessons(term: controller.searchController.value.text);
+
                         return
                           GetBuilder<LessonsController>(
                               builder: (LessonsController lessonsController)=>
                               (lessonsController.lessonsWithFilter?.items?.isEmpty ?? true)
-                                  ? ConstantsWidgets.emptyWidget(context,
-                                  text: "No Lessons Yet")
+                                  ? EmptyWidget(text: AppString.infoNotLessonYet,)
                                   :
 
                               buildLessons(context, controller.lessonsWithFilter?.items ?? []));

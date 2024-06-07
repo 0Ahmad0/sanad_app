@@ -26,7 +26,9 @@ class LessonsRequestsUserController extends GetxController{
   @override
   void onInit() {
     searchController.clear();
-    uid= ProfileController.instance.currentUser.value?.uid;
+    ProfileController profileController=Get.put(ProfileController());
+    // uid= ProfileController.instance.currentUser.value?.uid;
+    uid= profileController.currentUser.value?.uid;
     getLessonsFun();
 
     super.onInit();

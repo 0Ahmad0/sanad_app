@@ -17,7 +17,7 @@ class FirebaseFun {
   // static final database= FirebaseDatabase.instance.ref();
 
   // time for waiting request to done or show error message
-  static Duration timeOut = Duration(seconds: 30);
+  static Duration timeOut = Duration(seconds: 50);
 
   ///--Signup
   static Future<Map<String, dynamic>> signUp(
@@ -205,33 +205,43 @@ class FirebaseFun {
 
   static String findTextToast(String text){
     String errorMessage;
-    switch(text){
+    print("error:$text");
+    switch(text.toLowerCase()){
       // login
       case "user-not-found":
         errorMessage = "No user found with this email.";
+        errorMessage = "لا يوجد مستخدم لهذا البريد.";
         break;
       case "wrong-password":
         errorMessage = "Incorrect password.";
+        errorMessage = "كلمة السر غير صحيحة.";
         break;
       case "invalid-email":
-        errorMessage = "Invalid email.";
+        errorMessage = "البريد الالكتروني البدخل غير صالح";
         break;
       case "user-disabled":
-        errorMessage = "User account is disabled.";
+        errorMessage = "المستخدم غير مفعل.";
         break;
       case "too-many-requests":
         errorMessage =
-        "Login attempts exceeded. Please try again later.";
+        ".حاولت تسجيل الدخول مرات عديدة، حاول لاحقاً";
         break;
       // register
       case "email-already-in-use":
-        errorMessage = "This email is already in use.";
+        errorMessage = ".هذا البريد موجود مسبقاً";
         break;
       case "invalid-email":
-        errorMessage = "Invalid email.";
+        errorMessage = "البريد الالكتروني غير صالح.";
         break;
       case "weak-password":
         errorMessage = "Password is too weak. It must be at least 6 characters long, including at least one uppercase letter, one lowercase letter, and one digit.";
+        errorMessage = "كلمة المرور ضعيفة، يجب أن تحوي 6 محارف، وتتضمن حرف كبير وحرف صغير، وأيضا علامة ترقيم";
+        break;
+      case "invalid email":
+        errorMessage = "البريد الالكتروني غير صالح.";
+        break;
+      case "invalid-credential":
+        errorMessage = "المستخدم غير صحيح.";
         break;
 
       case "":
@@ -276,7 +286,10 @@ class FirebaseFun {
         break;
       default:
         errorMessage = "An unexpected error occurred. Please try again later.";
+        errorMessage = "حصل خطأ، الرجاء المحاولة لاحقاً";
+        errorMessage = text;
     }
+    print("error trans: $errorMessage");
 
     // if(text.contains("Password should be at least 6 characters")){
     //   return tr(LocaleKeys.toast_short_password);
@@ -321,7 +334,7 @@ class FirebaseFun {
     //   return tr(LocaleKeys.toast_account_not_active);
     // }
 
-    return text;
+    return errorMessage;
   }
 
   static Future uploadImage({required XFile image,  String folder='images'}) async {

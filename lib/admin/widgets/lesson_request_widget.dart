@@ -11,6 +11,7 @@ import 'package:sanad_app/app/widgets/container_auth_widget.dart';
 import '../../app/controller/lesson_requests_admin_controller.dart';
 import '../../app/core/utils/app_string.dart';
 import '../../app/models/lesson_model.dart';
+import '../../user/widgets/dialog_widget.dart';
 
 class LessonRequestWidget extends StatelessWidget {
   const LessonRequestWidget({
@@ -47,10 +48,22 @@ class LessonRequestWidget extends StatelessWidget {
             FittedBox(
               child: TextButton.icon(
                   onPressed: () {
-                    lesson!=null?
-                    Get.put(LessonsRequestsAdminController()).
-                    ChangeStatus(context, lesson: lesson!, status: StatusLesson.rejected)
-                        :'';
+                    Get.dialog(
+                      DialogWidget(
+                        title: AppString.deleteRequest,
+                        text: AppString.areYouSureDeleteRequest,
+                        buttonNoText: AppString.cancle,
+                        buttonOkText: AppString.yes,
+                        onPressed: () async {
+                          Get.back();
+                          lesson!=null?
+                          Get.put(LessonsRequestsAdminController()).
+                          ChangeStatus(context, lesson: lesson!, status: StatusLesson.rejected)
+                              :'';
+                        },
+                      ),
+                    );
+
                   },
                   icon: CircleAvatar(
                       radius: 10.sp,
@@ -71,10 +84,23 @@ class LessonRequestWidget extends StatelessWidget {
             FittedBox(
               child: TextButton.icon(
                   onPressed: () {
-                    lesson!=null?
-                    Get.put(LessonsRequestsAdminController()).
-                    ChangeStatus(context, lesson: lesson!, status: StatusLesson.accepted)
-                        :'';
+                    Get.dialog(
+                      DialogWidget(
+                        title: AppString.acceptRequest,
+                        text: AppString.areYouSureAcceptRequest,
+                        buttonNoText: AppString.cancle,
+                        buttonOkText: AppString.yes,
+                        onPressed: () async {
+                          Get.back();
+                          lesson!=null?
+                          await Get.put(LessonsRequestsAdminController()).
+                          ChangeStatus(context, lesson: lesson!, status: StatusLesson.accepted)
+                              :'';
+
+                        },
+                      ),
+                    );
+
                   },
                   icon: CircleAvatar(
                       radius: 10.sp,

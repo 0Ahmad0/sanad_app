@@ -116,11 +116,23 @@ class AppString {
   static const addFromCamera = 'Add From Camera';
   static const addFromGallery = 'Add From Gallery';
   static const deletePhoto = 'حذف الصورة';
+  static const deleteLesson = 'حذف الدرس';
+  static const deleteUser = 'حذف المستخدم';
+  static const deleteRequest = 'حذف الطلب';
+  static const acceptRequest = 'قبول الطلب';
   static const areYouSureDeletePhoto = 'هل أنت متاكد من حذف الصورة؟';
+  static const areYouSureDeleteLesson = 'هل أنت متاكد من حذف الدرس؟';
+  static const areYouSureDeleteUser = 'هل أنت متاكد من حذف المستخدم؟';
+  static const areYouSureDeleteRequest = 'هل أنت متاكد من حذف الطلب؟';
+  static const areYouSureAcceptRequest = 'هل أنت متاكد من قبول الطلب؟';
   static const addNewSchedule = 'Add New Schedule';
   static const pickDay = 'Pick Day :';
   static const firstTime = 'First Time';
   static const secondTime = 'Second Time';
+  static const correctAnswer = 'إجابة صحيحة';
+  static const inCorrectAnswer = 'إجابة خاطئة';
+  ////info
+  static const infoNotLessonYet = 'لا يوجد دروس متاحة';
 
 
 
@@ -156,9 +168,12 @@ class AppString {
 
 
   ///<Message Firebase>//
-  static const message_success= "Success";
-  static const message_failure= "Failure";
-  static const message_successful_login= "Successful login";
+  // static const message_success= "Success";
+  // static const message_failure= "Failure";
+  // static const message_successful_login= "Successful login";
+  static const message_success= "نجاح";
+  static const message_failure= "فشل";
+  static const message_successful_login= "تم تسجيل الدخول بنجاح";
   static const message_user_name_invalid= "اسم المستخدم غير صحيح";
   static const message_successful_get_user= "تم جلب معلومات المستخدم بنجاح";
 

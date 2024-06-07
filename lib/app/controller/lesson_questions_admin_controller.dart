@@ -49,6 +49,23 @@ class LessonQuestionsController extends GetxController{
     }
     return result;
   }
+  updateQuestion(BuildContext context,{required int index,required Question question,}) async {
+    ConstantsWidgets.showLoading();
+    List<Question> oldQuestions=lesson?.questions??[];
+
+    lesson?.questions[index]=question;
+    var result =await FirebaseFun
+        .updateLesson(lesson: lesson!,);
+    ConstantsWidgets.closeDialog();
+    // Get.back();
+    if(result['status']){
+      ConstantsWidgets.TOAST(context,textToast: FirebaseFun.findTextToast('تمت تعديل السؤال بنجاح'),state: result['status']);
+    }else{
+      lesson?.questions=oldQuestions;
+      ConstantsWidgets.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()),state: result['status']);
+    }
+    return result;
+  }
 
   deleteQuestion(BuildContext context,{required Question question}) async {
     ConstantsWidgets.showLoading();
@@ -65,11 +82,30 @@ class LessonQuestionsController extends GetxController{
     }
     return result;
   }
-  updateLesson(List<LessonModel> lessons){
+  updateQuestions(BuildContext context,{required LessonModel? lesson}) async {
+    ConstantsWidgets.showLoading();
+    var result =await FirebaseFun
+        .updateLesson(lesson: lesson!,);
+    print('ddd');
+    ConstantsWidgets.closeDialog();
+    // Get.back();
+    if(result['status']){
+      ConstantsWidgets.TOAST(context,textToast: FirebaseFun.findTextToast('تم تعديل الأسئلة بنجاح'),state: result['status']);
+    }else{
+      ConstantsWidgets.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()),state: result['status']);
+    }
+    return result;
+  }
+  updateLesson(List<LessonModel> lessons) async {
+
     for(LessonModel lessonModel in lessons){
       if(lesson?.id==lessonModel.id)
-        lesson=lessonModel;
+        {
+          lesson=lessonModel;
+        }
     }
+   await Future.delayed(Duration(seconds: 0),);
+    update();
   }
 
 

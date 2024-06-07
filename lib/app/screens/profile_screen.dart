@@ -37,7 +37,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     // Get.put(ProfileController());
-    ProfileController profileController=ProfileController.instance;
+    ProfileController profileController=Get.put(ProfileController());
+    // ProfileController profileController=ProfileController.instance;
      profileController.refresh();
 
     return Scaffold(
@@ -46,6 +47,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 showBackButton: false,
                 child: [
                   GetBuilder<ProfileController>(
+                    init: profileController,
                     // init: profileController,
                     builder: (controller) {
                       return CircleProfilePictureWidget(
@@ -126,11 +128,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     },
                                     icon: Icon(Icons.delete)),
                                 IconButton(
-                                  onPressed: () {
+                                  onPressed: () async {
                                     Get.dialog(
-                                      PickerDialog(),
+                                      PickerDialog(
+                                        onChange:()=>  setState(() {}),
+                                      ),
                                     );
-                                    setState(() {});
+
                                   },
                                   icon: Icon(Icons.edit),
                                 ),

@@ -49,9 +49,9 @@ class LessonsController extends GetxController{
            ConstantsWidgets.showLoading();
            result=await FirebaseFun
                .deleteLesson(idLesson: idLesson??'',);
+           Get.back();
            ConstantsWidgets.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()),state: result['status']);
 
-           Get.back();
            update();
          }
      ));

@@ -287,9 +287,10 @@ class _CollapsingListTileForImageState
   /// ---------------------------
   ///  Iniliaz ainmation and sizes for list item drawer.
   /// ---------------------------
-
+  late ProfileController profileController;
   @override
   void initState() {
+    profileController=Get.put(ProfileController());
     super.initState();
     widthAnimation = Tween<double>(begin: minWidth, end: maxWidth)
         .animate(widget.animationController);
@@ -320,7 +321,9 @@ class _CollapsingListTileForImageState
           CircleAvatar(
             radius: 28.sp,
             child: CircleProfilePictureWidget(
-              path: ProfileController.instance.currentUser?.value?.photoUrl,
+
+              path: profileController.currentUser?.value?.photoUrl,
+              // path: ProfileController.instance.currentUser?.value?.photoUrl,
             ),
           ),
           SizedBox(

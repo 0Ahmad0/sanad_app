@@ -31,6 +31,10 @@ class ConstantsWidgets {
       barrierDismissible: false,
     );
   }
+  static closeDialog() async {
+    Get.close(1);
+
+  }
   static showProgress(double progress)  {
     return
       // await Get.dialog(
@@ -65,7 +69,7 @@ class ConstantsWidgets {
     // );
   }
   static TOAST(BuildContext context, {String textToast = "This Is Toast",bool? state}) {
-    Get.snackbar( AppString.message_success, textToast,
+    Get.snackbar(state==null?AppString.message_success:state?AppString.message_success:AppString.message_failure, textToast,
         backgroundColor: state==null?null:state?ColorManager.successColor:ColorManager.errorColor,
         colorText:  state==null?null:ColorManager.whiteColor);
     // showToast(

@@ -37,6 +37,47 @@ class LessonModel {
       return  ColorManager.greyColor;
   }
   }
+
+  initRateLesson()=> RateLesson(idUser: idUser, selectOptionIndexes: questions.map((_)=>null as int?).toList(), degree: 0);
+  handleRateLesson(){
+    mapRateLessons.forEach((key,value){
+      for(int i=(mapRateLessons[key]?.selectOptionIndexes?.length??0)-1;i<questions.length;i++)
+        mapRateLessons[key]?.selectOptionIndexes.add(null as int?);
+    });
+  }
+
+  answerQuestion(String idUser,int questionIndex,int selectOptionIndex){
+    if(!mapRateLessons.containsKey(idUser))
+      mapRateLessons[idUser]=initRateLesson();
+    handleRateLesson();
+    mapRateLessons[idUser]?.selectOptionIndexes[questionIndex]=selectOptionIndex;
+  }
+  removeAnswer(String idUser,int questionIndex,int selectOptionIndex){
+    if(!mapRateLessons.containsKey(idUser))
+      mapRateLessons[idUser]=initRateLesson();
+    handleRateLesson();
+    mapRateLessons[idUser]?.selectOptionIndexes[questionIndex]=null;
+  }
+  int? getSelectOptionByQuestion(String idUser,int questionIndex){
+    if(!mapRateLessons.containsKey(idUser))
+      mapRateLessons[idUser]=initRateLesson();
+    handleRateLesson();
+
+    return  mapRateLessons[idUser]?.selectOptionIndexes[questionIndex];
+  }
+  int? getRateByUser(String idUser){
+    if(!mapRateLessons.containsKey(idUser))
+      mapRateLessons[idUser]=initRateLesson();
+    handleRateLesson();
+    int rate=0;
+    for(int i=0;i<questions.length;i++){
+      if(mapRateLessons[idUser]?.selectOptionIndexes[i]==questions[i].correctOptionIndex)
+        rate++;
+    }
+
+
+    return rate ;
+  }
   LessonModel({
     this.id,
     this.name,
@@ -67,7 +108,9 @@ class LessonModel {
       itemList2.add(temp);
     }
 
-    Map<String,RateLesson> itemMap = data['mapRateLessons']?.map((key,value)=>MapEntry(key,RateLesson.fromJson(value) ))??{};
+    Map? map=data['mapRateLessons']?.map((key,value)=>MapEntry(key,RateLesson.fromJson(value) ));
+    Map<String,RateLesson> itemMap =  {};
+    itemMap.addEntries(map?.map((key,value)=>MapEntry(key as String, value as RateLesson)).entries??[]);
     return LessonModel(
       id: json['id'],
       name: json["name"],

@@ -30,8 +30,10 @@ class LessonController extends GetxController{
 
   @override
   void onInit() {
-    lesson=Get.arguments['lesson'];
-    uid= ProfileController.instance.currentUser.value?.uid;
+    lesson=Get.arguments?['lesson'];
+    ProfileController profileController=Get.put(ProfileController());
+    uid= profileController.currentUser.value?.uid;
+    // uid= ProfileController.instance.currentUser.value?.uid;
     nameController=TextEditingController(text:lesson?.name );
     descriptionController=TextEditingController(text:lesson?.description );
     super.onInit();
@@ -82,6 +84,7 @@ class LessonController extends GetxController{
 
     var
     result=await FirebaseFun.addLesson(lesson:lessonModel);
+
     Get.back();
     if(result['status'])
       Get.back();
@@ -119,9 +122,9 @@ class LessonController extends GetxController{
     }
     lesson?.name=name;
     lesson?.description= descriptionController.value.text;
-    lesson?.imagesPath=imagesPath;
-    lesson?.videoPath=videoPath;
-    lesson?.filePath=filePath;
+    lesson?.imagesPath=imagesPath.isNotEmpty?imagesPath:lesson?.imagesPath??[];
+    lesson?.videoPath=videoPath??lesson?.videoPath;
+    lesson?.filePath=filePath??lesson?.filePath;
 
     var
     result=await FirebaseFun.updateLesson(lesson:lesson!);
