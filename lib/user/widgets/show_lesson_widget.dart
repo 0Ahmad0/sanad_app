@@ -41,22 +41,40 @@ class ShowLessonWidget extends StatelessWidget {
               },
             ),
             Visibility(
-              visible: lesson?.filePath!=null,
+              // visible: lesson?.filePath!=null,
               child: ShowMediaLessonWidget(
                 image: AssetsManager.adminSoundIcon,
                 title: AppString.playLessonSound,
                 onTap: (){
-                  Get.toNamed(AppRoute.showAudioUserRoute,parameters: {'path':lesson?.filePath??''});
+                  if(lesson?.filePath!=null){
+                    Get.toNamed(AppRoute.showAudioUserRoute,parameters: {'path':lesson?.filePath??''});
+                  }
+                  else{
+                    Get.snackbar(
+                        AppString.message_failure,
+                        AppString.notFoundSound,
+                        backgroundColor: ColorManager.errorColor
+                    );
+                  }
                 },
               ),
             ),
             Visibility(
-              visible: lesson?.videoPath!=null,
+              // visible: lesson?.videoPath!=null,
               child: ShowMediaLessonWidget(
                 image: AssetsManager.adminVideoIcon,
                 title: AppString.playLessonVideo,
                 onTap: (){
-                  Get.toNamed(AppRoute.showVedioUserRoute,parameters: {'path':lesson?.videoPath??''});
+                  if(lesson?.videoPath!=null){
+                    Get.toNamed(AppRoute.showVedioUserRoute,parameters: {'path':lesson?.videoPath??''});
+                  }
+                  else{
+                    Get.snackbar(
+                        AppString.message_failure,
+                        AppString.notFoundVideo,
+                        backgroundColor: ColorManager.errorColor
+                    );
+                  }
                 },
               ),
             ),

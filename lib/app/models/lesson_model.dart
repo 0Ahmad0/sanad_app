@@ -26,6 +26,16 @@ class LessonModel {
   StatusLesson get statusEnum=>StatusLesson.values.firstWhereOrNull((element)=>element.name.toLowerCase().contains(status?.toLowerCase()??''))
   ??StatusLesson.pending;
 
+      String get statusAr{
+    switch(statusEnum){
+      case StatusLesson.accepted:
+        return 'مقبول';
+      case StatusLesson.rejected:
+        return 'مرفوض';
+      default:
+        return  'معلق';
+    }
+  }
   Color get statusColor{
 
       switch(statusEnum){

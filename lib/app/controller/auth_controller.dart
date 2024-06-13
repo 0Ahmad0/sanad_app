@@ -183,7 +183,9 @@ class AuthController extends GetxController {
       // ProfileController.instance.getUser();
 
       ProfileController profileController=Get.put(ProfileController());
-      if(profileController.currentUser.value?.isAdmin??false)
+      profileController.currentUser.value=user;
+      // if(profileController.currentUser.value?.isAdmin??false)
+      if(user.isAdmin)
         Get.offAll(NavBarAdminScreen());
       else
         Get.offAll(NavbarUserScreen());

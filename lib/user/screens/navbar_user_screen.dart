@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:sanad_app/app/core/helper/helpers.dart';
 import 'package:sanad_app/app/core/utils/app_string.dart';
 import 'package:sanad_app/app/core/utils/assets_manager.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
@@ -18,6 +20,7 @@ import 'package:sanad_app/user/screens/home_user_screen.dart';
 import 'package:sanad_app/user/screens/lessons_user_screen.dart';
 
 import '../../app/controller/profile_controller.dart';
+import '../../main.dart';
 
 class NavbarUserScreen extends StatefulWidget {
   const NavbarUserScreen({Key? key}) : super(key: key);
@@ -71,6 +74,13 @@ class _NavbarUserScreenState extends State<NavbarUserScreen> {
     LessonUserScreen(),
     SizedBox()
   ];
+  List<String?> _audios = [
+    AssetsManager.editProfileScreenSound,
+    AssetsManager.homeScreenSound,
+    AssetsManager.lessonsScreenSound,
+
+    null
+  ];
 
   @override
   void initState() {
@@ -93,7 +103,12 @@ class _NavbarUserScreenState extends State<NavbarUserScreen> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24.r),
         ),
-        onPressed: () {},
+        onPressed: () async {
+          ///TODO turn on أنير
+          print(_audios[_selectedItemPosition]);
+          turnAudio(_audios[_selectedItemPosition]);
+
+        },
         label: Column(
           children: [
             Image.asset(

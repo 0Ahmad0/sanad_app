@@ -244,29 +244,29 @@ class FirebaseFun {
         errorMessage = "المستخدم غير صحيح.";
         break;
 
-      case "":
+      case "account successfully logged":
         errorMessage =
-        "";
+        "تم تسجيل الدخول بنجاح";
         break;
-      case "":
+      case "users successfully fetch":
         errorMessage =
-        "";
+        "تم جلب معلومات المستخدمين بنجاح";
         break;
-      case "":
+      case "lesson successfully add":
         errorMessage =
-        "";
+        "تمت إضافة درس بنجاح";
         break;
-      case "":
+      case "lesson successfully update":
         errorMessage =
-        "";
+        "تم تحديث الدرس بنجاح";
         break;
-      case "":
+      case "lesson successfully fetch":
         errorMessage =
-        "";
+        "تم جلب الدرس بنجاح";
         break;
-      case "":
+      case "account successfully created":
         errorMessage =
-        "";
+        "تم انشاء الحساب بنجاح";
         break;
       case "":
         errorMessage =

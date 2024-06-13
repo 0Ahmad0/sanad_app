@@ -65,7 +65,7 @@ class LessonRequestUserWidget extends StatelessWidget {
                   text: AppString.statusLessons,
                 ),
                 TextSpan(
-                    text: lesson?.status??'مقبول',
+                    text: lesson?.statusAr??'مقبول',
                     style: StylesManager.textNormalStyle(
                         color:lesson?.statusColor?? ColorManager.successColor, size: 12.sp)),
               ])),
