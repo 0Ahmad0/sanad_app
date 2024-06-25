@@ -14,49 +14,47 @@ class HomeAdminScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultScaffoldWidget(
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: getHeight(context) / 9,),
-                Text(
-                  AppString.welcomeAdminTitle,
-                  style: StylesManager.textBoldStyle(
-                      size: 22.sp, color: ColorManager.primaryColor),
-                ),
-                const SizedBox(
-                  height: AppSize.s40,
-                ),
-                Text(
-                  AppString.aboutSanadApp,
-                  style: StylesManager.textNormalStyle(
-                      size: 14.sp, color: ColorManager.primaryColor),
-                ),
-                const SizedBox(
-                  height: AppSize.s30,
-                ),
-                Text(
-                  AppString.welcomeAdminSubTitle,
-                  style: StylesManager.textNormalStyle(
-                      size: 14.sp, color: ColorManager.primaryColor),
-                ),
-              ],
-            ),
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: getHeight(context) / 9,),
+              Text(
+                AppString.welcomeAdminTitle,
+                style: StylesManager.textBoldStyle(
+                    size: 22.sp, color: ColorManager.primaryColor),
+              ),
+              const SizedBox(
+                height: AppSize.s40,
+              ),
+              Text(
+                AppString.aboutSanadApp,
+                style: StylesManager.textNormalStyle(
+                    size: 14.sp, color: ColorManager.primaryColor),
+              ),
+              const SizedBox(
+                height: AppSize.s30,
+              ),
+              Text(
+                AppString.welcomeAdminSubTitle,
+                style: StylesManager.textNormalStyle(
+                    size: 14.sp, color: ColorManager.primaryColor),
+              ),
+            ],
           ),
+        ),
 
-          Positioned(
-            bottom: getHeight(context) / 3.5,
-            child: Image.asset(
-              AssetsManager.logoAdminIMG,
-              fit: BoxFit.fill,
-            ),
+        Positioned(
+          bottom: getHeight(context) / 3.5,
+          child: Image.asset(
+            AssetsManager.logoAdminIMG,
+            fit: BoxFit.fill,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

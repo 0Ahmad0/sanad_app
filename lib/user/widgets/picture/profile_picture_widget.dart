@@ -44,9 +44,10 @@ class WidgetProfilePicture extends StatelessWidget {
     );
   }
   String findFirstsCharFromText(String text){
+
     String firstsCharFromText="";
-    List<String> listFromWord=text.split(" ");
-    firstsCharFromText+=listFromWord.first[0].toUpperCase();
+    List<String> listFromWord=text.trim().split(" ");
+    firstsCharFromText+=listFromWord.first.characters.first.toUpperCase();
     (listFromWord.length>1)?firstsCharFromText+=listFromWord.last[0]:"";
     return firstsCharFromText;
   }

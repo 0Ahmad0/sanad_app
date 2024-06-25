@@ -140,11 +140,11 @@ class ProfileController extends GetxController {
           .then((value){
         currentUser.value=UserModel.fromJson(value);
         update();
-        Get.snackbar(
-            AppString.message_success,
-            AppString.message_successful_get_user,
-            backgroundColor: ColorManager.successColor
-        );
+        // Get.snackbar(
+        //     AppString.message_success,
+        //     AppString.message_successful_get_user,
+        //     backgroundColor: ColorManager.successColor
+        // );
       });
       // if(currentUser.value?.isAdmin??false)
       //   Get.offAll(NavBarAdminScreen());

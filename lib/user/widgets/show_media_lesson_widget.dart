@@ -9,8 +9,10 @@ class ShowMediaLessonWidget extends StatelessWidget {
     required this.image,
     required this.title,
     required this.onTap,
+     this.isActive=true,
   });
 
+  final bool isActive;
   final String image;
   final String title;
   final VoidCallback onTap;
@@ -22,6 +24,7 @@ class ShowMediaLessonWidget extends StatelessWidget {
         onPressed: onTap,
         icon: Image.asset(
           image,
+          color: isActive?null:ColorManager.greyColor,
           width: 20.sp,
           height: 20.sp,
           fit: BoxFit.fill,
@@ -31,7 +34,7 @@ class ShowMediaLessonWidget extends StatelessWidget {
           overflow: TextOverflow.clip,
           style: StylesManager.textBoldStyle(
             size: 8.sp,
-            color: ColorManager.secondaryColor
+              color: isActive? ColorManager.secondaryColor:ColorManager.greyColor,
           ),
         ),
       ),

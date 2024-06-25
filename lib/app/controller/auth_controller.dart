@@ -15,6 +15,7 @@ import '../core/local/storage.dart';
 import '../core/utils/app_constant.dart';
 import '../core/utils/app_string.dart';
 import '../core/utils/color_manager.dart';
+import '../widgets/constants_widgets.dart';
 
 class AuthController extends GetxController {
   final formKey = GlobalKey<FormState>();
@@ -112,11 +113,12 @@ class AuthController extends GetxController {
           .signInWithEmailAndPassword(email: email, password: password)
           .timeout(FirebaseFun.timeOut)
           .then((value) async {
-        Get.snackbar(
-            AppString.message_success,
-            AppString.message_successful_login,
-            backgroundColor: ColorManager.successColor
-        );
+        ConstantsWidgets.TOAST(null,textToast: AppString.message_successful_login ,state:true );
+        // Get.snackbar(
+        //     AppString.message_success,
+        //     AppString.message_successful_login,
+        //     backgroundColor: ColorManager.successColor
+        // );
 
          AppStorage.storageWrite(key:AppConstants.rememberMe,value:  true);
          AppStorage.storageWrite(key:AppConstants.uidKEY, value: auth.currentUser?.uid);
@@ -140,11 +142,12 @@ class AuthController extends GetxController {
     } on FirebaseAuthException catch (e) {
       String errorMessage=FirebaseFun.findTextToast(e.code);
       Get.back();
-      Get.snackbar(
-          AppString.message_failure,
-         errorMessage,
-          backgroundColor: ColorManager.errorColor
-      );
+      ConstantsWidgets.TOAST(null,textToast:errorMessage ,state:false );
+      // Get.snackbar(
+      //     AppString.message_failure,
+      //    errorMessage,
+      //     backgroundColor: ColorManager.errorColor
+      // );
     }
   }
 
@@ -193,19 +196,20 @@ class AuthController extends GetxController {
     } on FirebaseAuthException catch (e) {
       String errorMessage=FirebaseFun.findTextToast(e.code);
       Get.back();
-      Get.snackbar(
-          AppString.message_failure,
-          errorMessage,
-          backgroundColor: ColorManager.errorColor
-      );
+      ConstantsWidgets.TOAST(null,textToast:errorMessage ,state:false );
+      // Get.snackbar(
+      //     AppString.message_failure,
+      //     errorMessage,
+      //     backgroundColor: ColorManager.errorColor
+      // );
     }
   }
 
   _generateUserNameByName(String name){
     name=name.toLowerCase();
-      List<String> names = name.split(' ');
+      List<String> names = name.trim().split(' ');
       String firstName= names.isNotEmpty ? names.first : '';
-      String? lastName= names.length > 1 ? names.sublist(1).join(' ') : null;
+      String? lastName= names.length > 1 ? names.sublist(1,2).join(' ') : null;
       String userName='${firstName}';
       if(lastName!=null)
         userName+='_${lastName}';

@@ -30,7 +30,7 @@ class NavbarUserScreen extends StatefulWidget {
 }
 
 class _NavbarUserScreenState extends State<NavbarUserScreen> {
-  int _selectedItemPosition = 0;
+  int _selectedItemPosition = 1;
   List<BottomNavigationBarItem> _items = [
     BottomNavigationBarItem(
         icon: Image.asset(AssetsManager.profileIcon),
@@ -69,7 +69,7 @@ class _NavbarUserScreenState extends State<NavbarUserScreen> {
     ),
   ];
   List<Widget> _screens = [
-    ProfileScreen(),
+    ProfileScreen(showNourIcon:true),
     HomeUserScreen(),
     LessonUserScreen(),
     SizedBox()

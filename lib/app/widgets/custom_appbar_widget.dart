@@ -27,7 +27,7 @@ class CustomAppBarWidget extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
         leading: Visibility(
-          visible: showBackButton,
+          visible: Navigator.canPop(context),
           child: GestureDetector(
             onTap: () {
               if (Navigator.canPop(context)) {

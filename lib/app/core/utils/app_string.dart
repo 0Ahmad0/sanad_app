@@ -175,6 +175,7 @@ class AppString {
   // static const message_successful_login= "Successful login";
   static const message_success= "نجاح";
   static const message_failure= "فشل";
+  static const message_sorry= "عذراً";
   static const message_successful_login= "تم تسجيل الدخول بنجاح";
   static const message_user_name_invalid= "اسم المستخدم غير صحيح";
   static const message_successful_get_user= "تم جلب معلومات المستخدم بنجاح";

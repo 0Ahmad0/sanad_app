@@ -12,6 +12,7 @@ import '../../admin/screens/navbar_admin_screen.dart';
 import '../../user/screens/navbar_user_screen.dart';
 import '../../user/widgets/constants_widgets.dart';
 import '../core/local/storage.dart';
+import '../widgets/constants_widgets.dart';
 
 class SplashController extends GetxController with GetSingleTickerProviderStateMixin   {
   // static SplashController  get instance => Get.find();

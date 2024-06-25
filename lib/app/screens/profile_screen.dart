@@ -42,7 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
      profileController.refresh();
 
     return Scaffold(
-        appBar: !widget.showNourIcon
+        appBar: widget.showNourIcon
             ? CustomAppBarWidget(
                 showBackButton: false,
                 child: [

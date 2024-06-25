@@ -33,6 +33,7 @@ class _ShowVedioScreenState extends State<ShowVedioScreen> {
   @override
   void initState() {
     String? path=Get.parameters['path'];
+    print(path);
     if(path!=null||path!.isNotEmpty)
       srcs=[path,path];
     super.initState();

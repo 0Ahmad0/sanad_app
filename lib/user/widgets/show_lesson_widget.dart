@@ -7,6 +7,7 @@ import 'package:sanad_app/app/core/utils/assets_manager.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
 import 'package:sanad_app/app/core/utils/styles_manager.dart';
 import 'package:sanad_app/app/models/lesson_model.dart';
+import 'package:sanad_app/app/widgets/constants_widgets.dart';
 import 'package:sanad_app/app/widgets/container_auth_widget.dart';
 
 import 'show_media_lesson_widget.dart';
@@ -45,16 +46,14 @@ class ShowLessonWidget extends StatelessWidget {
               child: ShowMediaLessonWidget(
                 image: AssetsManager.adminSoundIcon,
                 title: AppString.playLessonSound,
+                isActive: lesson?.filePath!=null,
                 onTap: (){
                   if(lesson?.filePath!=null){
                     Get.toNamed(AppRoute.showAudioUserRoute,parameters: {'path':lesson?.filePath??''});
                   }
                   else{
-                    Get.snackbar(
-                        AppString.message_failure,
-                        AppString.notFoundSound,
-                        backgroundColor: ColorManager.errorColor
-                    );
+                    ConstantsWidgets.TOAST(null,title:  AppString.message_sorry,textToast:AppString.notFoundSound ,state:false );
+
                   }
                 },
               ),
@@ -64,16 +63,14 @@ class ShowLessonWidget extends StatelessWidget {
               child: ShowMediaLessonWidget(
                 image: AssetsManager.adminVideoIcon,
                 title: AppString.playLessonVideo,
+                isActive: lesson?.videoPath!=null,
                 onTap: (){
                   if(lesson?.videoPath!=null){
                     Get.toNamed(AppRoute.showVedioUserRoute,parameters: {'path':lesson?.videoPath??''});
                   }
                   else{
-                    Get.snackbar(
-                        AppString.message_failure,
-                        AppString.notFoundVideo,
-                        backgroundColor: ColorManager.errorColor
-                    );
+                    ConstantsWidgets.TOAST(null,title:  AppString.message_sorry,textToast:AppString.notFoundVideo ,state:false );
+
                   }
                 },
               ),

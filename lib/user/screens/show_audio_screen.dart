@@ -11,6 +11,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sanad_app/app/core/utils/color_manager.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
 
+import 'package:http/http.dart' as http;
+import '../../app/core/utils/app_string.dart';
 import '../../app/widgets/custom_appbar_widget.dart';
 
 class ShowAudioScreen extends StatefulWidget {
@@ -22,10 +24,10 @@ class ShowAudioScreen extends StatefulWidget {
 
 class _ShowAudioScreenState extends State<ShowAudioScreen> {
   String? musicFile;
-
+  String? path;
   @override
   void initState() {
-    String? path=Get.parameters['path'];
+   path=Get.parameters['path'];
     if(path!=null||path!.isNotEmpty);
     super.initState();
     _loadAudioFile();
@@ -52,9 +54,9 @@ class _ShowAudioScreenState extends State<ShowAudioScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 20),
-            if (musicFile != null)
+            if (path != null)
               WaveBubble(
-                path: musicFile,
+                path: path,
                 isSender: true,
               ),
           ],
@@ -89,14 +91,16 @@ class _WaveBubbleState extends State<WaveBubble> {
   );
 
   bool isCompleted = false;
-
+  File? file;
   @override
   void initState() {
     super.initState();
     controller = PlayerController();
     _preparePlayer();
+
+
     playerStateSubscription = controller.onPlayerStateChanged.listen((state) {
-      if (state == PlayerState.stopped) {
+       if (state == PlayerState.stopped) {
         setState(() {
           isCompleted = true;
         });
@@ -112,12 +116,38 @@ class _WaveBubbleState extends State<WaveBubble> {
     if (widget.path == null) {
       return;
     }
-
-    await controller.preparePlayer(
-      path: widget.path!,
-      shouldExtractWaveform: true,
-    );
+    ///ToDo local
+    // await controller.preparePlayer(
+    //   path: widget.path!,
+    //   shouldExtractWaveform: true,
+    // );
+    ///ToDo url
+    file ??= await _downloadFile(widget.path!);
+    setState(() {});
+    if (file != null) {
+      await controller.preparePlayer(
+        path: file!.path,
+        shouldExtractWaveform: true,
+      );
+    }
   }
+
+  Future<File?> _downloadFile(String url) async {
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        final tempDir = await getTemporaryDirectory();
+        final file = File('${tempDir.path}/temp_audio.wav');
+        await file.writeAsBytes(response.bodyBytes);
+        return file;
+      }
+    } catch (e) {
+      print('Error downloading file: $e');
+    }
+    return null;
+  }
+
+
 
   @override
   void dispose() {
@@ -128,8 +158,18 @@ class _WaveBubbleState extends State<WaveBubble> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.path != null
-        ? Column(
+    if(widget.path==null)
+      return SizedBox.shrink();
+    else if(file==null)
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircularProgressIndicator(),
+          SizedBox(height: 20),
+          Text(AppString.loading),
+        ],
+      );
+      return Column(
       children: [
         AudioFileWaveforms(
           continuousWaveform: true,
@@ -142,8 +182,9 @@ class _WaveBubbleState extends State<WaveBubble> {
         ),
         IconButton(
           onPressed: () async {
-            if (controller.playerState.isPlaying ||
-                controller.playerState.isStopped) {
+
+
+            if (controller.playerState.isPlaying ) {
               await controller.pausePlayer();
             } else {
               if (isCompleted) {
@@ -151,9 +192,12 @@ class _WaveBubbleState extends State<WaveBubble> {
                 setState(() {
                   isCompleted = false;
                 });
+                await controller.startPlayer(finishMode:FinishMode.pause);
+              }else{
+                // controller.setRefresh(true);
+                await controller.startPlayer(finishMode:FinishMode.pause);
               }
-              controller.setRefresh(true);
-              await controller.startPlayer();
+
             }
           },
           icon: Icon(
@@ -167,7 +211,6 @@ class _WaveBubbleState extends State<WaveBubble> {
           highlightColor: Colors.transparent,
         ),
       ],
-    )
-        : const SizedBox.shrink();
+    );
   }
 }

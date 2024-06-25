@@ -35,7 +35,7 @@ class AdminController extends GetxController {
 
   changePage(int index) {
     if (index == 4) {
-      Get.to(() => ProfileScreen());
+      Get.to(() => ProfileScreen(showNourIcon: true,));
     }
     if (index == 5) {
       Get.dialog(DialogWidget(onPressed: () {

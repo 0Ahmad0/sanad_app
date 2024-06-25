@@ -165,6 +165,7 @@ class AnswerInfoBox extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Container(
+      alignment: Alignment.center,
       padding: EdgeInsets.all(AppPadding.p4),
       decoration: BoxDecoration(
         
@@ -175,23 +176,41 @@ class AnswerInfoBox extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       width: double.infinity,
-      height: AppSize.s50,
+      constraints: BoxConstraints(
+        minHeight:   AppSize.s50,
+
+      ),
       child:
       isCorrect==null?
-      Center(
-        child: Text(
-          'لا يوجد إجابة',
-        ),
+      Text(
+        'لا يوجد إجابة',
+        textAlign: TextAlign.center,
       )
-      :isCorrect!?Center(
-        child: Text(
-          AppString.correctAnswer,
-        ),
-      ):Text(
-        AppString.inCorrectAnswer
-        +'\n'
-        +'الإجابة الصحيحة: '
-        +'$correctValue',
+      :isCorrect!?Text(
+        AppString.correctAnswer,
+        textAlign: TextAlign.center,
+        style: StylesManager.textNormalStyle(color: ColorManager.successColor),
+      ):Text.rich(
+        textAlign: TextAlign.center,
+        TextSpan(
+          children: [
+            TextSpan(
+              text:  AppString.inCorrectAnswer
+                  +'\n',
+              style: StylesManager.textNormalStyle(color: ColorManager.errorColor)
+            ),
+            TextSpan(
+              text: 'الإجابة الصحيحة: ',
+                style: StylesManager.textNormalStyle(color: ColorManager.successColor)
+
+            ),
+            TextSpan(
+              text: '$correctValue',
+                style: StylesManager.textNormalStyle(color: ColorManager.successColor)
+
+      )
+          ]
+        )
       ),
     );
   }
