@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:sanad_app/app/core/utils/color_manager.dart';
-import 'package:sanad_app/app/models/question_model.dart';
-import 'package:sanad_app/app/models/rate_model.dart';
+import '../core/utils/color_manager.dart';
+import 'question_model.dart';
+import 'rate_model.dart';
 enum StatusLesson{
   accepted,
   rejected,
@@ -48,11 +48,11 @@ class LessonModel {
   }
   }
 
-  initRateLesson()=> RateLesson(idUser: idUser, selectOptionIndexes: questions.map((_)=>null as int?).toList(), degree: 0);
+  initRateLesson()=> RateLesson(idUser: idUser, selectOptionIndexes: questions.map((_)=>null).toList(), degree: 0);
   handleRateLesson(){
     mapRateLessons.forEach((key,value){
-      for(int i=(mapRateLessons[key]?.selectOptionIndexes?.length??0)-1;i<questions.length;i++)
-        mapRateLessons[key]?.selectOptionIndexes.add(null as int?);
+      for(int i=(mapRateLessons[key]?.selectOptionIndexes.length??0)-1;i<questions.length;i++)
+        mapRateLessons[key]?.selectOptionIndexes.add(null);
     });
   }
 

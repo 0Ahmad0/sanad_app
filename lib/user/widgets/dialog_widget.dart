@@ -1,10 +1,8 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../app/core/utils/app_string.dart';
 import '../../app/core/utils/color_manager.dart';
 import '../../app/core/utils/styles_manager.dart';
 import '../../app/core/utils/values_manager.dart';

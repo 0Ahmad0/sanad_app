@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:sanad_app/app/controller/auth_controller.dart';
-import 'package:sanad_app/app/core/utils/app_string.dart';
-import 'package:sanad_app/app/screens/auth/widgets/divider_auth_widgets.dart';
-import 'package:sanad_app/app/widgets/button_app_widget.dart';
-import 'package:sanad_app/app/widgets/container_auth_widget.dart';
-import 'package:sanad_app/app/widgets/custom_appbar_widget.dart';
-import 'package:sanad_app/app/widgets/default_scaffold.dart';
+import '../../controller/auth_controller.dart';
+import '../../core/utils/app_string.dart';
+import 'widgets/divider_auth_widgets.dart';
+import '../../widgets/button_app_widget.dart';
+import '../../widgets/container_auth_widget.dart';
+import '../../widgets/custom_appbar_widget.dart';
+import '../../widgets/default_scaffold.dart';
 
 import '../../controller/forget_password_controller.dart';
 import '../../core/utils/color_manager.dart';

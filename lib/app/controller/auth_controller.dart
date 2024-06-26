@@ -2,19 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:sanad_app/app/controller/firebase/firebase_constants.dart';
-import 'package:sanad_app/app/controller/firebase/firebase_fun.dart';
-import 'package:sanad_app/app/controller/profile_controller.dart';
-import 'package:sanad_app/app/models/user_model.dart';
-import 'package:sanad_app/app/screens/auth/auth_screen.dart';
-import 'package:sanad_app/app/screens/splash_screen.dart';
+import 'firebase/firebase_constants.dart';
+import 'firebase/firebase_fun.dart';
+import 'profile_controller.dart';
+import '../models/user_model.dart';
+import '../screens/splash_screen.dart';
 import '../../admin/screens/navbar_admin_screen.dart';
 import '../../user/screens/navbar_user_screen.dart';
-import '../../user/widgets/constants_widgets.dart';
 import '../core/local/storage.dart';
 import '../core/utils/app_constant.dart';
 import '../core/utils/app_string.dart';
-import '../core/utils/color_manager.dart';
 import '../widgets/constants_widgets.dart';
 
 class AuthController extends GetxController {
@@ -105,7 +102,7 @@ class AuthController extends GetxController {
        UserModel? userModel=UserModel.fromJson(result['body']);
        // if(userModel==null)
        //   throw FirebaseAuthException(code: AppString.message_user_name_invalid);
-       email=userModel?.email??userName;
+       email=userModel.email??userName;
      }
 
       //,,,,,,,,,,,,,,,,,

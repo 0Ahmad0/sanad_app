@@ -1,16 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sanad_app/app/controller/admin_controller.dart';
-import 'package:sanad_app/app/core/helper/sizer_media_query.dart';
-import 'package:sanad_app/app/core/utils/app_string.dart';
-import 'package:sanad_app/app/core/utils/assets_manager.dart';
-import 'package:sanad_app/app/core/utils/color_manager.dart';
-import 'package:sanad_app/app/core/utils/styles_manager.dart';
-import 'package:sanad_app/app/core/utils/values_manager.dart';
+import '../../app/controller/admin_controller.dart';
+import '../../app/core/helper/sizer_media_query.dart';
+import '../../app/core/utils/assets_manager.dart';
+import '../../app/core/utils/color_manager.dart';
+import '../../app/core/utils/styles_manager.dart';
+import '../../app/core/utils/values_manager.dart';
 
 import '../../app/controller/profile_controller.dart';
 import '../../app/screens/auth/widgets/circle_profile_widget.dart';
@@ -93,7 +90,7 @@ class _CollapsingNavigationDrawerState extends State<CollapsingNavigationDrawer>
                       builder: (controller) {
                         return  CollapsingListTileForImage(
                             onTap: () {},
-                            title: controller.currentUser?.value?.name??'',
+                            title: controller.currentUser.value?.name??'',
                             icon: 'https',
                             animationController: _animationController);
                       }
@@ -322,7 +319,7 @@ class _CollapsingListTileForImageState
             radius: 28.sp,
             child: CircleProfilePictureWidget(
 
-              path: profileController.currentUser?.value?.photoUrl,
+              path: profileController.currentUser.value?.photoUrl,
               // path: ProfileController.instance.currentUser?.value?.photoUrl,
             ),
           ),

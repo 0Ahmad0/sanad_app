@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:sanad_app/app/controller/profile_controller.dart';
+import '../../../controller/profile_controller.dart';
 
 import '../../../../user/widgets/picture/cach_picture_widget.dart';
 import '../../../../user/widgets/picture/profile_picture_widget.dart';

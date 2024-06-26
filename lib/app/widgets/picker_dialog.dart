@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sanad_app/app/controller/profile_controller.dart';
-import 'package:sanad_app/app/core/utils/app_string.dart';
-import 'package:sanad_app/app/core/utils/color_manager.dart';
-import 'package:sanad_app/app/core/utils/styles_manager.dart';
-import 'package:sanad_app/app/core/utils/values_manager.dart';
-import 'package:sanad_app/app/widgets/container_auth_widget.dart';
+import '../controller/profile_controller.dart';
+import '../core/utils/app_string.dart';
+import '../core/utils/color_manager.dart';
+import '../core/utils/styles_manager.dart';
+import '../core/utils/values_manager.dart';
+import 'container_auth_widget.dart';
 import 'package:animate_do/animate_do.dart';
 import '../screens/auth/widgets/divider_auth_widgets.dart';
 

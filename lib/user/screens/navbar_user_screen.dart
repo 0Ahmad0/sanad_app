@@ -1,26 +1,16 @@
-import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:sanad_app/app/core/helper/helpers.dart';
-import 'package:sanad_app/app/core/utils/app_string.dart';
-import 'package:sanad_app/app/core/utils/assets_manager.dart';
-import 'package:sanad_app/app/core/utils/color_manager.dart';
-import 'package:sanad_app/app/core/utils/styles_manager.dart';
-import 'package:sanad_app/app/core/utils/values_manager.dart';
-import 'package:sanad_app/app/screens/auth/widgets/circle_profile_widget.dart';
-import 'package:sanad_app/app/screens/profile_screen.dart';
-import 'package:sanad_app/app/widgets/custom_appbar_widget.dart';
-import 'package:sanad_app/app/widgets/default_scaffold.dart';
-import 'package:sanad_app/user/screens/home_user_screen.dart';
-import 'package:sanad_app/user/screens/lessons_user_screen.dart';
+import '../../app/core/helper/helpers.dart';
+import '../../app/core/utils/app_string.dart';
+import '../../app/core/utils/assets_manager.dart';
+import '../../app/core/utils/color_manager.dart';
+import '../../app/core/utils/styles_manager.dart';
+import '../../app/core/utils/values_manager.dart';
+import '../../app/screens/profile_screen.dart';
+import 'home_user_screen.dart';
+import 'lessons_user_screen.dart';
 
-import '../../app/controller/profile_controller.dart';
-import '../../main.dart';
 
 class NavbarUserScreen extends StatefulWidget {
   const NavbarUserScreen({Key? key}) : super(key: key);

@@ -1,16 +1,11 @@
-import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:sanad_app/app/controller/auth_controller.dart';
-import 'package:sanad_app/app/controller/profile_controller.dart';
-import 'package:sanad_app/app/core/utils/app_constant.dart';
+import 'auth_controller.dart';
+import 'profile_controller.dart';
+import '../core/utils/app_constant.dart';
 
 import '../../admin/screens/navbar_admin_screen.dart';
 import '../../user/screens/navbar_user_screen.dart';
-import '../../user/widgets/constants_widgets.dart';
 import '../core/local/storage.dart';
 import '../widgets/constants_widgets.dart';
 

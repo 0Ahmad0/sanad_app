@@ -6,10 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:sanad_app/app/core/utils/color_manager.dart';
-import 'package:sanad_app/app/widgets/default_scaffold.dart';
+import '../../app/core/utils/color_manager.dart';
+import '../../app/widgets/default_scaffold.dart';
 
 import 'package:http/http.dart' as http;
 import '../../app/core/utils/app_string.dart';

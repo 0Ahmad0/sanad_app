@@ -5,15 +5,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sanad_app/app/core/route/app_route.dart';
-import 'package:sanad_app/app/core/utils/app_constant.dart';
-import 'package:sanad_app/app/core/utils/app_string.dart';
-import 'package:sanad_app/app/core/utils/theme_manager.dart';
-import 'package:sanad_app/app/screens/splash_screen.dart';
-import 'package:flutter_localization/flutter_localization.dart';
-import 'package:sanad_app/user/screens/questions_user_screen.dart';
 
 import 'app/controller/profile_controller.dart';
+import 'app/core/route/app_route.dart';
+import 'app/core/utils/app_constant.dart';
+import 'app/core/utils/app_string.dart';
 
 AudioPlayer audio = AudioPlayer();
 Future<void> main() async {

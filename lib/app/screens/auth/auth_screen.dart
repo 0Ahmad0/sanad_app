@@ -1,26 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:sanad_app/app/controller/auth_controller.dart';
-import 'package:sanad_app/app/core/helper/sizer_media_query.dart';
-import 'package:sanad_app/app/core/route/app_route.dart';
-import 'package:sanad_app/app/core/utils/app_string.dart';
-import 'package:sanad_app/app/core/utils/assets_manager.dart';
-import 'package:sanad_app/app/core/utils/color_manager.dart';
-import 'package:sanad_app/app/core/utils/styles_manager.dart';
-import 'package:sanad_app/app/core/utils/values_manager.dart';
-import 'package:sanad_app/app/screens/auth/login_widget.dart';
-import 'package:sanad_app/app/screens/auth/signup_widget.dart';
-import 'package:sanad_app/app/screens/profile_screen.dart';
-import 'package:sanad_app/app/widgets/button_app_widget.dart';
-import 'package:sanad_app/app/widgets/custom_appbar_widget.dart';
-import 'package:sanad_app/app/widgets/default_scaffold.dart';
-import 'package:sanad_app/user/screens/navbar_user_screen.dart';
+import '../../controller/auth_controller.dart';
+import '../../core/helper/sizer_media_query.dart';
+import '../../core/utils/app_string.dart';
+import '../../core/utils/color_manager.dart';
+import '../../core/utils/styles_manager.dart';
+import '../../core/utils/values_manager.dart';
+import 'login_widget.dart';
+import 'signup_widget.dart';
+import '../../widgets/button_app_widget.dart';
+import '../../widgets/custom_appbar_widget.dart';
+import '../../widgets/default_scaffold.dart';
 
-import '../../../admin/screens/navbar_admin_screen.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});

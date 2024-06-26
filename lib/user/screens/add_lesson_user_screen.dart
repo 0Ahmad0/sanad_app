@@ -1,13 +1,10 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:path/path.dart';
-import 'package:sanad_app/app/controller/admin_controller.dart';
-import 'package:sanad_app/app/core/utils/assets_manager.dart';
-import 'package:sanad_app/app/models/lesson_model.dart';
-import 'package:sanad_app/app/widgets/default_scaffold.dart';
+import '../../app/controller/admin_controller.dart';
+import '../../app/models/lesson_model.dart';
+import '../../app/widgets/default_scaffold.dart';
 
 import '../../app/controller/lesson_controller.dart';
 import '../../app/core/utils/app_string.dart';

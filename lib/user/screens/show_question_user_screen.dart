@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:sanad_app/app/core/utils/values_manager.dart';
-import 'package:sanad_app/app/widgets/container_auth_widget.dart';
-import 'package:sanad_app/app/widgets/custom_appbar_widget.dart';
-import 'package:sanad_app/app/widgets/default_scaffold.dart';
-import 'package:sanad_app/user/widgets/dialog_widget.dart';
+import '../../app/core/utils/values_manager.dart';
+import '../../app/widgets/container_auth_widget.dart';
+import '../../app/widgets/custom_appbar_widget.dart';
+import '../../app/widgets/default_scaffold.dart';
 
 import '../../app/controller/lesson_questions_user_controller.dart';
 import '../../app/controller/user_controller.dart';

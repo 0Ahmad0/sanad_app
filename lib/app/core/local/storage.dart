@@ -1,6 +1,4 @@
-import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../models/advance_model.dart';

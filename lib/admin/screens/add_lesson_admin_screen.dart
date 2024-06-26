@@ -1,23 +1,21 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:path/path.dart';
-import 'package:sanad_app/app/controller/admin_controller.dart';
-import 'package:sanad_app/app/core/utils/assets_manager.dart';
-import 'package:sanad_app/app/widgets/default_scaffold.dart';
 
+import '../../app/controller/admin_controller.dart';
 import '../../app/controller/lesson_controller.dart';
 import '../../app/core/utils/app_string.dart';
+import '../../app/core/utils/assets_manager.dart';
 import '../../app/core/utils/color_manager.dart';
 import '../../app/core/utils/styles_manager.dart';
 import '../../app/core/utils/values_manager.dart';
 import '../../app/screens/auth/widgets/divider_auth_widgets.dart';
 import '../../app/widgets/button_app_widget.dart';
 import '../../app/widgets/container_auth_widget.dart';
+import '../../app/widgets/default_scaffold.dart';
 import '../../app/widgets/textfield_app.dart';
-import '../widgets/elderly_widget.dart';
 
 class AddLessonAdminScreen extends StatelessWidget {
    AddLessonAdminScreen({super.key});

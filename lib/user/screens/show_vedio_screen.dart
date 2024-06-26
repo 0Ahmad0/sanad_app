@@ -1,13 +1,10 @@
-import 'dart:io';
 
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:sanad_app/admin/screens/add_lesson_admin_screen.dart';
-import 'package:sanad_app/app/core/utils/app_string.dart';
-import 'package:sanad_app/app/widgets/custom_appbar_widget.dart';
-import 'package:sanad_app/app/widgets/default_scaffold.dart';
+import '../../app/core/utils/app_string.dart';
+import '../../app/widgets/custom_appbar_widget.dart';
+import '../../app/widgets/default_scaffold.dart';
 import 'package:video_player/video_player.dart';
 
 class ShowVedioScreen extends StatefulWidget {

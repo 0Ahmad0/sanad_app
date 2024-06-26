@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:sanad_app/app/core/route/app_route.dart';
-import 'package:sanad_app/app/core/utils/app_string.dart';
-import 'package:sanad_app/app/core/utils/assets_manager.dart';
-import 'package:sanad_app/app/core/utils/color_manager.dart';
-import 'package:sanad_app/app/core/utils/styles_manager.dart';
-import 'package:sanad_app/app/models/lesson_model.dart';
-import 'package:sanad_app/app/widgets/constants_widgets.dart';
-import 'package:sanad_app/app/widgets/container_auth_widget.dart';
+import '../../app/core/route/app_route.dart';
+import '../../app/core/utils/app_string.dart';
+import '../../app/core/utils/assets_manager.dart';
+import '../../app/core/utils/color_manager.dart';
+import '../../app/core/utils/styles_manager.dart';
+import '../../app/models/lesson_model.dart';
+import '../../app/widgets/constants_widgets.dart';
+import '../../app/widgets/container_auth_widget.dart';
 
 import 'show_media_lesson_widget.dart';
 

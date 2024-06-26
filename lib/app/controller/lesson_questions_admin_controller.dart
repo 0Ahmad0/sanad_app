@@ -1,22 +1,13 @@
 
 
-import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:sanad_app/app/core/utils/app_constant.dart';
-import 'package:sanad_app/app/core/utils/app_string.dart';
-import 'package:sanad_app/app/models/question_model.dart';
-import 'package:sanad_app/app/models/user_model.dart';
+import '../models/question_model.dart';
 
-import '../../user/widgets/constants_widgets.dart';
 import '../models/lesson_model.dart';
 import '../widgets/constants_widgets.dart';
-import 'firebase/firebase_constants.dart';
 import 'firebase/firebase_fun.dart';
 
 

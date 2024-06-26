@@ -1,16 +1,15 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sanad_app/app/core/helper/sizer_media_query.dart';
-import 'package:sanad_app/app/core/utils/app_string.dart';
-import 'package:sanad_app/app/core/utils/color_manager.dart';
-import 'package:sanad_app/app/core/utils/styles_manager.dart';
-import 'package:sanad_app/app/core/utils/values_manager.dart';
-import 'package:sanad_app/app/screens/auth/widgets/divider_auth_widgets.dart';
-import 'package:sanad_app/app/widgets/button_app_widget.dart';
-import 'package:sanad_app/app/widgets/custom_appbar_widget.dart';
-import 'package:sanad_app/app/widgets/default_scaffold.dart';
-import 'package:sanad_app/app/widgets/textfield_app.dart';
+import '../../app/core/helper/sizer_media_query.dart';
+import '../../app/core/utils/app_string.dart';
+import '../../app/core/utils/color_manager.dart';
+import '../../app/core/utils/styles_manager.dart';
+import '../../app/core/utils/values_manager.dart';
+import '../../app/screens/auth/widgets/divider_auth_widgets.dart';
+import '../../app/widgets/button_app_widget.dart';
+import '../../app/widgets/custom_appbar_widget.dart';
+import '../../app/widgets/default_scaffold.dart';
+import '../../app/widgets/textfield_app.dart';
 
 import '../../app/models/question_model.dart';
 

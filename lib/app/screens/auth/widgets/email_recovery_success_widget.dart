@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:sanad_app/app/core/utils/app_string.dart';
-import 'package:sanad_app/app/core/utils/color_manager.dart';
-import 'package:sanad_app/app/core/utils/styles_manager.dart';
-import 'package:sanad_app/app/core/utils/values_manager.dart';
-import 'package:sanad_app/app/widgets/button_app_widget.dart';
-import 'package:sanad_app/app/widgets/default_scaffold.dart';
+import '../../../core/utils/app_string.dart';
+import '../../../core/utils/color_manager.dart';
+import '../../../core/utils/styles_manager.dart';
+import '../../../core/utils/values_manager.dart';
+import '../../../widgets/button_app_widget.dart';
+import '../../../widgets/default_scaffold.dart';
 
 import '../../../controller/forget_password_controller.dart';
 

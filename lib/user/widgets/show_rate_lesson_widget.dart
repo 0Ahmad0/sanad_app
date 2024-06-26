@@ -1,19 +1,15 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:sanad_app/app/controller/profile_controller.dart';
-import 'package:sanad_app/app/core/utils/app_string.dart';
-import 'package:sanad_app/app/core/utils/assets_manager.dart';
-import 'package:sanad_app/app/core/utils/color_manager.dart';
-import 'package:sanad_app/app/core/utils/styles_manager.dart';
-import 'package:sanad_app/app/core/utils/values_manager.dart';
-import 'package:sanad_app/app/screens/auth/widgets/divider_auth_widgets.dart';
-import 'package:sanad_app/app/widgets/container_auth_widget.dart';
+import '../../app/controller/profile_controller.dart';
+import '../../app/core/utils/app_string.dart';
+import '../../app/core/utils/assets_manager.dart';
+import '../../app/core/utils/color_manager.dart';
+import '../../app/core/utils/styles_manager.dart';
+import '../../app/widgets/container_auth_widget.dart';
 
 import '../../app/models/lesson_model.dart';
 import 'rate_dialog_widget.dart';
-import 'show_media_lesson_widget.dart';
 
 class ShowRateLessonWidget extends StatelessWidget {
   const ShowRateLessonWidget({
@@ -38,7 +34,7 @@ class ShowRateLessonWidget extends StatelessWidget {
             onPressed: () {
 
               Get.dialog(RateDialogWidget(
-                degreeRate: ((lesson?.getRateByUser(uid!)??0)*10/(lesson?.questions.length??3)).toInt(),
+                degreeRate: (lesson?.getRateByUser(uid!)??0)*10~/(lesson?.questions.length??3),
               ));
             },
             icon: Image.asset(

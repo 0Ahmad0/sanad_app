@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sanad_app/app/core/utils/assets_manager.dart';
-import 'package:sanad_app/app/core/utils/values_manager.dart';
+import '../core/utils/assets_manager.dart';
+import '../core/utils/values_manager.dart';
 
 import '../core/utils/color_manager.dart';
 

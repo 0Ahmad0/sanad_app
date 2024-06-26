@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sanad_app/app/core/utils/assets_manager.dart';
+import '../core/utils/assets_manager.dart';
 
-import '../core/utils/color_manager.dart';
 
 class DefaultScaffoldWidget extends StatelessWidget {
   const DefaultScaffoldWidget({

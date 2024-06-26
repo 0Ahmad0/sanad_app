@@ -1,21 +1,18 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:sanad_app/app/controller/users_controller.dart';
-import 'package:sanad_app/app/core/utils/app_string.dart';
-import 'package:sanad_app/app/core/utils/color_manager.dart';
-import 'package:sanad_app/app/core/utils/styles_manager.dart';
-import 'package:sanad_app/app/core/utils/values_manager.dart';
-import 'package:sanad_app/app/screens/auth/widgets/divider_auth_widgets.dart';
-import 'package:sanad_app/app/widgets/button_app_widget.dart';
-import 'package:sanad_app/app/widgets/container_auth_widget.dart';
-import 'package:sanad_app/app/widgets/default_scaffold.dart';
-import 'package:sanad_app/app/widgets/empty_widget.dart';
-import 'package:sanad_app/app/widgets/textfield_app.dart';
+import '../../app/controller/users_controller.dart';
+import '../../app/core/utils/app_string.dart';
+import '../../app/core/utils/color_manager.dart';
+import '../../app/core/utils/styles_manager.dart';
+import '../../app/core/utils/values_manager.dart';
+import '../../app/screens/auth/widgets/divider_auth_widgets.dart';
+import '../../app/widgets/button_app_widget.dart';
+import '../../app/widgets/container_auth_widget.dart';
+import '../../app/widgets/empty_widget.dart';
+import '../../app/widgets/textfield_app.dart';
 
 import '../../app/models/user_model.dart';
 import '../../app/widgets/constants_widgets.dart';
@@ -81,23 +78,23 @@ class _ElderlyManagementAdminScreenState extends State<ElderlyManagementAdminScr
                         return const Text('Error');
                       } else if (snapshot.hasData) {
                         ConstantsWidgets.circularProgress();
-                        controller.users?.users.clear();
+                        controller.users.users.clear();
 
-                        if (snapshot.data!.docs!.length > 0) {
-                          controller.users?.users =
-                              Users.fromJson(snapshot.data!.docs!).users;
+                        if (snapshot.data!.docs.length > 0) {
+                          controller.users.users =
+                              Users.fromJson(snapshot.data!.docs).users;
                         }
                         controller.filterUsers(term: controller.searchController.value.text);
                         return
                           GetBuilder<UsersController>(
                               builder: (UsersController usersController)=>
-                          (controller.usersWithFilter?.users?.isEmpty ?? true)
+                          (controller.usersWithFilter.users.isEmpty ?? true)
                             ? EmptyWidget(
                             text: AppString.infoNotLessonYet,
                           )
                             :
 
-                        buildUsers(context, controller.usersWithFilter?.users ?? []));
+                        buildUsers(context, controller.usersWithFilter.users ?? []));
                       } else {
                         return const Text('Empty data');
                       }

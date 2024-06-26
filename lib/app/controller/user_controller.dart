@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sanad_app/app/core/route/app_route.dart';
-import 'package:sanad_app/app/core/utils/app_string.dart';
-import 'package:sanad_app/app/core/utils/assets_manager.dart';
+import '../core/route/app_route.dart';
+import '../core/utils/app_string.dart';
+import '../core/utils/assets_manager.dart';
 
 import '../models/home_user_model.dart';
 import '../models/question_model.dart';

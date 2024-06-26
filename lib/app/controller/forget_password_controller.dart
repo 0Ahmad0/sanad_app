@@ -1,12 +1,10 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:sanad_app/app/controller/firebase/firebase_fun.dart';
+import 'firebase/firebase_fun.dart';
 
-import '../../user/widgets/constants_widgets.dart';
 import '../core/utils/app_string.dart';
 import '../core/utils/color_manager.dart';
 import '../widgets/constants_widgets.dart';
@@ -68,6 +66,7 @@ class ForgetPasswordController extends GetxController {
           backgroundColor: ColorManager.errorColor
       );
     }
+    return null;
   }
 
 

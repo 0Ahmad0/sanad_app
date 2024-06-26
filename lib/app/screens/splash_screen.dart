@@ -2,14 +2,13 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:sanad_app/app/core/route/app_route.dart';
-import 'package:sanad_app/app/core/utils/app_string.dart';
-import 'package:sanad_app/app/core/utils/assets_manager.dart';
-import 'package:sanad_app/app/core/utils/values_manager.dart';
-import 'package:sanad_app/app/widgets/button_app_widget.dart';
-import 'package:sanad_app/app/widgets/default_scaffold.dart';
+import '../core/route/app_route.dart';
+import '../core/utils/app_string.dart';
+import '../core/utils/assets_manager.dart';
+import '../core/utils/values_manager.dart';
+import '../widgets/button_app_widget.dart';
+import '../widgets/default_scaffold.dart';
 
-import '../controller/profile_controller.dart';
 import '../controller/splash_controller.dart';
 
 class SplashScreen extends StatefulWidget {

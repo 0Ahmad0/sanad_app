@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:sanad_app/app/core/utils/assets_manager.dart';
-import 'package:sanad_app/main.dart';
+import '../core/utils/assets_manager.dart';
+import '../../main.dart';
 
 import '../core/utils/color_manager.dart';
 

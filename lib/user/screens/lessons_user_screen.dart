@@ -1,20 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:sanad_app/app/core/utils/app_string.dart';
-import 'package:sanad_app/app/core/utils/assets_manager.dart';
-import 'package:sanad_app/app/core/utils/color_manager.dart';
-import 'package:sanad_app/app/core/utils/styles_manager.dart';
-import 'package:sanad_app/app/core/utils/values_manager.dart';
-import 'package:sanad_app/app/widgets/container_auth_widget.dart';
-import 'package:sanad_app/app/widgets/custom_appbar_widget.dart';
-import 'package:sanad_app/app/widgets/default_scaffold.dart';
-import 'package:sanad_app/app/widgets/textfield_app.dart';
-import 'package:sanad_app/user/widgets/show_lesson_widget.dart';
+import '../../app/core/utils/app_string.dart';
+import '../../app/core/utils/assets_manager.dart';
+import '../../app/core/utils/color_manager.dart';
+import '../../app/core/utils/styles_manager.dart';
+import '../../app/core/utils/values_manager.dart';
+import '../../app/widgets/container_auth_widget.dart';
+import '../../app/widgets/custom_appbar_widget.dart';
+import '../../app/widgets/default_scaffold.dart';
+import '../../app/widgets/textfield_app.dart';
+import '../widgets/show_lesson_widget.dart';
 
-import '../../admin/widgets/lesson_widget.dart';
 import '../../app/controller/lessons_controller.dart';
 import '../../app/controller/user_controller.dart';
 import '../../app/models/lesson_model.dart';
@@ -85,22 +83,22 @@ class _LessonUserScreenState extends State<LessonUserScreen> {
                           return const Text('Error');
                         } else if (snapshot.hasData) {
                           ConstantsWidgets.circularProgress();
-                          controller.lessons?.items.clear();
+                          controller.lessons.items.clear();
 
-                          if (snapshot.data!.docs!.length > 0) {
-                            controller.lessons?.items =
-                                LessonsModel.fromJson(snapshot.data!.docs!).items;
+                          if (snapshot.data!.docs.length > 0) {
+                            controller.lessons.items =
+                                LessonsModel.fromJson(snapshot.data!.docs).items;
                           }
                           controller.filterLessons(term: controller.searchController.value.text);
                           return
                             GetBuilder<LessonsController>(
                                 builder: (LessonsController lessonsController)=>
-                                (lessonsController.lessonsWithFilter?.items?.isEmpty ?? true)
+                                (lessonsController.lessonsWithFilter.items.isEmpty ?? true)
                                     ? ConstantsWidgets.emptyWidget(context,
                                     text: "No Lessons Yet")
                                     :
 
-                                buildLessons(context, controller.lessonsWithFilter?.items ?? []));
+                                buildLessons(context, controller.lessonsWithFilter.items ?? []));
                         } else {
                           return const Text('Empty data');
                         }

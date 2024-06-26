@@ -7,7 +7,6 @@ import '../../app/core/utils/assets_manager.dart';
 import '../../app/core/utils/color_manager.dart';
 import '../../app/core/utils/styles_manager.dart';
 import '../../app/core/utils/values_manager.dart';
-import '../../app/widgets/default_scaffold.dart';
 
 class HomeAdminScreen extends StatelessWidget {
   const HomeAdminScreen({super.key});

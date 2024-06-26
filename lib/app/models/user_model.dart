@@ -1,4 +1,4 @@
-import 'package:sanad_app/app/core/utils/app_constant.dart';
+import '../core/utils/app_constant.dart';
 
 class UserModel {
   String? id;

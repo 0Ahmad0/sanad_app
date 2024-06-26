@@ -3,16 +3,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:sanad_app/app/core/route/app_route.dart';
-import 'package:sanad_app/app/models/lesson_model.dart';
 
 import '../../app/controller/lessons_controller.dart';
+import '../../app/core/route/app_route.dart';
 import '../../app/core/utils/app_string.dart';
 import '../../app/core/utils/color_manager.dart';
 import '../../app/core/utils/styles_manager.dart';
 import '../../app/core/utils/values_manager.dart';
+import '../../app/models/lesson_model.dart';
 import '../../app/screens/auth/widgets/divider_auth_widgets.dart';
-import '../../app/widgets/button_app_widget.dart';
 import '../../app/widgets/constants_widgets.dart';
 import '../../app/widgets/container_auth_widget.dart';
 import '../../app/widgets/textfield_app.dart';
@@ -98,22 +97,22 @@ class _EducationalMaterialsManagementAdminScreenState extends State<EducationalM
                         return const Text('Error');
                       } else if (snapshot.hasData) {
                         ConstantsWidgets.circularProgress();
-                        controller.lessons?.items.clear();
+                        controller.lessons.items.clear();
 
-                        if (snapshot.data!.docs!.length > 0) {
-                          controller.lessons?.items =
-                              LessonsModel.fromJson(snapshot.data!.docs!).items;
+                        if (snapshot.data!.docs.length > 0) {
+                          controller.lessons.items =
+                              LessonsModel.fromJson(snapshot.data!.docs).items;
                         }
                         controller.filterLessons(term: controller.searchController.value.text);
                         return
                           GetBuilder<LessonsController>(
                               builder: (LessonsController lessonsController)=>
-                              (lessonsController.lessonsWithFilter?.items?.isEmpty ?? true)
+                              (lessonsController.lessonsWithFilter.items.isEmpty ?? true)
                                   ? ConstantsWidgets.emptyWidget(context,
                                   text: "No Lessons Yet")
                                   :
 
-                              buildLessons(context, controller.lessonsWithFilter?.items ?? []));
+                              buildLessons(context, controller.lessonsWithFilter.items ?? []));
                       } else {
                         return const Text('Empty data');
                       }
