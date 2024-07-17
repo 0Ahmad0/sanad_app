@@ -1,10 +1,12 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../app/controller/lesson_requests_user_controller.dart';
 import '../../app/core/route/app_route.dart';
+import '../../app/core/utils/assets_manager.dart';
 import '../../app/widgets/custom_appbar_widget.dart';
 import '../../app/widgets/default_scaffold.dart';
 
@@ -17,6 +19,7 @@ import '../../app/screens/auth/widgets/divider_auth_widgets.dart';
 import '../../app/widgets/constants_widgets.dart';
 import '../../app/widgets/container_auth_widget.dart';
 import '../../app/widgets/textfield_app.dart';
+import '../../main.dart';
 import '../widgets/lesson_request_user_widget.dart';
 
 class ManagingLessonUserScreen extends StatefulWidget {
@@ -35,7 +38,18 @@ class _ManagingLessonUserScreenState extends State<ManagingLessonUserScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarWidget(),
+      appBar: CustomAppBarWidget(
+        child: [
+          IconButton(
+              onPressed: () async{
+                await audio.play(AssetSource(AssetsManager.managementLessonsScreenSound));
+              },
+              icon: CircleAvatar(
+                  backgroundColor: ColorManager.whiteColor,
+                  child: Image.asset(AssetsManager.nourSoundIcon))),
+
+        ],
+      ),
       body: FadeInDown(
         child: DefaultScaffoldWidget(
           child: Padding(

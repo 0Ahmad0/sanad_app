@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../controller/auth_controller.dart';
 import '../controller/profile_controller.dart';
 import '../core/utils/app_string.dart';
@@ -20,7 +21,7 @@ import '../widgets/textfield_app.dart';
 import 'auth/widgets/circle_profile_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
-   ProfileScreen({
+  ProfileScreen({
     super.key,
     this.showNourIcon = false,
   });
@@ -35,9 +36,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     // Get.put(ProfileController());
-    ProfileController profileController=Get.put(ProfileController());
+    ProfileController profileController = Get.put(ProfileController());
     // ProfileController profileController=ProfileController.instance;
-     profileController.refresh();
+    profileController.refresh();
 
     return Scaffold(
         appBar: widget.showNourIcon
@@ -45,15 +46,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 showBackButton: false,
                 child: [
                   GetBuilder<ProfileController>(
-                    init: profileController,
-                    // init: profileController,
-                    builder: (controller) {
-                      return CircleProfilePictureWidget(
-                        path: controller.profileImage?.path,
-                      );
-                    }
-                  ),
-
+                      init: profileController,
+                      // init: profileController,
+                      builder: (controller) {
+                        return CircleProfilePictureWidget(
+                          path: controller.profileImage?.path,
+                        );
+                      }),
                 ],
               )
             : null,
@@ -94,53 +93,51 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: GetBuilder<ProfileController>(
                       // init: profileController,
                       builder: (controller) {
-
-                        return Column(
+                    return Column(
+                      children: [
+                        CircleProfilePictureWidget(
+                          radius: 74.sp,
+                          path: controller.profileImage?.path,
+                        ),
+                        const SizedBox(
+                          height: AppSize.s10,
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            CircleProfilePictureWidget(
-                              radius: 74.sp,
-                              path: controller.profileImage?.path,
-                            ),
-                            const SizedBox(
-                              height: AppSize.s10,
-                            ),
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                IconButton(
-                                    onPressed: () {
-                                      //delete Picker
-                                      Get.dialog(
-                                        DialogWidget(
-                                          title: AppString.deletePhoto,
-                                          text: AppString.areYouSureDeletePhoto,
-                                          buttonNoText: AppString.cancle,
-                                          buttonOkText: AppString.yes,
-                                          onPressed: () {
-                                            controller.deletePhoto();
-                                            setState(() {});
-                                          },
-                                        ),
-                                      );
-                                    },
-                                    icon: Icon(Icons.delete)),
-                                IconButton(
-                                  onPressed: () async {
-                                    Get.dialog(
-                                      PickerDialog(
-                                        onChange:()=>  setState(() {}),
-                                      ),
-                                    );
-
-                                  },
-                                  icon: Icon(Icons.edit),
-                                ),
-                              ],
+                            IconButton(
+                                onPressed: () {
+                                  //delete Picker
+                                  Get.dialog(
+                                    DialogWidget(
+                                      title: AppString.deletePhoto,
+                                      text: AppString.areYouSureDeletePhoto,
+                                      buttonNoText: AppString.cancle,
+                                      buttonOkText: AppString.yes,
+                                      onPressed: () {
+                                        controller.deletePhoto();
+                                        setState(() {});
+                                      },
+                                    ),
+                                  );
+                                },
+                                icon: Icon(Icons.delete)),
+                            IconButton(
+                              onPressed: () async {
+                                Get.dialog(
+                                  PickerDialog(
+                                    onChange: () => setState(() {}),
+                                  ),
+                                );
+                              },
+                              icon: Icon(Icons.edit),
                             ),
                           ],
-                        );
-                      }),
+                        ),
+                      ],
+                    );
+                  }),
                 ),
                 const SizedBox(
                   height: AppSize.s10,
@@ -177,7 +174,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         TextFiledApp(
                           readOnly: true,
                           suffixIcon: widget.showNourIcon,
-                          audioPath: AssetsManager.noorSound,
+                          audioPath: AssetsManager.enterUserNameSound,
                           controller: profileController.userNameController,
                           hintText: AppString.userName,
                         ),
@@ -192,8 +189,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const DividerAuthWidget(),
                         TextFiledApp(
                           suffixIcon: widget.showNourIcon,
-                          audioPath: AssetsManager.noorSound,
-                           controller: profileController.nameController,
+                          audioPath: AssetsManager.enterFullNameSound,
+                          controller: profileController.nameController,
                           hintText: AppString.userName,
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -213,9 +210,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const DividerAuthWidget(),
                         TextFiledApp(
                           suffixIcon: widget.showNourIcon,
-
-                          audioPath: AssetsManager.noorSound,
-                           controller: profileController.emailController,
+                          audioPath: AssetsManager.enterEmailSound,
+                          controller: profileController.emailController,
                           hintText: AppString.email,
                           validator: (value) {
                             print('object');
@@ -236,7 +232,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const DividerAuthWidget(),
                         TextFiledApp(
                           suffixIcon: widget.showNourIcon,
-                          audioPath: AssetsManager.noorSound,
+                          audioPath: AssetsManager.enterPhoneNumberSound,
                           controller: profileController.phoneController,
                           hintText: AppString.phone,
                           validator: (value) {
@@ -255,19 +251,69 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               size: 16.sp, color: ColorManager.primaryColor),
                         ),
                         const DividerAuthWidget(),
-                        TextFiledApp(
-                          suffixIcon: widget.showNourIcon,
-                          audioPath: AssetsManager.noorSound,
-                          controller: profileController.genderController,
-                          hintText: AppString.sex,
-                          validator: (value) {
-                            print('object');
+                        DropdownButtonFormField(
+                          items: [AppString.male, AppString.female]
+                              .map((e) => DropdownMenuItem(
+                                    child: Text(e,style: StylesManager.textNormalStyle(
+                                      color: ColorManager.blackColor
+                                    ),),
+                                    value: e,
+                                  ))
+                              .toList(),
+                          onChanged: (value) {},
+                          validator: (value){
                             if (value!.isEmpty) {
                               return 'خطأ!';
                             }
                             return null;
                           },
+                          icon: !widget.showNourIcon?InkWell(
+                            onTap: () {},
+                            child: Image.asset(
+                              AssetsManager.nourSoundIcon,
+                              width: 50.sp,
+                              height: 50.sp,
+                            ),
+                          ):SizedBox(),
+                          style: TextStyle(
+                              fontSize: 14.sp, color: ColorManager.blackColor),
+                          decoration: InputDecoration(
+                            hintStyle: TextStyle(
+                              fontSize: 14.sp,
+                              color: ColorManager.greyColor,
+                            ),
+                            hintText: AppString.sex,
+                            filled: true,
+                            fillColor: ColorManager.containerAuthColor,
+                            contentPadding: EdgeInsets.only(
+                                left: 0, right: 10, top: 10, bottom: 10),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(14.0),
+                                borderSide: BorderSide(
+                                    color: ColorManager.secondaryColor
+                                        .withOpacity(.5),
+                                    width: 4)),
+                            errorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(14.0),
+                                borderSide: BorderSide(
+                                    color:
+                                        ColorManager.errorColor.withOpacity(.5),
+                                    width: 2)),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(14.0),
+                                borderSide: BorderSide(
+                                    color: ColorManager.secondaryColor,
+                                    width: 4)),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(14.0),
+                                borderSide: BorderSide(
+                                    color: ColorManager.secondaryColor
+                                        .withOpacity(.8),
+                                    width: 4)),
+                            errorMaxLines: 2,
+                          ),
                         ),
+
                       ],
                     ),
                   ),
@@ -280,9 +326,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const EdgeInsets.symmetric(horizontal: AppPadding.p20),
                   child: ButtonAppWidget(
                       onPressed: () {
-                        
                         profileController.updateUser();
-                      }, text: AppString.saveEditing),
+                      },
+                      text: AppString.saveEditing),
                 ),
                 const SizedBox(
                   height: AppSize.s100,

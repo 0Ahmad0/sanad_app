@@ -12,6 +12,7 @@ import 'app/core/utils/app_constant.dart';
 import 'app/core/utils/app_string.dart';
 
 AudioPlayer audio = AudioPlayer();
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Get.put( ProfileController());
+    Get.put(ProfileController());
     return ScreenUtilInit(
         designSize: Size(AppConstants.designWidth, AppConstants.designHeight),
         builder: (context, _) {
@@ -42,8 +43,8 @@ class MyApp extends StatelessWidget {
             title: AppString.appName,
             // theme:ThemeManager.myTheme,
             theme: ThemeData(
-              fontFamily: GoogleFonts.cairo().fontFamily,
-            ),
+                fontFamily: GoogleFonts.cairo().fontFamily,
+),
             defaultTransition: Transition.fade,
             getPages: AppRoute.appPages,
           );

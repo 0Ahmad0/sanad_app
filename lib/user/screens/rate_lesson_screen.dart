@@ -1,10 +1,13 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../app/controller/user_controller.dart';
+import '../../app/core/utils/assets_manager.dart';
 import '../../app/widgets/custom_appbar_widget.dart';
 import '../../app/widgets/default_scaffold.dart';
+import '../../main.dart';
 import '../widgets/show_rate_lesson_widget.dart';
 
 import '../../app/controller/lessons_controller.dart';
@@ -35,7 +38,18 @@ class _RateLessonScreenState extends State<RateLessonScreen> {
   Widget build(BuildContext context) {
     final rateController = Get.put(()=>UserController());
     return Scaffold(
-      appBar: CustomAppBarWidget(),
+      appBar: CustomAppBarWidget(
+        child: [
+          IconButton(
+              onPressed: () async{
+                await audio.play(AssetSource(AssetsManager.rateScreenSound));
+              },
+              icon: CircleAvatar(
+                  backgroundColor: ColorManager.whiteColor,
+                  child: Image.asset(AssetsManager.nourSoundIcon))),
+
+        ],
+      ),
       body: DefaultScaffoldWidget(
         child: SafeArea(
           child: Column(

@@ -1,5 +1,10 @@
 class AppString {
+
+
   static const appName = "سند";
+  static const female = "أنثى";
+  static const male = "ذكر";
+  static const profile = "الملف الشخصي";
   static const letsGo = "هيا لنبدأ";
   static const welcomeAgain = "اهلا بك مجدداً";
   static const login = "تسجيل دخول";

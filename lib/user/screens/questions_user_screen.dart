@@ -1,8 +1,10 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../app/core/utils/assets_manager.dart';
 import '../../app/widgets/custom_appbar_widget.dart';
 import '../../app/widgets/default_scaffold.dart';
 
@@ -16,7 +18,9 @@ import '../../app/screens/auth/widgets/divider_auth_widgets.dart';
 import '../../app/widgets/constants_widgets.dart';
 import '../../app/widgets/container_auth_widget.dart';
 import '../../app/widgets/textfield_app.dart';
+import '../../main.dart';
 import '../widgets/lesson_user_widget.dart';
+
 class QuestionsUserScreen extends StatefulWidget {
   const QuestionsUserScreen({super.key});
 
@@ -26,14 +30,30 @@ class QuestionsUserScreen extends StatefulWidget {
 
 class _QuestionsUserScreenState extends State<QuestionsUserScreen> {
   late LessonsController controller;
+
   void initState() {
     controller = Get.put(LessonsController());
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarWidget(),
+      appBar: CustomAppBarWidget(
+        child: [
+          IconButton(
+            onPressed: () async {
+              await audio.play(AssetSource(AssetsManager.questionScreenSound));
+            },
+            icon: CircleAvatar(
+              backgroundColor: ColorManager.whiteColor,
+              child: Image.asset(
+                AssetsManager.nourSoundIcon,
+              ),
+            ),
+          ),
+        ],
+      ),
       body: DefaultScaffoldWidget(
         child: FadeInDown(
           child: Padding(
@@ -41,7 +61,6 @@ class _QuestionsUserScreenState extends State<QuestionsUserScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 Text(
                   AppString.questions,
                   overflow: TextOverflow.ellipsis,
@@ -50,7 +69,6 @@ class _QuestionsUserScreenState extends State<QuestionsUserScreen> {
                     size: 20.sp,
                   ),
                 ),
-
                 const DividerAuthWidget(),
                 const SizedBox(
                   height: AppSize.s10,
@@ -59,8 +77,8 @@ class _QuestionsUserScreenState extends State<QuestionsUserScreen> {
                   padding: const EdgeInsets.only(left: AppPadding.p12),
                   child: TextFiledApp(
                     controller: controller.searchController,
-                    onChanged: (_)=>controller.filterLessons(term: controller.searchController.value.text),
-
+                    onChanged: (_) => controller.filterLessons(
+                        term: controller.searchController.value.text),
                     suffixIcon: false,
                     iconData: Icons.search,
                     hintText: AppString.search,
@@ -80,11 +98,12 @@ class _QuestionsUserScreenState extends State<QuestionsUserScreen> {
                 const DividerAuthWidget(),
                 Expanded(
                   child: ContainerAuthWidget(
-                    child:   StreamBuilder<QuerySnapshot>(
+                    child: StreamBuilder<QuerySnapshot>(
                         stream: controller.getLessons,
                         builder: (context, snapshot) {
-                          if (snapshot.connectionState == ConnectionState.waiting) {
-                            return    ConstantsWidgets.circularProgress();
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return ConstantsWidgets.circularProgress();
                           } else if (snapshot.connectionState ==
                               ConnectionState.active) {
                             if (snapshot.hasError) {
@@ -95,18 +114,25 @@ class _QuestionsUserScreenState extends State<QuestionsUserScreen> {
 
                               if (snapshot.data!.docs.length > 0) {
                                 controller.lessons.items =
-                                    LessonsModel.fromJson(snapshot.data!.docs).items;
+                                    LessonsModel.fromJson(snapshot.data!.docs)
+                                        .items;
                               }
-                              controller.filterLessons(term: controller.searchController.value.text);
-                              return
-                                GetBuilder<LessonsController>(
-                                    builder: (LessonsController lessonsController)=>
-                                    (lessonsController.lessonsWithFilter.items.isEmpty ?? true)
-                                        ? ConstantsWidgets.emptyWidget(context,
-                                        text: "No Lessons Yet")
-                                        :
-
-                                    buildLessons(context, controller.lessonsWithFilter.items ?? []));
+                              controller.filterLessons(
+                                  term: controller.searchController.value.text);
+                              return GetBuilder<LessonsController>(
+                                  builder:
+                                      (LessonsController lessonsController) =>
+                                          (lessonsController.lessonsWithFilter
+                                                      .items.isEmpty ??
+                                                  true)
+                                              ? ConstantsWidgets.emptyWidget(
+                                                  context,
+                                                  text: "No Lessons Yet")
+                                              : buildLessons(
+                                                  context,
+                                                  controller.lessonsWithFilter
+                                                          .items ??
+                                                      []));
                             } else {
                               return const Text('Empty data');
                             }
@@ -116,9 +142,6 @@ class _QuestionsUserScreenState extends State<QuestionsUserScreen> {
                         }),
                   ),
                 ),
-
-
-
                 const SizedBox(
                   height: AppSize.s20,
                 ),
@@ -130,15 +153,13 @@ class _QuestionsUserScreenState extends State<QuestionsUserScreen> {
     );
   }
 
-  Widget buildLessons(BuildContext context,List<LessonModel> items){
-    return
-      ListView.builder(
-        itemBuilder: (context, index) => LessonUserWidget(
-          name: '${items[index].name}',
-          lesson: items[index],
-        ),
-        itemCount: items.length,
-      );
-
+  Widget buildLessons(BuildContext context, List<LessonModel> items) {
+    return ListView.builder(
+      itemBuilder: (context, index) => LessonUserWidget(
+        name: '${items[index].name}',
+        lesson: items[index],
+      ),
+      itemCount: items.length,
+    );
   }
 }

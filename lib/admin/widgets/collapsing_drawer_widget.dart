@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sanad_app/app/core/utils/app_string.dart';
 import '../../app/controller/admin_controller.dart';
 import '../../app/core/helper/sizer_media_query.dart';
 import '../../app/core/utils/assets_manager.dart';
@@ -354,12 +355,12 @@ class NavigationItem {
 /// ---------------------------
 
 List<NavigationItem> navigationItem = [
-  NavigationItem(title:'Dashboard'/*'Dashboard'*/, icon: AssetsManager.adminDrawer1Icon),
-  NavigationItem(title:'Favorites' /*'Favorites'*/, icon: AssetsManager.adminDrawer2Icon),
-  NavigationItem(title:'Music Videos' /*'Music Videos'*/, icon: AssetsManager.adminDrawer3Icon),
-  NavigationItem(title:'Notification' /*'Notification'*/, icon: AssetsManager.adminDrawer4Icon),
-  NavigationItem(title:'Notification' /*'Notification'*/, icon: AssetsManager.adminDrawer5Icon),
-  NavigationItem(title:'Settings' /*'Settings'*/, icon: AssetsManager.logoutIcon)
+  NavigationItem(title:AppString.elderlyManagement/*'Dashboard'*/, icon: AssetsManager.adminDrawer1Icon),
+  NavigationItem(title:AppString.educationalMaterialsManagement /*'Favorites'*/, icon: AssetsManager.adminDrawer2Icon),
+  NavigationItem(title:AppString.questionManagement /*'Music Videos'*/, icon: AssetsManager.adminDrawer3Icon),
+  NavigationItem(title: AppString.lessonRequests/*'Notification'*/, icon: AssetsManager.adminDrawer4Icon),
+  NavigationItem(title:AppString.profile /*'Notification'*/, icon: AssetsManager.adminDrawer5Icon),
+  NavigationItem(title:AppString.logout /*'Settings'*/, icon: AssetsManager.logoutIcon)
 ];
 
 /// ---------------------------
