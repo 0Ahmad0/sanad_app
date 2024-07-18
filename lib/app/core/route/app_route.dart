@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:sanad_app/admin/screens/show_media_lessons_screen.dart';
 import '../../../admin/screens/add_lesson_admin_screen.dart';
 import '../../../admin/screens/add_questions_admin_screen.dart';
 import '../../../admin/screens/educational_materials_management_admin_screens.dart';
@@ -35,6 +36,7 @@ class AppRoute {
   static const navBarAdminRoute = '/navBarAdmin';
   static const addLessonAdminRoute = '/addLessonAdmin';
   static const addQuestionsAdminRoute = '/addQuestionsAdmin';
+  static const showMediaLessonsRoute = '/showMediaLessons';
   static const educationalMaterialsManagementAdminRoute =
       '/educationalMaterialsManagementAdmin';
   static const elderlyManagementAdminRoute = '/elderlyManagementRouteAdmin';
@@ -169,6 +171,11 @@ class AppRoute {
       name:showTextUserRoute,
       page: () => ShowTextScreen(),
       transition: Transition.zoom,
+    ),
+    GetPage(
+      name:showMediaLessonsRoute,
+      page: () => ShowMediaLessonsScreen(),
+      transition: Transition.fadeIn,
     ),
   ];
 }

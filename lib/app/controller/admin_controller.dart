@@ -60,11 +60,11 @@ class AdminController extends GetxController {
   Future pickImages() async {
 
     final pickedFile = await picker.pickMultiImage();
-    List<XFile> xfilePick = pickedFile;
+    List<XFile> xFilePick = pickedFile;
 
-    if (xfilePick.isNotEmpty) {
-      for (var i = 0; i < xfilePick.length; i++) {
-        images.add(File(xfilePick[i].path));
+    if (xFilePick.isNotEmpty) {
+      for (var i = 0; i < xFilePick.length; i++) {
+        images.add(File(xFilePick[i].path));
       }
       update();
     } else {
