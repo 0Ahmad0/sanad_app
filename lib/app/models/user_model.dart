@@ -29,7 +29,7 @@ class UserModel {
   });
 
   factory UserModel.fromJson(json) {
-    var data = json.runtimeType.toString()=='_JsonDocumentSnapshot'?json.data():json;
+    var data = ['_JsonDocumentSnapshot','_JsonQueryDocumentSnapshot'].contains(json.runtimeType.toString())?json.data():json;
     String name =
         json["name"] ?? '${json["firstName"] ?? ''} ${json["lastName"] ?? ''}';
     return UserModel(

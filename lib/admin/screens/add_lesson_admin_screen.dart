@@ -106,8 +106,12 @@ class AddLessonAdminScreen extends StatelessWidget {
                                               AppRoute.showMediaLessonsRoute);
                                         },
                                         icon: Icon(Icons.arrow_forward_ios)),
-                                onTap: () {
-                                  adminController.pickImages();
+                                onTap: () async {
+                                await  adminController.pickImages();
+                                   if(adminController.images.isNotEmpty){
+                                     controller.lesson?.imagesPath.clear();
+                                     adminController.update();
+                                   }
                                 },
                                 leading:
                                     Image.asset(AssetsManager.adminImageIcon),

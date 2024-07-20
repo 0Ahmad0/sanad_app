@@ -10,14 +10,22 @@ import 'package:sanad_app/app/widgets/custom_appbar_widget.dart';
 import 'package:sanad_app/app/widgets/default_scaffold.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../app/controller/admin_controller.dart';
 import '../../user/widgets/dialog_widget.dart';
 
-class ShowMediaLessonsScreen extends StatelessWidget {
+class ShowMediaLessonsScreen extends StatefulWidget {
   const ShowMediaLessonsScreen({super.key});
+
+  @override
+  State<ShowMediaLessonsScreen> createState() => _ShowMediaLessonsScreenState();
+}
+
+class _ShowMediaLessonsScreenState extends State<ShowMediaLessonsScreen> {
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(LessonController());
+    final adminController =  Get.put(AdminController());
     return Scaffold(
       appBar: CustomAppBarWidget(),
       body: DefaultScaffoldWidget(
@@ -45,8 +53,10 @@ class ShowMediaLessonsScreen extends StatelessWidget {
                                             title:
                                                 AppString.areYouSureDeletePhoto,
                                             onPressed: () {
-                                            // controller.lesson!.imagesPath.removeAt(index);
-                                            // Get.back();
+                                            controller.lesson!.imagesPath.removeAt(index);
+                                            adminController.update();
+                                            Get.back();
+                                            setState(() {});
                                             },
                                           ));
                                 },
