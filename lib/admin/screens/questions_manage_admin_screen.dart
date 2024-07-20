@@ -28,6 +28,7 @@ class _QuestionsManageAdminScreenState extends State<QuestionsManageAdminScreen>
   late LessonsController controller;
   void initState() {
     controller = Get.put(LessonsController());
+    controller.onInit();
     super.initState();
   }
   @override

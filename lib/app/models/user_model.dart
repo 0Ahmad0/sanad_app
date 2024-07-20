@@ -10,6 +10,7 @@ class UserModel {
   String? email;
   String? password;
   String? typeUser;
+  String? gender;
   bool isAdd = false;
 
   bool get isAdmin=>typeUser?.toLowerCase().contains(AppConstants.collectionAdmin.toLowerCase())??false;
@@ -23,10 +24,12 @@ class UserModel {
     this.photoUrl,
     this.phoneNumber,
     this.password,
-    this.typeUser
+    this.typeUser,
+    this.gender,
   });
 
   factory UserModel.fromJson(json) {
+    var data = json.runtimeType.toString()=='_JsonQueryDocumentSnapshot'?json.data():json;
     String name =
         json["name"] ?? '${json["firstName"] ?? ''} ${json["lastName"] ?? ''}';
     return UserModel(
@@ -38,6 +41,7 @@ class UserModel {
       email: json["email"],
       photoUrl: json["photoUrl"],
       typeUser: json["typeUser"],
+      gender: data["gender"],
       //  password:json['password']
     );
   }
@@ -62,6 +66,7 @@ class UserModel {
         'phoneNumber': phoneNumber,
         'photoUrl': photoUrl,
         'typeUser': typeUser,
+        'gender': gender,
       };
 }
 

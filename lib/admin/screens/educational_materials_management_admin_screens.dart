@@ -14,6 +14,7 @@ import '../../app/models/lesson_model.dart';
 import '../../app/screens/auth/widgets/divider_auth_widgets.dart';
 import '../../app/widgets/constants_widgets.dart';
 import '../../app/widgets/container_auth_widget.dart';
+import '../../app/widgets/empty_widget.dart';
 import '../../app/widgets/textfield_app.dart';
 import '../widgets/educational_materials_management_widget.dart';
 
@@ -28,6 +29,7 @@ class _EducationalMaterialsManagementAdminScreenState extends State<EducationalM
   late LessonsController controller;
   void initState() {
     controller = Get.put(LessonsController());
+    controller.onInit();
     super.initState();
   }
 
@@ -108,8 +110,8 @@ class _EducationalMaterialsManagementAdminScreenState extends State<EducationalM
                           GetBuilder<LessonsController>(
                               builder: (LessonsController lessonsController)=>
                               (lessonsController.lessonsWithFilter.items.isEmpty ?? true)
-                                  ? ConstantsWidgets.emptyWidget(context,
-                                  text: "No Lessons Yet")
+                                  ?EmptyWidget(
+                                  text: AppString.infoNotLessonYet)
                                   :
 
                               buildLessons(context, controller.lessonsWithFilter.items ?? []));

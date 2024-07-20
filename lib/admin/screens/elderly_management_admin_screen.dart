@@ -90,7 +90,7 @@ class _ElderlyManagementAdminScreenState extends State<ElderlyManagementAdminScr
                               builder: (UsersController usersController)=>
                           (controller.usersWithFilter.users.isEmpty ?? true)
                             ? EmptyWidget(
-                            text: AppString.infoNotLessonYet,
+                            text: AppString.infoNotElderlyYet,
                           )
                             :
 
@@ -123,7 +123,8 @@ class _ElderlyManagementAdminScreenState extends State<ElderlyManagementAdminScr
 
        ListView.builder(
        itemBuilder: (context, index) => ElderlyWidget(
-         name: '${users[index].name}',
+         // name: '${users[index].name}',
+         user:users[index],
        ),
        itemCount: users.length,
      );

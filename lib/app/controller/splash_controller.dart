@@ -26,10 +26,12 @@ class SplashController extends GetxController with GetSingleTickerProviderStateM
     });
 
 
-    if((await AppStorage.storageRead(key: AppConstants.rememberMe) as bool?) ??false){
+   if((await AppStorage.storageRead(key: AppConstants.rememberMe) as bool?) ??false){
       ConstantsWidgets.showLoading();
 
       ProfileController profileController=Get.put(ProfileController());
+
+      await profileController.getUser();
       // await ProfileController.instance.getUser();
       if(profileController.currentUser.value?.isAdmin??false)
         Get.offAll(NavBarAdminScreen());

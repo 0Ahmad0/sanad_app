@@ -2,6 +2,8 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:sanad_app/app/models/user_model.dart';
+import '../../app/core/route/app_route.dart';
 import '../../app/core/utils/app_string.dart';
 import '../../app/core/utils/color_manager.dart';
 import '../../app/core/utils/styles_manager.dart';
@@ -13,10 +15,10 @@ import '../../user/widgets/dialog_widget.dart';
 class ElderlyWidget extends StatelessWidget {
    ElderlyWidget({
     super.key,
-    required this.name,
+    required this.user,
   });
 
-  final String name;
+  final UserModel user;
   late UsersController controller;
 
   @override
@@ -28,7 +30,7 @@ class ElderlyWidget extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                name,
+                user.name??'',
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: StylesManager.textNormalStyle(
@@ -74,7 +76,9 @@ class ElderlyWidget extends StatelessWidget {
                 ),
                 FittedBox(
                   child: TextButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed(AppRoute.ShowUserProfileAdminRoute,arguments: {'user':user});
+                      },
                       icon: CircleAvatar(
                         radius: 10.sp,
                           backgroundColor: ColorManager.secondaryColor,

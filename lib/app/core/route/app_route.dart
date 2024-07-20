@@ -8,6 +8,7 @@ import '../../../admin/screens/home_admin_screen.dart';
 import '../../../admin/screens/lesson_requests_admin_screen.dart';
 import '../../../admin/screens/navbar_admin_screen.dart';
 import '../../../admin/screens/questions_manage_admin_screen.dart';
+import '../../../admin/screens/show_user_profile_screen.dart';
 import '../../screens/auth/auth_screen.dart';
 import '../../screens/profile_screen.dart';
 import '../../screens/splash_screen.dart';
@@ -43,6 +44,7 @@ class AppRoute {
   static const homeAdminRoute = '/homeAdmin';
   static const lessonRequestsAdminRoute = '/lessonRequestsAdmin';
   static const questionsManageAdminRoute = '/questionsManageAdmin';
+  static const ShowUserProfileAdminRoute = '/ShowUserProfileAdmin';
 
   ///User Screens
   static const navBarRoute = '/nabBar';
@@ -175,6 +177,11 @@ class AppRoute {
     GetPage(
       name:showMediaLessonsRoute,
       page: () => ShowMediaLessonsScreen(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name:ShowUserProfileAdminRoute,
+      page: () => ShowUserProfileScreen(),
       transition: Transition.fadeIn,
     ),
   ];

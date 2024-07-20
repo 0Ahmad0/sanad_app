@@ -20,6 +20,7 @@ class ProfileController extends GetxController {
   File? profileImage;
   String?  imagePath;
   final FirebaseAuth auth = FirebaseAuth.instance;
+  final genders= [AppString.male, AppString.female];
   // static ProfileController?   _instance;
   // static ProfileController  get instance =>init();
   // static init(){
@@ -35,7 +36,7 @@ class ProfileController extends GetxController {
   TextEditingController userNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  TextEditingController genderController = TextEditingController();
+  String? gender;
 
   Future<void> updateImage(XFile? image) async {
     try {
@@ -90,11 +91,13 @@ class ProfileController extends GetxController {
         email: email,
         phoneNumber: phoneController.value.text,
         userName: userNameController.value.text,
+        gender: gender,
         photoUrl: imagePath,
         typeUser: currentUser.value?.typeUser,
         uid:currentUser.value?.uid ,
         id: currentUser.value?.id,
       );
+
       await FirebaseFirestore.instance
           .collection('Users')
           .doc(FirebaseAuth.instance.currentUser?.uid ?? '')
@@ -186,7 +189,9 @@ class ProfileController extends GetxController {
     userNameController = TextEditingController(text: currentUser.value?.userName);
     emailController = TextEditingController(text: currentUser.value?.email);
     phoneController = TextEditingController(text: currentUser.value?.phoneNumber);
-    genderController = TextEditingController();
+
+    gender=genders.firstWhereOrNull((element)=>element==currentUser.value?.gender);
+    // genderController = TextEditingController();
     imagePath=currentUser.value?.photoUrl;
   }
   @override

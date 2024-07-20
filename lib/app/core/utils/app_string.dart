@@ -140,6 +140,8 @@ class AppString {
   static const inCorrectAnswer = 'إجابة خاطئة';
   ////info
   static const infoNotLessonYet = 'لا يوجد دروس متاحة';
+  static const infoNotElderlyYet = 'لا يوجد مستخدمين متاحين';
+  // static const infoNotLessonYet = 'No Lessons Yet';
 
 
 

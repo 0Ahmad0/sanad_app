@@ -13,6 +13,7 @@ import '../../app/models/lesson_model.dart';
 import '../../app/screens/auth/widgets/divider_auth_widgets.dart';
 import '../../app/widgets/constants_widgets.dart';
 import '../../app/widgets/container_auth_widget.dart';
+import '../../app/widgets/empty_widget.dart';
 import '../widgets/lesson_request_widget.dart';
 
 class LessonRequestsAdminScreen extends StatefulWidget {
@@ -74,8 +75,8 @@ class _LessonRequestsAdminScreenState extends State<LessonRequestsAdminScreen> {
                           GetBuilder<LessonsRequestsAdminController>(
                               builder: (LessonsRequestsAdminController lessonsController)=>
                               (lessonsController.lessonsWithFilter.items.isEmpty ?? true)
-                                  ? ConstantsWidgets.emptyWidget(context,
-                                  text: "No Lesson Requesrs Yet",)
+                                  ? EmptyWidget(
+                                  text: AppString.infoNotLessonYet)
                                   :
 
                               buildLessons(context, controller.lessonsWithFilter.items ?? []));

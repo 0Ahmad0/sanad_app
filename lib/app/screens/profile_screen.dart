@@ -252,7 +252,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         const DividerAuthWidget(),
                         DropdownButtonFormField(
-                          items: [AppString.male, AppString.female]
+                          value:profileController.gender ,
+                          items: profileController.genders
                               .map((e) => DropdownMenuItem(
                                     child: Text(e,style: StylesManager.textNormalStyle(
                                       color: ColorManager.blackColor
@@ -260,7 +261,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     value: e,
                                   ))
                               .toList(),
-                          onChanged: (value) {},
+                          onChanged: (value) {
+                            profileController.gender =value;
+                          },
                           validator: (value){
                             if (value!.isEmpty) {
                               return 'خطأ!';
