@@ -48,15 +48,17 @@ class LessonController extends GetxController{
 
     String name=nameController.value.text;
      status=status??StatusLesson.accepted.name;
-    String? videoPath;
-    String? filePath;
+    String? videoPath,videoName;
+    String? filePath,fileName;
     List<String> imagesPath=[];
     if(videoFile!=null){
       videoPath=await FirebaseFun.uploadImage(image: XFile(videoFile.path),folder: FirebaseConstants.collectionLesson+'/$name');
+      videoName=XFile(videoFile.path).name;
       _plusProgress();
     }
     if(audioFile!=null){
       filePath=await FirebaseFun.uploadImage(image: XFile(audioFile.path),folder: FirebaseConstants.collectionLesson+'/$name');
+      fileName=XFile(audioFile.path).name;
       _plusProgress();
     }
     for(File image in images){
@@ -72,7 +74,9 @@ class LessonController extends GetxController{
       description: descriptionController.value.text,
       imagesPath: imagesPath,
       videoPath: videoPath,
+        fileName: fileName,
       filePath: filePath,
+        videoName: videoName,
       dateTime: DateTime.now(),
       status: status,
       idUser: withUserId?uid:null
@@ -99,15 +103,17 @@ class LessonController extends GetxController{
 
     String name=nameController.value.text;
 
-    String? videoPath;
-    String? filePath;
+    String? videoPath,videoName;
+    String? filePath,fileName;
     List<String> imagesPath=[];
     if(videoFile!=null){
       videoPath=await FirebaseFun.uploadImage(image: XFile(videoFile.path),folder: FirebaseConstants.collectionLesson+'/$name');
+      videoName=XFile(videoFile.path).name;
       _plusProgress();
     }
     if(audioFile!=null){
       filePath=await FirebaseFun.uploadImage(image: XFile(audioFile.path),folder: FirebaseConstants.collectionLesson+'/$name');
+      fileName=XFile(audioFile.path).name;
       _plusProgress();
     }
     for(File image in images){
@@ -120,7 +126,9 @@ class LessonController extends GetxController{
     lesson?.description= descriptionController.value.text;
     lesson?.imagesPath=imagesPath.isNotEmpty?imagesPath:lesson?.imagesPath??[];
     lesson?.videoPath=videoPath??lesson?.videoPath;
+    lesson?.videoName=videoName??lesson?.videoName;
     lesson?.filePath=filePath??lesson?.filePath;
+    lesson?.fileName=fileName??lesson?.fileName;
 
     var
     result=await FirebaseFun.updateLesson(lesson:lesson!);

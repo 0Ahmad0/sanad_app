@@ -98,7 +98,7 @@ class AddLessonAdminScreen extends StatelessWidget {
                               ),
                               ListTile(
                                 contentPadding: EdgeInsets.zero,
-                                trailing: controller.lesson!.imagesPath.isEmpty
+                                trailing: controller.lesson?.imagesPath.isEmpty??true
                                     ? SizedBox.shrink()
                                     : IconButton(
                                         onPressed: () {
@@ -138,7 +138,7 @@ class AddLessonAdminScreen extends StatelessWidget {
                                 ),
                               ),
                               ListTile(
-                                trailing: controller.lesson!.filePath == null
+                                trailing: controller.lesson?.filePath == null
                                     ? SizedBox.shrink()
                                     : IconButton(
                                         onPressed: () {
@@ -157,7 +157,7 @@ class AddLessonAdminScreen extends StatelessWidget {
                                     ? null
                                     : Text(
                                         maxLines: 2,
-                                        '${basename(adminController.audioFile?.path ?? controller.lesson?.filePath ?? '')}'),
+                                        '${basename(adminController.audioFile?.path ??controller.lesson?.fileName?? controller.lesson?.filePath ?? '')}'),
                                 title: Text(
                                   AppString.uploadSoundAdmin,
                                   style: StylesManager.textNormalStyle(
@@ -166,7 +166,7 @@ class AddLessonAdminScreen extends StatelessWidget {
                                 ),
                               ),
                               ListTile(
-                                trailing: controller.lesson!.videoPath == null
+                                trailing: controller.lesson?.videoPath == null
                                     ? SizedBox.shrink()
                                     : IconButton(
                                         onPressed: () {
@@ -185,7 +185,7 @@ class AddLessonAdminScreen extends StatelessWidget {
                                     ? null
                                     : Text(
                                         maxLines: 2,
-                                        '${basename(adminController.videoFile?.path ?? controller.lesson?.videoPath ?? '')}'),
+                                        '${basename(adminController.videoFile?.path ?? controller.lesson?.videoName ??controller.lesson?.videoPath ?? '')}'),
                                 title: Text(
                                   AppString.uploadVideoAdmin,
                                   style: StylesManager.textNormalStyle(

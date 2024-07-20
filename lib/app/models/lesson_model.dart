@@ -15,7 +15,9 @@ class LessonModel {
   String? idUser;
   String? name;
   String? description;
+  String? fileName;
   String? filePath;
+  String? videoName;
   String? videoPath;
   List<String> imagesPath;
   List<Question> questions;
@@ -93,7 +95,9 @@ class LessonModel {
     this.name,
     this.description,
     this.filePath,
+    this.fileName,
     this.videoPath,
+    this.videoName,
     this.imagesPath=const[],
     this.questions=const[],
     this.mapRateLessons=const{},
@@ -126,10 +130,12 @@ class LessonModel {
       name: json["name"],
       description: json["description"],
       filePath: json["filePath"],
+      fileName: data["fileName"],
       imagesPath: itemList,
       questions: itemList2,
       mapRateLessons: itemMap,
       videoPath: json["videoPath"],
+      videoName: data["videoName"],
       status: json["status"],
       idUser: data["idUser"],
       dateTime: data["dateTime"]?.toDate(),
@@ -156,7 +162,9 @@ class LessonModel {
       'name': name,
       'description': description,
       'filePath': filePath,
+      'fileName': fileName,
       'videoPath': videoPath,
+      'videoName': videoName,
       'imagesPath': imagesPath,
       'questions': itemList,
       'mapRateLessons': itemMap,
