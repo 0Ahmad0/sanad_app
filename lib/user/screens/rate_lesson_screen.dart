@@ -7,6 +7,7 @@ import '../../app/controller/user_controller.dart';
 import '../../app/core/utils/assets_manager.dart';
 import '../../app/widgets/custom_appbar_widget.dart';
 import '../../app/widgets/default_scaffold.dart';
+import '../../app/widgets/empty_widget.dart';
 import '../../main.dart';
 import '../widgets/show_rate_lesson_widget.dart';
 
@@ -107,8 +108,8 @@ class _RateLessonScreenState extends State<RateLessonScreen> {
                                 GetBuilder<LessonsController>(
                                     builder: (LessonsController lessonsController)=>
                                     (lessonsController.lessonsWithFilter.items.isEmpty ?? true)
-                                        ? ConstantsWidgets.emptyWidget(context,
-                                        text: "No Lessons Yet")
+                                        ?EmptyWidget(
+                                        text: AppString.infoNotLessonYet)
                                         :
 
                                     buildLessons(context, controller.lessonsWithFilter.items ?? []));

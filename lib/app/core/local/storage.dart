@@ -44,6 +44,9 @@ class AppStorage {
     await _storage.remove(AppConstants.idKEY);
     await _storage.remove(AppConstants.uidKEY);
     await _storage.remove(AppConstants.tokenKEY);
+    await _storage.remove(AppConstants.USER_NAME_KEY);
+    await _storage.remove(AppConstants.PASSWORD_KEY);
+    await _storage.remove(AppConstants.USER_NAME_KEY);
     await _storage.write(AppConstants.rememberMe, false);
   }
 }

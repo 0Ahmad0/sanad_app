@@ -18,6 +18,7 @@ import '../../app/models/lesson_model.dart';
 import '../../app/screens/auth/widgets/divider_auth_widgets.dart';
 import '../../app/widgets/constants_widgets.dart';
 import '../../app/widgets/container_auth_widget.dart';
+import '../../app/widgets/empty_widget.dart';
 import '../../app/widgets/textfield_app.dart';
 import '../../main.dart';
 import '../widgets/lesson_request_user_widget.dart';
@@ -126,8 +127,8 @@ class _ManagingLessonUserScreenState extends State<ManagingLessonUserScreen> {
                                 GetBuilder<LessonsRequestsUserController>(
                                     builder: (LessonsRequestsUserController lessonsController)=>
                                     (lessonsController.lessonsWithFilter.items.isEmpty ?? true)
-                                        ? ConstantsWidgets.emptyWidget(context,
-                                      text: "No Lesson Requesrs Yet",)
+                                        ? EmptyWidget(
+                                        text: AppString.infoNotLessonRequestYet)
                                         :
 
                                     buildLessons(context, controller.lessonsWithFilter.items ?? []));

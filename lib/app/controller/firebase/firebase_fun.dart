@@ -267,9 +267,9 @@ class FirebaseFun {
         errorMessage =
         "تم انشاء الحساب بنجاح";
         break;
-      case "":
+      case "Lesson successfully delete":
         errorMessage =
-        "";
+        "تم حذف الجلسة بنجاح";
         break;
       case "":
         errorMessage =

@@ -141,6 +141,7 @@ class AppString {
   ////info
   static const infoNotLessonYet = 'لا يوجد دروس متاحة';
   static const infoNotElderlyYet = 'لا يوجد مستخدمين متاحين';
+  static const infoNotLessonRequestYet = 'لا يوجد طلبات دروس حتى الأن';
   // static const infoNotLessonYet = 'No Lessons Yet';
 
 
@@ -158,22 +159,38 @@ class AppString {
   static const enterValidConfirmPassword = 'Password must be same as above';
 
   ///<Error Message Firebase>//
-  static const message_email_successfully_send_code= "Email successfully send code";
-  static const message_successfully_created= "Account successfully created";
-  static const message_successfully_update= "Account successfully update";
-  static const message_Unsuccessfully_created= "Account Unsuccessfully created";
-  static const message_email_already_use= "The email address is already in use";
-  static const message_short_password= "short password\nshould be at least 6 characters";
-  static const message_successfully_logged= "successfully logged";
-  static const message_email_invalid= "The email is invalid";
-  static const message_password_invalid= "The password is invalid";
-  static const message_network_error= "A network error";
-  static const message_account_invalid= "Account is invalid";
+  // static const message_email_successfully_send_code= "Email successfully send code";
+  // static const message_successfully_created= "Account successfully created";
+  // static const message_successfully_update= "Account successfully update";
+  // static const message_Unsuccessfully_created= "Account Unsuccessfully created";
+  // static const message_email_already_use= "The email address is already in use";
+  // static const message_short_password= "short password\nshould be at least 6 characters";
+  // static const message_successfully_logged= "successfully logged";
+  // static const message_email_invalid= "The email is invalid";
+  // static const message_password_invalid= "The password is invalid";
+  // static const message_network_error= "A network error";
+  // static const message_account_invalid= "Account is invalid";
+  // static const message_Bad_data_fetch= "Internal Error: Bad data fetch";
+  // static const message_time_out= "time out";
+  // static const message_given_empty= "Given String is empty or null";
+  // static const message_account_not_active= "Account not Active";
+  // static const message_unable_connection= "Unable connection";
+  static const message_email_successfully_send_code= "تم ارسال الرمز إلى البريد";
+  static const message_successfully_created= "تم انشاء الحساب بنجاح";
+  static const message_successfully_update= "تم تحديث الحساب بنجاح";
+  static const message_Unsuccessfully_created= "فشل تحديث الحساب";
+  static const message_email_already_use= "البريد المدخل موجود مسبقاً";
+  static const message_short_password= "كلمة السر قصيرة\nيجب أن تكون 6 محارف على الأقل";
+  static const message_successfully_logged= "تم تسجيل الدخول بنجاح";
+  static const message_email_invalid= "البريد غير صالح";
+  static const message_password_invalid= "كلمة السر غير صحيحة";
+  static const message_network_error= "حدث خطأ بالشبكة";
+  static const message_account_invalid= "الحساب غير صالح";
   static const message_Bad_data_fetch= "Internal Error: Bad data fetch";
-  static const message_time_out= "time out";
-  static const message_given_empty= "Given String is empty or null";
-  static const message_account_not_active= "Account not Active";
-  static const message_unable_connection= "Unable connection";
+  static const message_time_out= "انتهت مدة الاتصال";
+  static const message_given_empty= "النص فارغ";
+  static const message_account_not_active= "الحساب غير نشط";
+  static const message_unable_connection= "فشل الاتصال";
 
 
   ///<Message Firebase>//

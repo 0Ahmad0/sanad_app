@@ -10,6 +10,7 @@ import '../../app/core/utils/values_manager.dart';
 import '../../app/widgets/container_auth_widget.dart';
 import '../../app/widgets/custom_appbar_widget.dart';
 import '../../app/widgets/default_scaffold.dart';
+import '../../app/widgets/empty_widget.dart';
 import '../../app/widgets/textfield_app.dart';
 import '../widgets/show_lesson_widget.dart';
 
@@ -94,8 +95,8 @@ class _LessonUserScreenState extends State<LessonUserScreen> {
                             GetBuilder<LessonsController>(
                                 builder: (LessonsController lessonsController)=>
                                 (lessonsController.lessonsWithFilter.items.isEmpty ?? true)
-                                    ? ConstantsWidgets.emptyWidget(context,
-                                    text: "No Lessons Yet")
+                                    ? EmptyWidget(
+                                    text: AppString.infoNotLessonYet)
                                     :
 
                                 buildLessons(context, controller.lessonsWithFilter.items ?? []));

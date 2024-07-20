@@ -61,6 +61,7 @@ class ProfileController extends GetxController {
 
     } catch (e) {
       String errorMessage;
+      // errorMessage = "An unexpected error occurred. Please try again later.";
       errorMessage = "An unexpected error occurred. Please try again later.";
       Get.back();
       Get.snackbar(
@@ -118,6 +119,7 @@ class ProfileController extends GetxController {
 
     } catch (e) {
       String errorMessage;
+      // errorMessage = "An unexpected error occurred. Please try again later.";
       errorMessage = "An unexpected error occurred. Please try again later.";
       Get.back();
       Get.snackbar(
@@ -129,7 +131,6 @@ class ProfileController extends GetxController {
   }
   Future<void> getUser() async {
     try {
-      ;
       await FirebaseFirestore.instance
           .collection('Users')
           .doc(FirebaseAuth.instance.currentUser?.uid ??
@@ -153,6 +154,7 @@ class ProfileController extends GetxController {
 
     } catch (e) {
       String errorMessage;
+      // errorMessage = "An unexpected error occurred. Please try again later.";
       errorMessage = "An unexpected error occurred. Please try again later.";
       Get.snackbar(
           AppString.message_failure,

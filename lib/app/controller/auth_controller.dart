@@ -105,6 +105,7 @@ class AuthController extends GetxController {
        email=userModel.email??userName;
      }
 
+
       //,,,,,,,,,,,,,,,,,
       await auth
           .signInWithEmailAndPassword(email: email, password: password)
@@ -117,11 +118,10 @@ class AuthController extends GetxController {
         //     backgroundColor: ColorManager.successColor
         // );
 
-         AppStorage.storageWrite(key:AppConstants.rememberMe,value:  true);
-         AppStorage.storageWrite(key:AppConstants.uidKEY, value: auth.currentUser?.uid);
-         AppStorage.storageWrite(key:AppConstants.EMAIL_KEY,value:  email);
-         AppStorage.storageWrite(key:AppConstants.PASSWORD_KEY,value:  password);
-
+        await AppStorage.storageWrite(key:AppConstants.rememberMe,value:  true);
+        await AppStorage.storageWrite(key:AppConstants.uidKEY, value: auth.currentUser?.uid);
+        await AppStorage.storageWrite(key:AppConstants.EMAIL_KEY,value:  email);
+        await AppStorage.storageWrite(key:AppConstants.PASSWORD_KEY,value:  password);
 
           //Get.offAll(HomePage());
         ProfileController profileController=Get.put(ProfileController());;
@@ -235,11 +235,12 @@ class AuthController extends GetxController {
       if(deleteFromAuth){
         auth.currentUser?.delete();
       }
-     await AppStorage.storageDelete(key:AppConstants.rememberMe);
-      AppStorage.storageDelete(key:AppConstants.uidKEY);
-      AppStorage.storageDelete(key:AppConstants.EMAIL_KEY);
-      AppStorage.storageDelete(key:AppConstants.PASSWORD_KEY);
-      AppStorage.storageDelete(key:AppConstants.USER_NAME_KEY);
+     await AppStorage.depose();
+     // await AppStorage.storageDelete(key:AppConstants.rememberMe);
+     //  await AppStorage.storageDelete(key:AppConstants.uidKEY);
+     //  await AppStorage.storageDelete(key:AppConstants.EMAIL_KEY);
+     //  await AppStorage.storageDelete(key:AppConstants.PASSWORD_KEY);
+     //  await AppStorage.storageDelete(key:AppConstants.USER_NAME_KEY);
     });
     Get.offAll(SplashScreen());
   }

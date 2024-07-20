@@ -17,6 +17,7 @@ import '../../app/models/lesson_model.dart';
 import '../../app/screens/auth/widgets/divider_auth_widgets.dart';
 import '../../app/widgets/constants_widgets.dart';
 import '../../app/widgets/container_auth_widget.dart';
+import '../../app/widgets/empty_widget.dart';
 import '../../app/widgets/textfield_app.dart';
 import '../../main.dart';
 import '../widgets/lesson_user_widget.dart';
@@ -125,9 +126,8 @@ class _QuestionsUserScreenState extends State<QuestionsUserScreen> {
                                           (lessonsController.lessonsWithFilter
                                                       .items.isEmpty ??
                                                   true)
-                                              ? ConstantsWidgets.emptyWidget(
-                                                  context,
-                                                  text: "No Lessons Yet")
+                                              ? EmptyWidget(
+                                              text: AppString.infoNotLessonYet)
                                               : buildLessons(
                                                   context,
                                                   controller.lessonsWithFilter
