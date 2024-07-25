@@ -46,7 +46,11 @@ class AuthController extends GetxController {
     update();
   }
 
-  Future<String?> validatePassword(String value) async {
+  playAudio(String path) async {
+    await audio.play(AssetSource(path));
+  }
+
+  validatePassword(String value) {
     RegExp regex =
         RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
     if (value.isEmpty) {
@@ -57,16 +61,18 @@ class AuthController extends GetxController {
       }
       if (!RegExp(r'[a-z]').hasMatch(value) ||
           !RegExp(r'[A-Z]').hasMatch(value)) {
-        await audio.play(AssetSource(AssetsManager.passLetterSound));
+        playAudio(AssetsManager.passLetterSound);
         return 'خطـأ';
       }
 
       if (!RegExp(r'[0-9]').hasMatch(value)) {
-        await audio.play(AssetSource(AssetsManager.passNumberSound));
+        playAudio(AssetsManager.passNumberSound);
+
         return 'خطـأ';
       }
       if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value)) {
-        await audio.play(AssetSource(AssetsManager.passSymbolSound));
+        playAudio(AssetsManager.passSymbolSound);
+
         return 'خطـأ';
       }
       // if (!regex.hasMatch(value)) {
