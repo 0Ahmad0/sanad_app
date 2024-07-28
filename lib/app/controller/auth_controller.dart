@@ -56,28 +56,12 @@ class AuthController extends GetxController {
     if (value.isEmpty) {
       return AppString.requiredFiled;
     } else {
-      if (value.length < 8) {
-        return 'خطـأ';
-      }
-      if (!RegExp(r'[a-z]').hasMatch(value) ||
-          !RegExp(r'[A-Z]').hasMatch(value)) {
-        playAudio(AssetsManager.passLetterSound);
-        return 'خطـأ';
-      }
 
-      if (!RegExp(r'[0-9]').hasMatch(value)) {
-        playAudio(AssetsManager.passNumberSound);
+      if (!regex.hasMatch(value)) {
 
-        return 'خطـأ';
-      }
-      if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value)) {
-        playAudio(AssetsManager.passSymbolSound);
 
-        return 'خطـأ';
+        return 'خطأ';
       }
-      // if (!regex.hasMatch(value)) {
-      //   return 'Enter valid password';
-      // }
       return null;
     }
   }
