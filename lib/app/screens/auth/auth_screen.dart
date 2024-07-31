@@ -1,9 +1,13 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:sanad_app/app/core/helper/validator.dart';
+import '../../../main.dart';
 import '../../controller/auth_controller.dart';
 import '../../core/helper/sizer_media_query.dart';
 import '../../core/utils/app_string.dart';
+import '../../core/utils/assets_manager.dart';
 import '../../core/utils/color_manager.dart';
 import '../../core/utils/styles_manager.dart';
 import '../../core/utils/values_manager.dart';
@@ -12,7 +16,6 @@ import 'signup_widget.dart';
 import '../../widgets/button_app_widget.dart';
 import '../../widgets/custom_appbar_widget.dart';
 import '../../widgets/default_scaffold.dart';
-
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
@@ -115,14 +118,45 @@ class AuthScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: AppPadding.p40),
                         child: ButtonAppWidget(
-                            onPressed: () {
-
+                            onPressed: () async {
+                              // audio.dispose();
                               if (controller.formKey.currentState!.validate()) {
                                 // Get.offAllNamed(AppRoute.navBarAdminRoute);
                                 // Get.offAll(NavbarUserScreen());
-                                controller.currentIndex==0?
-                                controller.login()
+                                controller.currentIndex == 0
+                                    ? controller.login()
                                     : controller.signUp();
+                              } else {
+                                if (controller.passwordController.text.length >
+                                    8) if (!RegExp(
+                                        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+                                    .hasMatch(
+                                        controller.passwordController.text)) {
+                                  if (!RegExp(r'[a-z]').hasMatch(
+                                          controller.passwordController.text) ||
+                                      !RegExp(r'[A-Z]').hasMatch(
+                                          controller.passwordController.text)) {
+                                    await audio.play(AssetSource(
+                                        AssetsManager.passLetterSound));
+                                    // return 'خطـأ';
+                                  }
+
+                                  if (!RegExp(r'[0-9]').hasMatch(
+                                      controller.passwordController.text)) {
+                                    await audio.play(AssetSource(
+                                        AssetsManager.passNumberSound));
+
+                                    // return 'خطـأ';
+                                  }
+                                  if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]')
+                                      .hasMatch(
+                                          controller.passwordController.text)) {
+                                    await audio.play(AssetSource(
+                                        AssetsManager.passSymbolSound));
+
+                                    // return 'خطـأ';
+                                  }
+                                }
                               }
                             },
                             text: AppString.registration),

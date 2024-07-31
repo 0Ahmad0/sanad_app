@@ -53,4 +53,7 @@ class AssetsManager {
   static const String editProfilePasswordSound = '$soundPath/edit_profile_password_sound.mp3';
   static const String editProfileScreenSound = '$soundPath/edit_profile_screen_sound.mp3';
   static const String addLessonScreenSound = '$soundPath/add_lesson_screen_sound.mp3';
+  static const String passSymbolSound = '$soundPath/pass_symbol.mp3';
+  static const String passNumberSound = '$soundPath/pass_number.mp3';
+  static const String passLetterSound = '$soundPath/pass_letter.mp3';
 }
