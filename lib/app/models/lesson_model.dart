@@ -61,8 +61,18 @@ class LessonModel {
   answerQuestion(String idUser,int questionIndex,int selectOptionIndex){
     if(!mapRateLessons.containsKey(idUser))
       mapRateLessons[idUser]=initRateLesson();
+
     handleRateLesson();
-    mapRateLessons[idUser]?.selectOptionIndexes[questionIndex]=selectOptionIndex;
+
+    List<int?> tempSelectOptionIndexes=[];
+    for(int i=0;i<(mapRateLessons[idUser]?.selectOptionIndexes?.length??0);i++)
+      tempSelectOptionIndexes.add(
+          i==questionIndex?
+          selectOptionIndex
+              : mapRateLessons[idUser]?.selectOptionIndexes[i]);
+    mapRateLessons[idUser]?.selectOptionIndexes= tempSelectOptionIndexes;
+
+    // mapRateLessons[idUser]?.selectOptionIndexes[questionIndex]=selectOptionIndex;
   }
   removeAnswer(String idUser,int questionIndex,int selectOptionIndex){
     if(!mapRateLessons.containsKey(idUser))

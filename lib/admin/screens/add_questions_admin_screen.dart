@@ -19,11 +19,22 @@ import '../../app/widgets/empty_widget.dart';
 import '../../user/widgets/dialog_widget.dart';
 import 'add_question_screen.dart';
 
-class AddQuestionsAdminScreen extends StatelessWidget {
+class AddQuestionsAdminScreen extends StatefulWidget {
+  @override
+  State<AddQuestionsAdminScreen> createState() => _AddQuestionsAdminScreenState();
+}
+
+class _AddQuestionsAdminScreenState extends State<AddQuestionsAdminScreen> {
+  late LessonQuestionsController  controller;
+  @override
+  void initState() {
+     controller = Get.put(LessonQuestionsController());
+    controller.refreshQuestion();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(LessonQuestionsController());
-     controller.refreshQuestion();
+
 
     return Scaffold(
       appBar: CustomAppBarWidget(),
@@ -32,7 +43,9 @@ class AddQuestionsAdminScreen extends StatelessWidget {
             ? EmptyWidget(
           text: AppString.noQuestionFoundYet,
         )
-            : GetBuilder<LessonQuestionsController>(builder: (lessonQuestionsController) {
+            : GetBuilder<LessonQuestionsController>(
+            builder: (lessonQuestionsController) {
+
                 return StatefulBuilder(builder: (context, setStateQuestion) {
                   return ReorderableColumn(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,8 +92,9 @@ class AddQuestionsAdminScreen extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) =>
                 AddQuestionPage(
-                  onSave: (question) {
-                    controller.addQuestion(context,question: question);
+                  onSave: (question) async {
+                   await controller.addQuestion(context,question: question);
+                   setState(() {});
                     // questions.add(question);
                     // update();
                   },
@@ -92,7 +106,6 @@ class AddQuestionsAdminScreen extends StatelessWidget {
       ),
     );
   }
-
 }
 
 
