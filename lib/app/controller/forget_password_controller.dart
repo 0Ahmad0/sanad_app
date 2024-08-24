@@ -48,7 +48,8 @@ class ForgetPasswordController extends GetxController {
     
     ConstantsWidgets.showLoading();
     try{
-      if(difference.inMinutes<countMinutes)
+
+      if(difference.inMinutes.abs()<countMinutes)
         throw FirebaseAuthException(code: 'لا يمكنك اعادة ارسال الرمز حتى انتهاء المدة');
      await FirebaseFun.auth.sendPasswordResetEmail(email: emailController.value.text)
           .timeout(FirebaseFun.timeOut);
