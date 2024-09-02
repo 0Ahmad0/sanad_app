@@ -35,32 +35,53 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
+  # animation app
   animate_do:
+  #  State Managment
   get:
+  #  Store Values in app
   get_storage:
+  #    For Loading Dialog (Wave) in app
   flutter_spinkit:
+  #Resposive
   flutter_screenutil:
+  #    Fonts
   google_fonts:
+  #    App in Arabic
   flutter_localization: ^0.2.0
+  #  Sounds
   audioplayers: ^6.0.0
+  #Files Picker from device
   file_picker:
+  #    Image Picker From Device
   image_picker:
+  #    for name any file(file iamge audio vedio...etc) picker
   path:
+  #  For re order questions in app
   reorderables:
+  # for navigation bar in home user screen
   flutter_snake_navigationbar:
+  #    Format Date
   intl:
 
-  #//Firebase//
+  #//Firebase is No sql database {} More fast than sql//
   firebase_core:
+#  Email and password auth
   firebase_auth:
+#    Store Files images audio ...etc
   firebase_storage:
+#    database Firebase
   cloud_firestore:
+
   firebase_database:
+
+#For Play Vedios
   video_player:
   chewie:
   audio_waveforms:
   flutter_audio_waveforms:
   cached_network_image:
+  carousel_slider:
 
 
 dev_dependencies:
