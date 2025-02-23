@@ -51,6 +51,12 @@ class AuthController extends GetxController {
   }
 
   validatePassword(String value) {
+
+    // 1- lenght >= 8
+    // 2- contain one or more Number [0-----9]
+    // 3- contain one or more capital letter [A-Z]
+    // 4- contain one or more smoll letter [a-z]
+    // 5- contain one or more special letter [-?=.*?[!@#\$&*~]).{8,}$-]
     RegExp regex =
         RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
     if (value.isEmpty) {
@@ -94,6 +100,7 @@ class AuthController extends GetxController {
     if (value.isEmpty) {
       return AppString.requiredFiled;
     }
+
     return null;
   }
 

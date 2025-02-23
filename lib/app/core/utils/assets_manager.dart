@@ -33,7 +33,6 @@ class AssetsManager {
   static const String questionsLessonsIcon = '$iconPath/questions_lessons.png';
 
 
-  ///=================<<Json>>=================///
 
   ///=================<<Audio>>=================///
 

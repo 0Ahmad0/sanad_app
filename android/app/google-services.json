@@ -1,26 +1,43 @@
 {
   "project_info": {
-    "project_number": "354641805418",
-    "project_id": "sanad-app-6938f",
-    "storage_bucket": "sanad-app-6938f.appspot.com"
+    "project_number": "987400774995",
+    "project_id": "ah-chat-a7da9",
+    "storage_bucket": "ah-chat-a7da9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:354641805418:android:f897961e7f6bcdd6920a13",
+        "mobilesdk_app_id": "1:987400774995:android:2085f95bd72993ed786da6",
         "android_client_info": {
           "package_name": "com.sanadapp.sanad_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "987400774995-1fmla9n4c27klndqh4fo3t3orjbmqpjb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyBB7mdE84u_DACVo6cD1G0z8QFV1eyH5aY"
+          "current_key": "AIzaSyBAroppLoTezVipHFanqvXhIJtrOkAWqsU"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987400774995-1fmla9n4c27klndqh4fo3t3orjbmqpjb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "987400774995-njvo8ilckjd15pnaq1rjj1deoaer1g3h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ahmadh.ahchat"
+              }
+            }
+          ]
         }
       }
     }

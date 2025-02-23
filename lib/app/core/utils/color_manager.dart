@@ -14,7 +14,6 @@ class ColorManager {
   ///
   static const textFieldColor = Color(0xff6C6B6B);
   static const textFieldHintColor = Color(0xff737781);
-  static const facebookButtonColor = Color(0xff4C8ECC);
   static const appBarColor = Color(0xff9BBEE5);
 
   static const drawerColor = Color(0xff403E2C);

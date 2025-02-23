@@ -5,15 +5,19 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sanad_app/app/core/helper/convert_to_material_color.dart';
 
 import 'app/controller/profile_controller.dart';
 import 'app/core/route/app_route.dart';
 import 'app/core/utils/app_constant.dart';
 import 'app/core/utils/app_string.dart';
+import 'test.dart';
 
 AudioPlayer audio = AudioPlayer();
+//Global
 
 Future<void> main() async {
+  //check ui
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -27,8 +31,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(ProfileController());
     return ScreenUtilInit(
-        designSize: Size(AppConstants.designWidth, AppConstants.designHeight),
+        designSize: Size(
+          AppConstants.designWidth,
+          AppConstants.designHeight,
+        ),
         builder: (context, _) {
+          /// get package
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             localizationsDelegates: const [
@@ -43,8 +51,8 @@ class MyApp extends StatelessWidget {
             title: AppString.appName,
             // theme:ThemeManager.myTheme,
             theme: ThemeData(
-                fontFamily: GoogleFonts.cairo().fontFamily,
-),
+              fontFamily: GoogleFonts.cairo().fontFamily,
+            ),
             defaultTransition: Transition.fade,
             getPages: AppRoute.appPages,
           );

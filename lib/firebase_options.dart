@@ -26,10 +26,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -53,10 +50,22 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBB7mdE84u_DACVo6cD1G0z8QFV1eyH5aY',
-    appId: '1:354641805418:android:f897961e7f6bcdd6920a13',
-    messagingSenderId: '354641805418',
-    projectId: 'sanad-app-6938f',
-    storageBucket: 'sanad-app-6938f.appspot.com',
+    apiKey: 'AIzaSyBAroppLoTezVipHFanqvXhIJtrOkAWqsU',
+    appId: '1:987400774995:android:2085f95bd72993ed786da6',
+    messagingSenderId: '987400774995',
+    projectId: 'ah-chat-a7da9',
+    storageBucket: 'ah-chat-a7da9.appspot.com',
   );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyBUtvWlSGpGplS0ROyuHX37yPF7qtrbRJ8',
+    appId: '1:987400774995:ios:44d9bf2b835c1c56786da6',
+    messagingSenderId: '987400774995',
+    projectId: 'ah-chat-a7da9',
+    storageBucket: 'ah-chat-a7da9.appspot.com',
+    androidClientId: '987400774995-8btspc89n9ut473c12o5eo7k63qo6cni.apps.googleusercontent.com',
+    iosClientId: '987400774995-dgfvkserh6v46g88043f7p7icq180bve.apps.googleusercontent.com',
+    iosBundleId: 'com.sanadapp.sanadApp',
+  );
+
 }

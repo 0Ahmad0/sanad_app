@@ -61,9 +61,10 @@ class AppRoute {
 
   static List<GetPage> appPages = [
     GetPage(
-        name: initialRoute,
-        page: () => const SplashScreen(),
-        transition: Transition.zoom),
+      name: initialRoute,
+      page: () => const SplashScreen(),
+      transition: Transition.zoom,
+    ),
     GetPage(
       name: authRoute,
       page: () => const AuthScreen(),
@@ -71,7 +72,7 @@ class AppRoute {
     ),
     GetPage(
       name: profileRoute,
-      page: () =>  ProfileScreen(),
+      page: () => ProfileScreen(),
       transition: Transition.fadeIn,
     ),
     GetPage(
@@ -146,41 +147,42 @@ class AppRoute {
     ),
     GetPage(
       name: showQuestionUserRoute,
-      fullscreenDialog:true,
+      fullscreenDialog: true,
       page: () => ShowQuestionUserScreen(),
       transition: Transition.downToUp,
-    ), GetPage(
+    ),
+    GetPage(
       name: managingLessonUserRoute,
       page: () => ManagingLessonUserScreen(),
       transition: Transition.cupertinoDialog,
     ),
     GetPage(
-      name:addLessonUserRoute,
+      name: addLessonUserRoute,
       page: () => AddLessonUserScreen(),
       transition: Transition.native,
     ),
     GetPage(
-      name:showAudioUserRoute,
+      name: showAudioUserRoute,
       page: () => ShowAudioScreen(),
       transition: Transition.zoom,
     ),
     GetPage(
-      name:showVedioUserRoute,
+      name: showVedioUserRoute,
       page: () => ShowVedioScreen(),
       transition: Transition.zoom,
     ),
     GetPage(
-      name:showTextUserRoute,
+      name: showTextUserRoute,
       page: () => ShowTextScreen(),
       transition: Transition.zoom,
     ),
     GetPage(
-      name:showMediaLessonsRoute,
+      name: showMediaLessonsRoute,
       page: () => ShowMediaLessonsScreen(),
       transition: Transition.fadeIn,
     ),
     GetPage(
-      name:ShowUserProfileAdminRoute,
+      name: ShowUserProfileAdminRoute,
       page: () => ShowUserProfileScreen(),
       transition: Transition.fadeIn,
     ),
