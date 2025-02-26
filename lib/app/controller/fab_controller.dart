@@ -163,7 +163,7 @@ class FabController extends GetxController {
 }
 showDemoRejectMessage(){
 
-  bool isReject=false;
+  bool isReject=true;
   if(isReject)
   Get.snackbar(
     AppString.message_failure,
