@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../controller/auth_controller.dart';
+import '../controller/fab_controller.dart';
 import '../controller/profile_controller.dart';
 import '../core/utils/app_string.dart';
 import '../core/utils/assets_manager.dart';
@@ -329,6 +330,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const EdgeInsets.symmetric(horizontal: AppPadding.p20),
                   child: ButtonAppWidget(
                       onPressed: () {
+                        if(showDemoRejectMessage()) return;
                         profileController.updateUser();
                       },
                       text: AppString.saveEditing),

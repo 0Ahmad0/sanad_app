@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:reorderables/reorderables.dart';
 import '../../app/controller/admin_controller.dart';
+import '../../app/controller/fab_controller.dart';
 import '../../app/core/utils/app_string.dart';
 import '../../app/core/utils/assets_manager.dart';
 import '../../app/core/utils/color_manager.dart';
@@ -54,6 +55,7 @@ class _AddQuestionsAdminScreenState extends State<AddQuestionsAdminScreen> {
                       return QuestionWidget(key:Key('$index'),question: controller.lesson!.questions[index], index: index);
                     }),
                     onReorder: (int oldIndex, int newIndex) {
+                      if(showDemoRejectMessage()) return;
                       setStateQuestion(() {
                         if (newIndex > oldIndex) {
                           newIndex -= 1;
@@ -93,6 +95,7 @@ class _AddQuestionsAdminScreenState extends State<AddQuestionsAdminScreen> {
             builder: (context) =>
                 AddQuestionPage(
                   onSave: (question) async {
+                    if(showDemoRejectMessage()) return;
                    await controller.addQuestion(context,question: question);
                    setState(() {});
                     // questions.add(question);
@@ -157,6 +160,7 @@ class QuestionWidget extends StatelessWidget {
                               value: optionIndex,
                               groupValue: question.correctOptionIndex,
                               onChanged: (value) {
+                                if(showDemoRejectMessage()) return;
                                 setStateOptions(() {
                                   question.correctOptionIndex = value as int;
                                 });

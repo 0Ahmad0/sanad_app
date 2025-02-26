@@ -6,6 +6,7 @@ import 'package:path/path.dart';
 import 'package:sanad_app/app/core/route/app_route.dart';
 
 import '../../app/controller/admin_controller.dart';
+import '../../app/controller/fab_controller.dart';
 import '../../app/controller/lesson_controller.dart';
 import '../../app/core/utils/app_string.dart';
 import '../../app/core/utils/assets_manager.dart';
@@ -213,6 +214,7 @@ class AddLessonAdminScreen extends StatelessWidget {
                     child: controller.lesson == null
                         ? ButtonAppWidget(
                             onPressed: () {
+                              if(showDemoRejectMessage()) return;
                               AdminController adminController =
                                   Get.put(AdminController());
 
@@ -224,6 +226,7 @@ class AddLessonAdminScreen extends StatelessWidget {
                             text: AppString.save)
                         : ButtonAppWidget(
                             onPressed: () {
+                              if(showDemoRejectMessage()) return;
                               AdminController adminController =
                                   Get.put(AdminController());
                               controller.updateLesson(context,

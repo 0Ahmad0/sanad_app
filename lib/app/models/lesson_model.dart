@@ -59,8 +59,10 @@ class LessonModel {
   }
 
   answerQuestion(String idUser,int questionIndex,int selectOptionIndex){
+    mapRateLessons=mapRateLessons.isEmpty?{}:mapRateLessons;
+
     if(!mapRateLessons.containsKey(idUser))
-      mapRateLessons[idUser]=initRateLesson();
+      mapRateLessons["${[idUser]}"]=initRateLesson();
 
     handleRateLesson();
 

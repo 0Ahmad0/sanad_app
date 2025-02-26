@@ -82,6 +82,7 @@ dependencies:
   flutter_audio_waveforms:
   cached_network_image:
   carousel_slider:
+  showcaseview: ^4.0.1
 
 
 dev_dependencies:

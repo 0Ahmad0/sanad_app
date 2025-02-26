@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../app/controller/fab_controller.dart';
 import '../../app/core/utils/color_manager.dart';
 import '../../app/core/utils/styles_manager.dart';
 import '../../app/core/utils/values_manager.dart';
@@ -54,6 +55,7 @@ class LessonRequestWidget extends StatelessWidget {
                         buttonNoText: AppString.cancle,
                         buttonOkText: AppString.yes,
                         onPressed: () async {
+                          if(showDemoRejectMessage()) return;
                           Get.back();
                           lesson!=null?
                           Get.put(LessonsRequestsAdminController()).
@@ -90,6 +92,7 @@ class LessonRequestWidget extends StatelessWidget {
                         buttonNoText: AppString.cancle,
                         buttonOkText: AppString.yes,
                         onPressed: () async {
+                          if(showDemoRejectMessage()) return;
                           Get.back();
                           lesson!=null?
                           await Get.put(LessonsRequestsAdminController()).

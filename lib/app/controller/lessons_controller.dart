@@ -8,6 +8,7 @@ import '../../user/widgets/dialog_widget.dart';
 
 import '../models/lesson_model.dart';
 import '../widgets/constants_widgets.dart';
+import 'fab_controller.dart';
 import 'firebase/firebase_constants.dart';
 import 'firebase/firebase_fun.dart';
 
@@ -41,6 +42,7 @@ class LessonsController extends GetxController{
          title: 'حذف الدرس',
      text: 'هل أنت متأكد أنك تريد حذف الدرس؟',
          onPressed:() async {
+           if(showDemoRejectMessage()) return;
            Get.back();
            ConstantsWidgets.showLoading();
            result=await FirebaseFun

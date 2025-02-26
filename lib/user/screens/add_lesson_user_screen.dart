@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:sanad_app/app/core/utils/assets_manager.dart';
 import 'package:sanad_app/app/widgets/custom_appbar_widget.dart';
 import '../../app/controller/admin_controller.dart';
+import '../../app/controller/fab_controller.dart';
 import '../../app/models/lesson_model.dart';
 import '../../app/widgets/default_scaffold.dart';
 
@@ -113,6 +114,7 @@ class AddLessonUserScreen extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: AppPadding.p20),
                   child: ButtonAppWidget(
                       onPressed: () {
+                        if(showDemoRejectMessage()) return;
                         controller.lesson != null
                             ? controller.updateLesson(context)
                             : controller.addLesson(context,

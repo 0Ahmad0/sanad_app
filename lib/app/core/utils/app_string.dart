@@ -230,6 +230,8 @@ class AppString {
   static const notify_max_soil_moister_plant= "The plant soil moister has risen above the maximum";
   static const notify_min_soil_moister_plant= "The plant soil moister fell below the minimum";
 
+  static const message_successfully_restore = "تمت الاستعادة بنجاح";
+  static const errorTryAgainLater = "حدث خطأ، حاول مرة أخرى لاحقاً";
 
 
 }

@@ -95,6 +95,7 @@ class LessonRequestUserWidget extends StatelessWidget {
                   FittedBox(
                     child: TextButton.icon(
                         onPressed: () {
+
                           Get.put(LessonsController()).deleteLesson(context, idLesson: lesson?.id);
                         },
                         icon: CircleAvatar(

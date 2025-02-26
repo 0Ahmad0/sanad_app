@@ -42,7 +42,7 @@ class UserModel {
       photoUrl: json["photoUrl"],
       typeUser: json["typeUser"],
       gender: data["gender"],
-      //  password:json['password']
+       password:json['password']
     );
   }
 
@@ -67,6 +67,7 @@ class UserModel {
         'photoUrl': photoUrl,
         'typeUser': typeUser,
         'gender': gender,
+        'password': password,
       };
 }
 

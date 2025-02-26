@@ -63,7 +63,7 @@ class CircleProfilePictureWidget extends GetView<ProfileController> {
           ),
         )
             :Image.file(
-          File(path!),
+          File(path??controller.profileImage?.path??''),
           width: radius.sp,
           height: radius.sp,
           fit: BoxFit.cover,

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import '../../app/controller/fab_controller.dart';
 import '../../app/core/helper/sizer_media_query.dart';
 import '../../app/core/utils/app_string.dart';
 import '../../app/core/utils/color_manager.dart';
@@ -30,6 +31,7 @@ class _AddQuestionPageState extends State<AddQuestionPage> {
   int _correctOptionIndex = -1;
 
   Future<void> _saveQuestion() async {
+    if(showDemoRejectMessage()) return;
     if (_formKey.currentState?.validate() ?? false) {
       final question = Question(
         text: _questionController.text,

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sanad_app/app/core/utils/assets_manager.dart';
 import '../../main.dart';
+import '../core/utils/color_manager.dart';
 import 'firebase/firebase_constants.dart';
 import 'firebase/firebase_fun.dart';
 import 'profile_controller.dart';
@@ -110,6 +111,7 @@ class AuthController extends GetxController {
     String email = userName;
     try {
       ConstantsWidgets.showLoading();
+   
       var result = await FirebaseFun.fetchUserByUserName(userName: userName);
 
       ///handling
@@ -250,7 +252,9 @@ class AuthController extends GetxController {
     await auth.signOut().then((value) async {
       if (deleteFromAuth) {
         auth.currentUser?.delete();
+
       }
+      Get.put(ProfileController()).profileImage=null;
       await AppStorage.depose();
       // await AppStorage.storageDelete(key:AppConstants.rememberMe);
       //  await AppStorage.storageDelete(key:AppConstants.uidKEY);

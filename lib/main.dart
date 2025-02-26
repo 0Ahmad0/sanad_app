@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sanad_app/app/core/helper/convert_to_material_color.dart';
 
+import 'app/controller/fab_controller.dart';
 import 'app/controller/profile_controller.dart';
 import 'app/core/route/app_route.dart';
 import 'app/core/utils/app_constant.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(ProfileController());
+    Get.put(FabController());
     return ScreenUtilInit(
         designSize: Size(
           AppConstants.designWidth,

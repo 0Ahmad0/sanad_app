@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:sanad_app/app/models/user_model.dart';
+import '../../app/controller/fab_controller.dart';
 import '../../app/core/route/app_route.dart';
 import '../../app/core/utils/app_string.dart';
 import '../../app/core/utils/color_manager.dart';
@@ -52,7 +53,7 @@ class ElderlyWidget extends StatelessWidget {
                             buttonNoText: AppString.cancle,
                             buttonOkText: AppString.yes,
                             onPressed: () {
-
+                              if(showDemoRejectMessage()) return;
                               // controller.deleteUser();
                             },
                           ),
